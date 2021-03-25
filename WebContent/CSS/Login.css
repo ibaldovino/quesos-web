@@ -1,0 +1,36 @@
+body {
+	margin: 0;
+	padding: 0;
+	background: url(../Imagenes/queso.jpg) no-repeat center top;
+	background-size: cover;
+	font-family: sans-serif;
+}
+
+#panelGrid{
+	background: red;
+}
+
+h1{
+	color: white;
+}
+
+.txtusu{
+	color: red;
+}
+
+.ui-widget-header{
+	background: #ffc800 -webkit-gradient(linear,left top,left bottom,from(rgb(208 67 0 / 80%)),to(rgba(255,255,255,0)));
+	color: white;
+	font-weight: normal;
+    text-shadow: 0 0px 0 rgba(255,255,255,0.7);
+    font-family: cursive;
+}
+
+
+
+.ui-panelgrid .ui-panelgrid-cell {
+    border-width: 0px;
+    border-style: none;
+    border-color: white;
+    padding: 4px 10px;
+}

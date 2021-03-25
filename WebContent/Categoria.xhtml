@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta charset="utf-8"></meta>
+	
+	<title>Cheese - Categorias</title>
+	<!-- CSS here -->
+	<link rel="stylesheet" href="fontawesome/css/all.css"/>
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css"></link>
+	<link rel="stylesheet" href="assets/css/owl.carousel.min.css"></link>
+	<link rel="stylesheet" href="assets/css/flaticon.css"></link>
+	<link rel="stylesheet" href="assets/css/slicknav.css"></link>
+	<link rel="stylesheet" href="assets/css/animate.min.css"></link>
+	<link rel="stylesheet" href="assets/css/magnific-popup.css"></link>
+	<link rel="stylesheet" href="assets/css/fontawesome-all.min.css"></link>
+	<link rel="stylesheet" href="assets/css/themify-icons.css"></link>
+	<link rel="stylesheet" href="assets/css/slick.css"></link>
+	<link rel="stylesheet" href="assets/css/nice-select.css"></link>
+	<link rel="stylesheet" href="assets/css/style.css"></link>
+	<link rel="stylesheet" href="CSS/estilo.css"></link>
+	
+	<script src="../js/jquery-3.6.0.min.js"  type="text/javascript"></script>
+		<script src="../js/menu.js"></script>
+</h:head>
+
+<body>
+<div id="menu">
+</div>
+	
+<div>
+<h:form id="ftc">
+
+		<p:growl id="msgs" life="2000" showDetail="true" />
+		
+
+			<p:dataTable id="TablaCategoria" var="ca" value="#{dtEditView.categoria}" 
+				 paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15" rows="10"  editable="true" selectionMode="single" selection="#{categ.select}" rowKey="#{ca.idCateg}"
+				reflow="true">
+				
+				
+				<p:ajax event="rowEdit" listener="#{categ.onEdit}" update=":ftc:msgs" />
+				<p:ajax event="rowEditCancel" listener="#{categ.onCancel}" update=":ftc:msgs"/>
+				<p:ajax event="rowSelect" listener="#{categ.onRowSelect}" update=":ftc:msgs" />
+        		<!-- <p:ajax event="rowUnselect" listener="#{quesos.onRowUnselect}" update=":dtq:msgs" /> -->
+				
+				<p:column style="width:3%">
+					<p:rowEditor editTitle="Editar Datos" cancelTitle="Cancelar Edicion" saveTitle="Guardar Cambios" />
+				</p:column>
+
+				<p:column style="width:35px" headerText="Id" responsivePriority="2"
+					filterBy="#{ca.idCateg}" filterMatchMode="contains">
+					<h:outputText value="#{ca.idCateg}" />
+				</p:column>
+				<p:column style="width:35px" headerText="Ident. Categ" responsivePriority="2"
+					filterBy="#{ca.identCateg}" filterMatchMode="contains">
+					<p:cellEditor>
+					<f:facet name="output">
+					<h:outputText value="#{ca.identCateg}" />
+					</f:facet>
+					<f:facet name="input">
+					<p:inputText value="#{ca.identCateg}"/>
+					</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column style="width:35px" headerText="Referencia" responsivePriority="2"
+					filterBy="#{ca.referencia}" filterMatchMode="contains">
+					<h:outputText value="#{ca.referencia}" />
+				</p:column>
+				<p:column headerText="Descripcion" style="width:50px" responsivePriority="2"
+					filterBy="#{ca.descrip}" filterMatchMode="contains">
+					<h:outputText value="#{ca.descrip}" />
+				</p:column>
+				<p:column headerText="JuradoCateg" style="width:50px" responsivePriority="2"
+					filterBy="#{ca.juracategs.jurado.nombre}" filterMatchMode="contains">
+					<p:selectOneMenu id="lj" value="#" style="width:150px" filter="true" filterMatchMode="startsWith">
+							<f:selectItem itemLabel="Select..." noSelectionOption="true" />
+							<f:selectItems value="#{ca.juracategs.jurado.nombre}" />
+						</p:selectOneMenu>
+				</p:column>
+				<p:column headerText="Quesos" style="width:50px" responsivePriority="2"
+					filterBy="#{ca.quesos.variedad}" filterMatchMode="contains">
+					<p:selectOneMenu id="lq" value="#" style="width:150px" filter="true" filterMatchMode="startsWith">
+							<f:selectItem itemLabel="Select..." noSelectionOption="true" />
+							<f:selectItems value="#{ca.quesos.variedad}" />
+						</p:selectOneMenu>
+				</p:column>
+				
+				
+				<p:column style="width:10%" responsivePriority="2">
+					<p:commandButton icon="pi pi-trash" value="Eliminar" action="#{categ.BorrarCa(ca)}" update="TablaCategoria">
+					<p:confirm header="Confirmar baja"  icon="fa fa-exclamation-triangle" 
+							message="Estas seguro que desea borrar esta categoria?"
+							 />
+					</p:commandButton>
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="Sí" type="button" update="msgs"
+							styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+						<p:commandButton value="No" type="button"
+							styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+					</p:confirmDialog>
+				</p:column>
+
+
+
+				<f:facet name="footer">
+					<p:commandButton icon="pi pi-plus" value="Nuevo"
+						oncomplete="PF('mostrar').show();" update=":formNew">
+				    </p:commandButton>
+
+				</f:facet>
+
+			</p:dataTable>
+	</h:form>
+</div>
+<div>
+<h:form id="formNew">
+			<p:dialog widgetVar="mostrar" header="Ingrese caracteristicas de la nueva Categoria" modal="true" 
+				showEffect="clip" resizable="true" position="center" responsive="true" minimizable="true">
+
+				
+					<p:panelGrid columns="2" layout="grid" styleClass="customPanelGrid" contentStyleClass="ui-fluid">
+
+											
+						<p:outputLabel value="Identificacion Categoria: " />
+						<p:inputTextarea value="#{categ.identCateg}" style="width:150px" />
+						
+						<p:outputLabel value="Referencia: " />
+						<p:inputTextarea value="#{categ.referencia}" style="width:150px" />
+						
+
+						<p:outputLabel value="Descripción: " />
+						<p:inputTextarea value="#{categ.descrip}" style="width:150px" /> 
+						
+							<!-- <p:outputLabel value="Quesos" />
+					<p:selectManyMenu id="selectQueso"
+						value="#{categ.listquesos}"
+						converter="#{idConverter}" var="q" filter="true"
+						filterMatchMode="contains" showCheckbox="true"
+						styleClass="manymenu-advanced">
+						<f:selectItems value="#{categ.listquesos}" var="ke"
+							itemLabel="#{ke.idQueso}" itemValue="#{queso}" />
+
+						<p:column>
+							<h:outputText value="#{q.variedad.nombreVar}" />
+						</p:column>
+					</p:selectManyMenu>
+
+					<p:outputLabel value="JuraCateg" />
+					<p:selectManyMenu id="juraC"
+						value="#{categ.juracategs}"
+						converter="#{idConverter}" var="q" filter="true"
+						filterMatchMode="contains" showCheckbox="true"
+						styleClass="manymenu-advanced">
+						<f:selectItems value="#{categ.juracategs}" var="jc"
+							itemLabel="#{jc.idJurcat}" itemValue="#{categoria}" />
+
+						<p:column>
+							<h:outputText value="#{jc.jurado.nombre}" />
+						</p:column>
+					</p:selectManyMenu> -->
+
+				</p:panelGrid>
+				
+		<f:facet name="footer">
+				
+								
+				<p:commandButton id="btcrear"  value="Crear" styleClass="align-items-end"
+					action="#{categ.CrearCA}" update=":ftc:TablaCategoria"
+					>
+
+					<p:confirm header="Confirmar alta"
+						message="Estas seguro que desea dar de alta esta Categoria?"
+						icon="pi pi-exclamation-triangle" />
+				</p:commandButton>
+				
+
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					<p:commandButton value="Sí" type="button"  onclick="PF('mostrar').hide();"
+						styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+					<p:commandButton value="No" type="button"
+						styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+				</p:confirmDialog>
+				
+				</f:facet>
+				
+			</p:dialog>
+</h:form>
+
+	</div>	
+
+</body>
+</html>

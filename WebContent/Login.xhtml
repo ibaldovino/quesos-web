@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+
+
+
+<link rel="stylesheet" type="text/css" href="CSS/Login.css"></link>
+<title>Login</title>
+
+
+<h:outputStylesheet library = "css" name = "styles.css"/>
+
+</h:head> 
+<h:body>
+<div align="center"> 
+<img src="Imagenes\gorro.png" alt="Imagen del Proyecto 1" width="150" height="150"/>
+<div class="panelGrid">
+
+<h1>Cheese</h1>
+
+<h:form >
+
+<p:growl id="message" showDetail="true" />
+
+	<p:panelGrid id="gridAlta"  name="Grid" columns="2"  >
+    	<f:facet name="header">
+        <h:outputText value="Login"></h:outputText>
+    	</f:facet>
+		<p:column>
+			<p:outputLabel value="Usuario" />
+			
+			<br/>
+		</p:column>
+		<p:column>
+		<p:inputText id ="txtusu" required="true" value="#{usus.nomUsuario}"
+			requiredMessage="Debe ingresar Usuario">
+			</p:inputText>
+		</p:column>
+		<p:column>	
+			<p:outputLabel value="Contraseña" />
+			</p:column>
+			<p:column>
+			<p:password id ="txtcontra"
+			value="#{usus.pwdUsuario}" required="true"
+			requiredMessage="Debe ingresar Contraseña" />
+			</p:column>
+		
+		<br/>
+		<br/>
+		<p:column>
+		<p:commandButton icon="ui-icon-cancel" action="Cancelar" value="Cancelar" />
+		<p:commandButton icon="ui-icon-check" action="#{usus.ValidarUsuario(usus.nomUsuario, usus.pwdUsuario)}" value="Ingresar" update="message"/>
+		
+		</p:column>
+	</p:panelGrid>
+	
+	
+	
+</h:form>
+
+
+
+
+</div>
+</div>
+</h:body> 
+</html>

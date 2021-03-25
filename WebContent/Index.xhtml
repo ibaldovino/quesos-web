@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta charset="utf-8"></meta>
+        <meta http-equiv="x-ua-compatible" content="ie=edge"></meta>
+        <title>Cheese</title>
+        <meta name="description" content=""></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <link rel="manifest" href="site.webmanifest"></link>
+		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico"></link>
+
+		<!-- CSS here -->
+            <link rel="stylesheet" href="assets/css/bootstrap.min.css"></link>
+            <link rel="stylesheet" href="assets/css/owl.carousel.min.css"></link>
+            <link rel="stylesheet" href="assets/css/flaticon.css"></link>
+            <link rel="stylesheet" href="assets/css/slicknav.css"></link>
+            <link rel="stylesheet" href="assets/css/animate.min.css"></link>
+            <link rel="stylesheet" href="assets/css/magnific-popup.css"></link>
+            <link rel="stylesheet" href="assets/css/fontawesome-all.min.css"></link>
+            <link rel="stylesheet" href="assets/css/themify-icons.css"></link>
+            <link rel="stylesheet" href="assets/css/slick.css"></link>
+            <link rel="stylesheet" href="assets/css/nice-select.css"></link>
+            <link rel="stylesheet" type="text/css" href="CSS/Principal.css"></link>
+            
+            <link rel="stylesheet" href="assets/css/style.css"></link>
+   </h:head>
+
+   <body>
+    
+<header>
+			<!-- Header Start -->
+			<div class="header-area">
+				<div class="main-header ">
+
+					<div class="header-bottom  header-sticky">
+						<div class="container">
+							<div class="row align-items-center">
+								<!-- Logo -->
+								<div class="col-xl-2 col-lg-2 col-md-1">
+									<div class="logo">
+										<a href="IniciarSesion.html"><img src="Imagenes/q3.jpeg"
+											style="size: 10cm" alt="" /></a>
+									</div>
+								</div>
+								<div class="col-xl-10 col-lg-10 col-md-10">
+									<!-- Main-menu -->
+									<div class="main-menu f-right d-none d-lg-block">
+										<nav>
+											<ul id="navigation">
+												<li><a href="Index.xhtml">Inicio</a></li>
+												<li><a href="blog.html">Participantes</a>
+													<ul class="submenu">
+														<li><a href="blog.html">Participantes</a></li>
+														<li><a href="blog.html">Inscripciones
+																Quesos/Part.</a></li>
+														<li><a href="blog.html">Tipo Industria</a></li>
+														<li><a href="#">Ubicaciones</a>
+															<ul class="submenu">
+																<li><a href="l">Localidades</a></li>
+																<li><a href="ingrecat.xhtml">Regiones/Departamentos</a></li>
+																<li><a href="SubCat.xhtml">Paises</a></li>
+															</ul></li>
+													</ul></li>
+
+												<li><a href="#">Parametrizacion</a>
+													<ul class="submenu">
+														<li><a href="Quesos.xhtml">Quesos</a></li>
+														<li><a href="ingrecat.xhtml">Categorias</a></li>
+														<li><a href="SubCat.xhtml">Subcategorias</a></li>
+														<li><a href="elements.html">Maduracion</a></li>
+														<li><a href="elements.html">Humedad</a></li>
+														<li><a href="Quesos.xhtml">Tecnologia</a></li>
+														<li><a href="ingrecat.xhtml">Camara</a></li>
+
+													</ul></li>
+												<li><a href="">Mesas</a>
+													<ul class="submenu">
+														<li><a href="l">Mesas</a></li>
+														<li><a href="ingrecat.xhtml">Jurados</a></li>
+														<li><a href="SubCat.xhtml">Habilidades</a></li>
+														<li><a href="SubCat.xhtml">Hab/Jur</a></li>
+														<li><a href="SubCat.xhtml">Hab/Mesa</a></li>
+														<li><a href="SubCat.xhtml">Hab/Categ</a></li>
+													</ul></li>
+												<li><a href="about.html">Jura</a>
+													<ul class="submenu">
+														<li><a href="l">Evaluaciones</a></li>
+														<li><a href="ingrecat.xhtml">Tipos de
+																Evaluaciones</a></li>
+														<li><a href="SubCat.xhtml">Habilidades</a></li>
+														<li><a href="SubCat.xhtml">Descriptores</a></li>
+														<li><a href="SubCat.xhtml">Descrip/Tipo</a></li>
+													</ul></li>
+												<li><a href="about.html">Consultas/Listados</a></li>
+												<li><a href="about.html">Seguridad</a>
+													<ul class="submenu">
+														<li><a href="l">Evaluaciones</a></li>
+														<li><a href="SubCat.xhtml">Usuarios</a></li>
+														<li><a href="ingrecat.xhtml">Roles</a></li>
+														<li><a href="SubCat.xhtml">Estados</a></li>
+														<li><a href="SubCat.xhtml">Tareas</a></li>
+														<li><a href="SubCat.xhtml">Tareas/Roles</a></li>
+													</ul></li>
+
+											</ul>
+										</nav>
+									</div>
+								</div>
+								<!-- Mobile Menu -->
+								<div class="col-12">
+									<div class="mobile_menu d-block d-lg-none"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Header End -->
+		</header>
+    <main>
+           
+<div id="divCS">
+           <p:growl showDetail="true" id="message" />
+       <p:commandButton id="btnCS" action="#{usu.CerrarSesion()}" icon="pi pi-sign-out" value="Cerrar Sesión">
+
+					<p:confirm icon="pi pi-exclamation-triangle" message="Estas seguro desea Cerrar Sesión?" header="Confirmar alta" />
+				</p:commandButton>
+
+				<p:confirmDialog hideEffect="fade" showEffect="fade" global="true">
+					<p:commandButton icon="pi pi-check" value="Sí" styleClass="ui-confirmdialog-yes" type="button" />
+					<p:commandButton icon="pi pi-times" value="No" styleClass="ui-confirmdialog-no" type="button" />
+				</p:confirmDialog>
+        
+</div>
+        
+
+    </main>
+
+	
+        
+    </body>
+</html>

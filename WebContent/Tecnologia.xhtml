@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta charset="utf-8"></meta>
+	<meta http-equiv="x-ua-compatible" content="ie=edge"></meta>
+	<title>Cheese - Tecnologia</title>
+	<meta name="description" content=""></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+	<link rel="manifest" href="site.webmanifest"></link>
+	<link rel="shortcut icon" type="image/x-icon"
+		href="assets/img/favicon.ico"></link>
+
+	<!-- CSS here -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css"></link>
+	<link rel="stylesheet" href="assets/css/owl.carousel.min.css"></link>
+	<link rel="stylesheet" href="assets/css/flaticon.css"></link>
+	<link rel="stylesheet" href="assets/css/slicknav.css"></link>
+	<link rel="stylesheet" href="assets/css/animate.min.css"></link>
+	<link rel="stylesheet" href="assets/css/magnific-popup.css"></link>
+	<link rel="stylesheet" href="assets/css/fontawesome-all.min.css"></link>
+	<link rel="stylesheet" href="assets/css/themify-icons.css"></link>
+	<link rel="stylesheet" href="assets/css/slick.css"></link>
+	<link rel="stylesheet" href="assets/css/nice-select.css"></link>
+	<link rel="stylesheet" type="text/css" href="CSS/modal.css"></link>
+	<!-- <link rel="stylesheet" type="text/css" href="CSS/Principal.css"></link> -->
+
+	<link rel="stylesheet" href="assets/css/style.css"></link>
+
+	<script src="../js/jquery-3.6.0.min.js" type="text/javascript"></script>
+	<script src="../js/menu.js"></script>
+
+</h:head>
+<body>
+
+	<div id="menu"></div>
+
+	<h:form id="form">
+
+		<main>
+
+			<p:growl id="msgs" life="3000" showDetail="true" />
+
+			<p:dataTable id="TablaTecn" var="tec"
+				value="#{dtEditView.tecnologias}" styleClass="table table-bordered"
+				paginator="true"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15" rows="10" editable="true"
+				selectionMode="single" selection="#{tecnologia.select}"
+				rowKey="#{tec.idTecno}">
+
+				<f:facet name="header">
+					<div class="products-table-header">
+						<span style="font-weight: bold">Mantenimiento Tecnología</span>
+					</div>
+				</f:facet>
+
+				<p:ajax event="rowEdit" listener="#{tecnologia.ActualizarTec(tec)}"
+					update="TablaTecn" />
+				<p:ajax event="rowSelect" listener="#{tecnologia.onRowSelect}"
+					update=":form:msgs" />
+				<p:ajax event="rowUnselect" listener="#{tecnologia.onRowUnselect}"
+					update=":form:msgs" />
+				<p:ajax event="rowEditCancel" listener="#{tecnologia.onRowCancel}"
+					update=":form:msgs" />
+
+				<p:column style="width:5%">
+					<p:rowEditor />
+				</p:column>
+
+				<p:column headerText="Id" filterBy="#{tec.idTecno}"
+					filterMatchMode="contains">
+					<h:outputText value="#{tec.idTecno}" />
+				</p:column>
+				<p:column headerText="Descripción" filterBy="#{tec.descrip}"
+					filterMatchMode="contains">
+					<h:outputText value="#{tec.descrip}" />
+				</p:column>
+				<p:column headerText="Referencia" filterBy="#{tec.referencia}"
+					filterMatchMode="contains">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{tec.referencia}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{tec.referencia}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Quesos" filterBy="#{tec.quesos.idQueso}"
+					filterMatchMode="contains">
+					<h:outputText value="#{tec.quesos.idQueso}" />
+				</p:column>
+
+				<p:column style="width:10%">
+					<p:growl id="message" showDetail="true" />
+					<p:commandButton icon="pi pi-trash" value="Eliminar"
+						action="#{tecnologia.BorrarTec(tec)}" update=":form:TablaTecn">
+						<p:confirm header="Confirmar baja"
+							message="Seguro desea eliminar esta Tecnología?"
+							icon="pi pi-exclamation-triangle" />
+					</p:commandButton>
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="Sí" type="button"
+							styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+						<p:commandButton value="No" type="button"
+							styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+					</p:confirmDialog>
+					
+					
+				</p:column>
+
+
+
+				<f:facet name="footer">
+					<p:commandButton icon="pi pi-plus" value="Nueva"
+						oncomplete="PF('mostrar').show();" update=":formNew">
+					</p:commandButton>
+
+				</f:facet>
+			</p:dataTable>
+		</main>
+	</h:form>
+
+<h:form id="formNew">
+	<p:dialog widgetVar="mostrar" header="Ingresar datos de Tecnología" modal="true"
+		showEffect="clip" resizable="false">
+
+		
+			<p:panelGrid columns="2" layout="grid" styleClass="customPanelGrid" contentStyleClass="ui-fluid">
+
+				<p:outputLabel value="Descripción" />
+				<p:inputTextarea value="#{tecnologia.descrip}" />
+
+				<p:outputLabel value="Referencia" />
+				<p:inputTextarea value="#{tecnologia.referencia}" />
+
+
+				<p:outputLabel value="Quesos" />
+				<p:selectOneMenu id="qsc">
+					<f:selectItem itemLabel="Select..." noSelectionOption="true" />
+					<f:selectItems value="xhch" />
+				</p:selectOneMenu>
+
+
+
+			</p:panelGrid>
+
+
+		<f:facet name="footer">
+		<p:commandButton id="btcrear" value="Crear" icon="pi pi-check"
+			action="#{tecnologia.CrearTec}" update=":form:TablaTecn">
+
+			<p:confirm header="Confirmar alta"
+				message="Seguro desea dar de alta esta nueva Tecnología?"
+				icon="pi pi-exclamation-triangle" />
+		</p:commandButton>
+
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			<p:commandButton value="Sí" type="button"
+				onclick="PF('mostrar').hide();" styleClass="ui-confirmdialog-yes"
+				icon="pi pi-check" />
+			<p:commandButton value="No" type="button"
+				styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+		</p:confirmDialog>
+		</f:facet>
+	</p:dialog>
+	</h:form>
+
+
+
+
+</body>
+</html>
