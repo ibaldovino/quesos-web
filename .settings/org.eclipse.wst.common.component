@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-<<<<<<< HEAD
         
     <wb-module deploy-name="PresentacionQueso">
                 
@@ -12,13 +11,4 @@
             
     </wb-module>
     
-=======
-    <wb-module deploy-name="PresentacionQueso">
-        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <wb-resource deploy-path="/WEB-INF/classes/" source-path="/ImportedClasses"/>
-        <property name="context-root" value="PresentacionQueso"/>
-        <property name="java-output-path" value="/PresentacionQueso/build/classes"/>
-    </wb-module>
->>>>>>> 5bbfe06fd139858cc74b02e232d624d502fdf69a
 </project-modules>
