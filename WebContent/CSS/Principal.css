@@ -1,0 +1,194 @@
+body{
+	margin-top: 0%;
+}
+aside {
+	float: left;
+	background: white;
+	height: 800px;
+	width: 26%;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 12pt;
+	font-weight: 300;
+	color: #808080;
+	text-align: center;
+	border-radius: 2em;
+	border:  0.5em solid #236d9e;
+}
+
+aside li a {
+	display: block;
+	padding: 2em 1.5em;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-weight: 700;
+	color: #808080;
+	text-align: left;
+}
+
+aside li a:hover
+	{
+		text-decoration: underline;
+		color: #236d9e;
+		font-weight: bold;
+		font-size: 13pt;
+		
+	}
+
+aside li{
+	list-style: none;
+}
+
+.salir{
+    outline: none;
+  height: 45px;
+  background: #2980b9;
+  color: #ffffff;
+  font-size: 22px;
+  border-radius: 20px;
+  border-color: #808080;
+  margin-top: 1em;
+}
+
+.salir:hover,
+.salir:active,
+.salir:focus {
+  color: #fff;
+  background-color: #00557d;
+}
+
+#logo {
+	margin-bottom: 4em;
+	margin-top: 3em;
+}
+
+
+
+
+
+ section #titulo{
+	color: #000000;
+	font-size: 3em;
+}
+
+article {
+	display: block;
+	color: #000000;
+	padding-left: 230px;
+	margin-top:8%;
+	padding: 0;
+	width: 80%;
+	overflow: hidden;
+}
+
+article h2 {
+	text-transform: uppercase;
+	font-size: 20px;
+	font-weight: 400;
+	padding-left: 230px;
+}
+
+article li{
+	list-style: none;
+	text-transform: uppercase;
+	font-weight: 10;
+	margin-bottom: 0.8em;
+	
+}
+
+article ul li a{
+	text-decoration: none;
+	color: white;
+	margin-left: 2em;
+	
+}
+
+article li a:hover
+	{
+		text-decoration: underline;
+		color: #008000;
+		font-weight: bold;
+		font-size: 13pt;
+	}
+
+img.tam {
+	width: 160px;
+	height: 135px;
+	align: left;
+	border: 3px solid #000000;
+		border-radius:20px;
+	
+}
+
+img.tam:hover{
+	-webkit-transform:scale(0.9);
+	}
+
+footer{
+	height: 50px;
+	background: #0D72EF;
+}
+
+main{
+	background: url(../Imagenes/quesoide.jpg) no-repeat center top; background-size: cover; 
+	height: 40em;
+}
+
+	
+	/*********************************************************************************/
+/* Ventana flotante: Contacto                                                    */
+/*********************************************************************************/
+
+.ventana{
+	border-radius: 15px;
+	background: rgba(0,0,0,0.9);
+  	width: 800px;
+ 	height: auto;
+  	position: absolute;
+  	top: 30%;
+  	left: 30%;
+  	border: 3px solid #ffffff;
+  	display: none;
+  	
+  	
+  	
+	}
+	
+	.ventana h1{
+	color: #0080c0;
+}
+
+.ventana .cerrar{
+	position: absolute;
+	margin-top: 5px;
+	right: 5px;
+}
+	
+.ventana .contacto{
+	text-align: left;
+	margin-left: 80px;
+	
+}
+
+.ventana h3{
+	text-align: left;
+	margin-left: 15px;
+	color: #0080c0;
+	margin-top: 8px;
+}
+
+
+.ventana h5{
+	text-align: left;
+	margin-left: 200px;
+	margin-top: 8px;
+	font-size: 15px;
+	color: white;
+}
+
+
+.table {
+    width: 100%;
+    margin-bottom: 0em;
+    margin-top: 0em;
+    
+}

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta charset="utf-8"></meta>
+	<meta http-equiv="x-ua-compatible" content="ie=edge"></meta>
+	<title>Cheese - Habilidad</title>
+	<meta name="description" content=""></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+	<link rel="manifest" href="site.webmanifest"></link>
+	<link rel="shortcut icon" type="image/x-icon"
+		href="assets/img/favicon.ico"></link>
+
+	<!-- CSS here -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css"></link>
+	<link rel="stylesheet" href="assets/css/owl.carousel.min.css"></link>
+	<link rel="stylesheet" href="assets/css/flaticon.css"></link>
+	<link rel="stylesheet" href="assets/css/slicknav.css"></link>
+	<link rel="stylesheet" href="assets/css/animate.min.css"></link>
+	<link rel="stylesheet" href="assets/css/magnific-popup.css"></link>
+	<link rel="stylesheet" href="assets/css/fontawesome-all.min.css"></link>
+	<link rel="stylesheet" href="assets/css/themify-icons.css"></link>
+	<link rel="stylesheet" href="assets/css/slick.css"></link>
+	<link rel="stylesheet" href="assets/css/nice-select.css"></link>
+	<link rel="stylesheet" type="text/css" href="CSS/modal.css"></link>
+
+	<link rel="stylesheet" href="assets/css/style.css"></link>
+
+	<script src="../js/jquery-3.6.0.min.js" type="text/javascript"></script>
+	<script src="../js/menu.js"></script>
+</h:head>
+<body>
+	<div id="menu"></div>
+
+
+	<h:form id="form">
+
+
+		<main>
+
+			<p:growl id="msgs" life="2000" showDetail="true" />
+
+			<p:dataTable id="HabiTabla" editable="true" var="hb"
+				value="#{dtEditView.habilidad}" styleClass="table table-bordered"
+				paginator="true"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15" rows="10" selectionMode="single"
+				selection="#{hb.selectHabi}" rowKey="#{hb.idHabili}">
+
+				<f:facet name="header">
+					<div class="products-table-header">
+						<span style="font-weight: bold">Mantenimiento Habilidad</span>
+					</div>
+				</f:facet>
+
+				<p:ajax event="rowEdit" listener="#{mesa.ActualizarSC(sc)}"
+					update="HabiTabla" />
+				<p:ajax event="rowSelect" listener="#{mesa.onRowSelect}"
+					update=":form:msgs" />
+				<p:ajax event="rowUnselect" listener="#{mesa.onRowUnselect}"
+					update=":form:msgs" />
+
+				<p:column style="width:1%">
+					<p:rowEditor />
+				</p:column>
+
+
+				<p:column style="width:15px" headerText="Id"
+					filterBy="#{hb.idHabili}" filterMatchMode="contains">
+					<h:outputText value="#{hb.idHabili}" />
+
+				</p:column>
+
+
+				<p:column headerText="Descripcion" style="width:50px"
+					filterBy="#{hb.desHabildad}" filterMatchMode="contains">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{hb.desHabildad}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{hb.desHabildad}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Habilidad Jurados" style="width:50px"
+					filterMatchMode="contains">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+
+
+				<p:column style="width:2%">
+
+
+					<p:growl id="message" showDetail="true" />
+					<p:commandButton icon="pi pi-trash" value="Eliminar"
+						action="#{subcat.BorrarSB(sc)}">
+						<p:confirm header="Confirmar baja"
+							message="Estas seguro que desea eliminar esta Sub-categoria?"
+							icon="pi pi-exclamation-triangle" />
+					</p:commandButton>
+
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="Sí" type="button"
+							styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+						<p:commandButton value="No" type="button"
+							styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+					</p:confirmDialog>
+
+				</p:column>
+
+
+				<f:facet name="footer">
+					<p:commandButton icon="pi pi-plus" value="Nuevo"
+						oncomplete="PF('mostrar').show();" update=":formNew"></p:commandButton>
+
+				</f:facet>
+			</p:dataTable>
+		</main>
+	</h:form>
+
+	<h:form id="formNew">
+		<p:dialog id="new" widgetVar="mostrar" header="Ingresar datos de Habilidad" modal="true"
+			showEffect="clip" resizable="false">
+
+
+			<p:panelGrid columns="2" layout="grid" styleClass="customPanelGrid" contentStyleClass="ui-fluid">
+
+				<p:outputLabel value="Descripción: " />
+				<p:inputTextarea value="#{hb.desHabildad}" />
+
+				<p:outputLabel value="Habilidad Jurados" />
+				<p:inputTextarea />
+
+
+			</p:panelGrid>
+
+
+<f:facet name="footer">
+			<p:commandButton id="btcrear" value="Crear" icon="pi pi-check"
+				update=":form:MesaTabla">
+
+				<p:confirm header="Confirmar alta"
+					message="Estas seguro que desea dar de alta esta Sub-categoria?"
+					icon="pi pi-exclamation-triangle" />
+			</p:commandButton>
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Sí" type="button"
+					onclick="PF('mostrar').hide();" styleClass="ui-confirmdialog-yes"
+					icon="pi pi-check" />
+				<p:commandButton value="No" type="button"
+					styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+			</p:confirmDialog>
+			</f:facet>
+		</p:dialog>
+
+	</h:form>
+
+
+</body>
+</html>

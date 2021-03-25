@@ -1,0 +1,45 @@
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+<link rel="stylesheet" type="text/css" href="CSS/IniciarSesion.CSS" media="screen" />
+	<title>Inicio de Sesión</title>
+	
+
+</h:head>
+
+<body>
+	
+		<h:form class="cuadroLogin" action="Index.xhtml" method="post">
+
+			<img src="Imagenes/gorro.png" id="avatar" alt="Avatar Image"></img>
+			<h1>Iniciar Sesión</h1>
+
+			<br />
+			<br />
+			
+			<h:panelGrid id="panel" columns="1" cellpadding="5">
+            <h:outputLabel for="username" value="Username:" />
+            <p:inputText id="username"  required="true" label="username" />
+             
+            <h:outputLabel for="password" value="Password:" />
+            <p:password id="password"  required="true" label="password" />
+             
+            <f:facet name="footer">
+                <p:commandButton value="Login" />
+            </f:facet>  
+        </h:panelGrid>
+		
+
+
+		</h:form>
+
+</body>
+
+</html>

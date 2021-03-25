@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head></h:head> 
+<body> 
+<h:form id="nuevo">
+<p:panelGrid columns="2" layout="grid" styleClass="customPanelGrid" contentStyleClass="ui-fluid">
+					
+					
+						<p:outputLabel value="Ident. Sub-Categoría" />
+						<p:selectOneMenu id="identSc" value="#{subcat.identScat}">
+							<f:selectItem itemLabel="Select..." noSelectionOption="true" />
+							<f:selectItem itemLabel="Ident.1" itemValue="Ident.1" />
+							<f:selectItem itemLabel="Ident.2" itemValue="Ident.2" />
+						</p:selectOneMenu>
+											
+					
+						<p:outputLabel value="Referencia" />
+						<p:selectOneMenu id="scref" value="#{subcat.referencia}">
+							<f:selectItem itemLabel="Select..." noSelectionOption="true" />
+							<f:selectItem itemLabel="Referencia1" itemValue="Referencia1" />
+							<f:selectItem itemLabel="Referencia2" itemValue="Referencia2" />
+						</p:selectOneMenu>
+					
+					<p:outputLabel value="Descripción: " />
+						<p:inputTextarea value="#{subcat.descrip}" />
+					
+					</p:panelGrid>
+
+
+				
+				<p:commandButton id="btcrear" value="Crear"  icon="pi pi-check"
+					action="#{subcat.CrearSB}" >
+
+					<p:confirm header="Confirmar alta"
+						message="Estas seguro que desea dar de alta esta Sub-categoria?"
+						icon="pi pi-exclamation-triangle" />
+				</p:commandButton>
+
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					<p:commandButton value="Sí" type="button"  
+						styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+					<p:commandButton value="No" type="button"
+						styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+				</p:confirmDialog>
+
+</h:form>
+</body> 
+</html>

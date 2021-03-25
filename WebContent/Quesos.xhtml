@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:r="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<meta charset="utf-8"></meta>
+	
+	<title>Cheese</title>
+	<!-- CSS here -->
+	<link rel="stylesheet" href="fontawesome/css/all.css"/>
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css"></link>
+	<link rel="stylesheet" href="assets/css/owl.carousel.min.css"></link>
+	<link rel="stylesheet" href="assets/css/flaticon.css"></link>
+	<link rel="stylesheet" href="assets/css/slicknav.css"></link>
+	<link rel="stylesheet" href="assets/css/animate.min.css"></link>
+	<link rel="stylesheet" href="assets/css/magnific-popup.css"></link>
+	<link rel="stylesheet" href="assets/css/fontawesome-all.min.css"></link>
+	<link rel="stylesheet" href="assets/css/themify-icons.css"></link>
+	<link rel="stylesheet" href="assets/css/slick.css"></link>
+	<link rel="stylesheet" href="assets/css/nice-select.css"></link>
+	<link rel="stylesheet" href="assets/css/style.css"></link>
+	<link rel="stylesheet" href="CSS/estilo.css"></link>
+	
+	<script src="../js/jquery-3.6.0.min.js"  type="text/javascript"></script>
+		<script src="../js/menu.js"></script>
+</h:head>
+
+<body>
+<div id="menu">
+</div>
+	
+<div>
+<h:form id="dtq">
+
+		<p:growl id="msgs" life="2000" showDetail="true" />
+		
+
+			<p:dataTable id="TablaQueso" var="qe" value="#{dtEditView.quesos}" 
+				 paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15" rows="10"  editable="true" selectionMode="single" selection="#{quesos.select}" rowKey="#{qe.idQueso}"
+				reflow="true">
+				
+				
+				<p:ajax event="rowEdit" listener="#{quesos.onEdit}" update=":dtq:msgs" />
+				<p:ajax event="rowEditCancel" listener="#{quesos.onCancel}" update=":dtq:msgs"/>
+				<p:ajax event="rowSelect" listener="#{quesos.onRowSelect}" update=":dtq:msgs" />
+        		<!-- <p:ajax event="rowUnselect" listener="#{quesos.onRowUnselect}" update=":dtq:msgs" /> -->
+				
+				<p:column style="width:3%">
+					<p:rowEditor editTitle="Editar Datos" cancelTitle="Cancelar Edicion" saveTitle="Guardar Cambios" />
+				</p:column>
+
+				<p:column style="width:35px" headerText="Id" responsivePriority="2"
+					filterBy="#{qe.idQueso}" filterMatchMode="contains">
+					<h:outputText value="#{qe.idQueso}" />
+				</p:column>
+				<p:column style="width:35px" headerText="Variedad" responsivePriority="2"
+					filterBy="#{qe.variedad.nombreVar}" filterMatchMode="contains">
+					<p:cellEditor>
+					<f:facet name="output">
+					<h:outputText value="#{qe.variedad.nombreVar}" />
+					</f:facet>
+					<f:facet name="input">
+					<p:inputText value="#{qe.variedad.nombreVar}"/>
+					</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column style="width:35px" headerText="Categoría" responsivePriority="2"
+					filterBy="#{qe.categoria.referencia}" filterMatchMode="contains">
+					<h:outputText value="#{qe.categoria.referencia}" />
+				</p:column>
+				<p:column headerText="SubCategoria" style="width:50px" responsivePriority="2"
+					filterBy="#{qe.subcatego.idSubcateg}" filterMatchMode="contains">
+					<h:outputText value="#{qe.subcatego.identScat}" />
+				</p:column>
+				<p:column headerText="Humedad" style="width:50px" responsivePriority="2"
+					filterBy="#{qe.humedad.idHumed}" filterMatchMode="contains">
+					<h:outputText value="#{qe.humedad.referencia}" />
+				</p:column>
+				<p:column headerText="Tecnología" style="width:50px" responsivePriority="2"
+					filterBy="#{qe.tecnologia.descrip}" filterMatchMode="contains">
+					<h:outputText value="#{qe.tecnologia.referencia}" />
+				</p:column>
+				<p:column headerText="Tipo Leche" style="width:50px" responsivePriority="2"
+					filterBy="#{qe.tipoleche.nombre}" filterMatchMode="contains">
+					<h:outputText value="#{qe.tipoleche.nombre}" />
+				</p:column>
+				<p:column headerText="Maduración" style="width:50px" responsivePriority="2"
+					filterBy="#{qe.maduracion.referencia}" filterMatchMode="contains">
+					<h:outputText value="#{qe.maduracion.referencia}" />
+				</p:column>
+
+				<p:column style="width:10%" responsivePriority="2">
+					<p:commandButton icon="pi pi-trash" value="Eliminar" action="#{quesos.BorrarQS(qe)}" update="TablaQueso">
+					<p:confirm header="Confirmar baja"  icon="fa fa-exclamation-triangle" 
+							message="Estas seguro que desea borrar este queso?"
+							 />
+					</p:commandButton>
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="Sí" type="button" update="msgs"
+							styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+						<p:commandButton value="No" type="button"
+							styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+					</p:confirmDialog>
+				</p:column>
+
+
+
+				<f:facet name="footer">
+					<p:commandButton icon="pi pi-plus" value="Nuevo"
+						oncomplete="PF('mostrar').show();" update=":formNew">
+				    </p:commandButton>
+
+				</f:facet>
+
+			</p:dataTable>
+	</h:form>
+</div>
+<div>
+<h:form id="formNew">
+			<p:dialog widgetVar="mostrar" header="Ingrese caracteristicas del nuevo Queso" modal="true" minHeight="40" width="800"
+				showEffect="clip" resizable="true" position="center" responsive="true" minimizable="true">
+
+				
+					<p:panelGrid columns="4" layout="grid" styleClass="customPanelGrid" contentStyleClass="ui-fluid">
+
+						<p:outputLabel value="Sub-Categoría" />
+						<p:selectOneMenu id="qsc" value="#{quesos.subcat}" style="width:150px" filter="true" filterMatchMode="startsWith">
+							<f:selectItem itemLabel="Select..." noSelectionOption="true" />
+							<f:selectItems value="#{quesos.listsubcat}" />
+						</p:selectOneMenu>
+						
+						<p:outputLabel value="Variedad" />
+						<p:selectOneMenu id="qsv" value="#{quesos.var}" style="width:150px" filter="true" filterMatchMode="startsWith">
+							<f:selectItem itemLabel="Select..." noSelectionOption="true" />
+							<f:selectItems value="#{quesos.listvar}" />
+						</p:selectOneMenu>
+						
+						<p:outputLabel value="Humedad" />
+						<p:selectOneMenu id="qsh" value="#{quesos.humedad}" style="width:150px">
+							<f:selectItem itemLabel="Select..." noSelectionOption="true" />
+							<f:selectItems value="#{quesos.listhum}" />
+						</p:selectOneMenu>
+						
+						<p:outputLabel value="Maduración" />
+						<p:selectOneMenu id="qsm" value="#{quesos.maduracion}" style="width:150px">
+							<f:selectItem itemLabel="Select..." noSelectionOption="true" />
+							<f:selectItems value="#{quesos.listmadu}" />
+						</p:selectOneMenu>
+						
+						<p:outputLabel value="Categoria" />
+						<p:selectOneMenu id="qscat" value="#{quesos.cat}" style="width:150px">
+							<f:selectItem itemLabel="Select..." noSelectionOption="true" />
+							<f:selectItems value="#{quesos.listcat}" />
+						</p:selectOneMenu>
+						
+						<p:outputLabel value="Tecnologia" />
+						<p:selectOneMenu id="qstec" value="#{quesos.tecno}" style="width:150px">
+							<f:selectItem itemLabel="Select..." noSelectionOption="true" />
+							<f:selectItems value="#{quesos.listecno}" />
+						</p:selectOneMenu>
+						
+						<p:outputLabel value="Tipo de Leche" />
+						<p:selectOneMenu id="qstipol" value="#{quesos.tipol}" style="width:150px">
+							<f:selectItem itemLabel="Select..." noSelectionOption="true" />
+							<f:selectItems value="#{quesos.listipol}" />
+						</p:selectOneMenu>
+
+						<!-- <p:outputLabel value="Descripción: " />
+						<p:inputTextarea value="#{quesos.descrip}" style="width:150px" /> -->
+
+				</p:panelGrid>
+				
+				<p:separator />
+				
+				<div align="center">				
+				<p:commandButton id="btcrear"  value="Crear" styleClass="align-items-end"
+					action="#{quesos.CrearQS}" update=":dtq:TablaQueso"
+					>
+
+					<p:confirm header="Confirmar alta"
+						message="Estas seguro que desea dar de alta este Queso?"
+						icon="pi pi-exclamation-triangle" />
+				</p:commandButton>
+				</div>
+
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					<p:commandButton value="Sí" type="button" update="TablaQueso" onclick="PF('mostrar').hide();"
+						styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+					<p:commandButton value="No" type="button"
+						styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+				</p:confirmDialog>
+				
+				
+				
+			</p:dialog>
+</h:form>
+
+	</div>	
+
+</body>
+</html>
+
+
