@@ -87,7 +87,7 @@ public class PaisWeb implements Serializable{
 		List<Pais> listpais= new ArrayList<Pais>();
 		
 		Gson gson = new Gson();
-		Pais[] listps= gson.fromJson(ReadJson.readJsonFromUrl(rest+"todas"), Pais[].class);
+		Pais[] listps= gson.fromJson(ReadJson.readJsonFromUrl(rest+"todos"), Pais[].class);
 		for (Pais p : listps) {
 			listpais.add(p);
 		}
