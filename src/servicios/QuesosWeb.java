@@ -55,9 +55,19 @@ public class QuesosWeb implements Serializable {
 	private String var;
 	private String descrip;
 	private Queso select;
+	private String modVar;
 	private Gson gson = new Gson();
 
 
+	
+
+	public String getModVar() {
+		return modVar;
+	}
+
+	public void setModVar(String modVar) {
+		this.modVar = modVar;
+	}
 
 	public List<Queso> getListquesos() {
 
@@ -115,7 +125,7 @@ public class QuesosWeb implements Serializable {
 	public List<String> getListipol() {
 
 		listipol = new ArrayList<String>();
-		Tipoleche[] list = gson.fromJson(ReadJson.readJsonFromUrl(rest + "tipoleche/todas"), Tipoleche[].class);
+		Tipoleche[] list = gson.fromJson(ReadJson.readJsonFromUrl(rest + "tipoleche/todos"), Tipoleche[].class);
 		for (Tipoleche s : list) {
 			listipol.add(s.getNombre());
 		}
@@ -239,6 +249,10 @@ public class QuesosWeb implements Serializable {
 	
 
 	public void ActualizarQS(Queso dato) {
+		
+		Variedad var = findvariedad(modVar);
+		
+		dato.setVariedad(var);
 
 		String json = gson.toJson(dato);
 
@@ -372,7 +386,7 @@ public class QuesosWeb implements Serializable {
 	public Tipoleche findtipoleche(String h) {
 
 		Tipoleche obj = new Tipoleche();
-		Tipoleche[] list = gson.fromJson(ReadJson.readJsonFromUrl(rest + "tipoleche/todas"), Tipoleche[].class);
+		Tipoleche[] list = gson.fromJson(ReadJson.readJsonFromUrl(rest + "tipoleche/todos"), Tipoleche[].class);
 		for (Tipoleche e : list) {
 			if (e.getNombre().equals(h)) {
 				obj = e;
@@ -396,5 +410,7 @@ public class QuesosWeb implements Serializable {
 		return obj;
 
 	}
+	
+	
 
 }

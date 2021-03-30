@@ -45,7 +45,7 @@
 				reflow="true">
 				
 				
-				<p:ajax event="rowEdit" listener="#{quesos.onEdit}" update=":dtq:msgs" />
+				<p:ajax event="rowEdit" listener="#{quesos.ActualizarQS(qe)}" update=":dtq:msgs" />
 				<p:ajax event="rowEditCancel" listener="#{quesos.onCancel}" update=":dtq:msgs"/>
 				<p:ajax event="rowSelect" listener="#{quesos.onRowSelect}" update=":dtq:msgs" />
         		<!-- <p:ajax event="rowUnselect" listener="#{quesos.onRowUnselect}" update=":dtq:msgs" /> -->
@@ -65,7 +65,10 @@
 					<h:outputText value="#{qe.variedad.nombreVar}" />
 					</f:facet>
 					<f:facet name="input">
-					<p:inputText value="#{qe.variedad.nombreVar}"/>
+					<p:selectOneMenu id="var" value="#{quesos.modVar}" style="width:150px" filter="true" filterMatchMode="startsWith">
+							<f:selectItem itemLabel="Select..." noSelectionOption="true" />
+							<f:selectItems value="#{quesos.listvar}" />
+						</p:selectOneMenu>
 					</f:facet>
 					</p:cellEditor>
 				</p:column>
