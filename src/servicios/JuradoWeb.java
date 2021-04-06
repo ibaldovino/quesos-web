@@ -33,7 +33,7 @@ public class JuradoWeb implements Serializable{
 	 */
 	private static final long serialVersionUID = 7120439312754432359L;
 
-	private String rest = "http://dominio.ddns.net:8086/TablasQueso/rest/jurados/";
+	private String rest = ConectABM.urlServer() + "jurados/";
 	
 	private long idJurado;
 	private String nombre;

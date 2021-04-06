@@ -29,7 +29,7 @@ public class HabilidadWeb implements Serializable{
 	 */
 	private static final long serialVersionUID = 7120439312754432359L;
 
-	private String rest = "http://dominio.ddns.net:8086/TablasQueso/rest/habilidad/";
+	private String rest = ConectABM.urlServer() + "habilidad/";
 	private long idHabili;
 	private String desHabildad;
 	private List<Habijurado> habijurados;

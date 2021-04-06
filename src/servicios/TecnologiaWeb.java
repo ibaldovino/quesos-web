@@ -31,7 +31,7 @@ public class TecnologiaWeb implements Serializable{
 	 */
 	private static final long serialVersionUID = 7120439312754432359L;
 
-	private String rest = "http://dominio.ddns.net:8086/TablasQueso/rest/tecnologias/";
+	private String rest = ConectABM.urlServer() + "tecnologias/";
 	private long idTecno;
 	private String descrip;
 	private String referencia;

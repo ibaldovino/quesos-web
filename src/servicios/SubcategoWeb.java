@@ -27,7 +27,7 @@ public class SubcategoWeb implements Serializable{
 	 */
 	private static final long serialVersionUID = 7120439312754432359L;
 
-	private String rest = "http://dominio.ddns.net:8086/TablasQueso/rest/subcat/";
+	private String rest = ConectABM.urlServer() + "subcat/";
 	private List<Subcatego> listsubc;
 	private Long IdSubcateg;
 	private String Descrip;

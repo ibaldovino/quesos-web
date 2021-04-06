@@ -156,4 +156,8 @@ public class ConectABM {
 
 	}
 
+	public static String urlServer() {
+		return "http://dominio.ddns.net:8086/TablasQueso/rest/";
+	}
+	
 }

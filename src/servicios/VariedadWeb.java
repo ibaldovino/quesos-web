@@ -30,7 +30,7 @@ public class VariedadWeb implements Serializable{
 	 */
 	private static final long serialVersionUID = 7120439312754432359L;
 
-	private String rest = "http://dominio.ddns.net:8086/TablasQueso/rest/variedad/";
+	private String rest = ConectABM.urlServer() + "variedad/";
 	private List<String> listquesos;
 	private long IdVar;
 	private String nombreVar;

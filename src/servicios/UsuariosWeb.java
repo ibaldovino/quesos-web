@@ -24,7 +24,7 @@ public class UsuariosWeb implements Serializable{
 	 */
 	private static final long serialVersionUID = 7120439312754432359L;
 
-	private String rest = "http://dominio.ddns.net:8086/TablasQueso/rest/usuario/";
+	private String rest = ConectABM.urlServer() + "usuario/";
 	private List<Usuario> listusu;
 	private String nomUsuario;
 	private String pwdUsuario;

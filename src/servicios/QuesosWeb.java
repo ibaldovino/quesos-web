@@ -36,8 +36,7 @@ public class QuesosWeb implements Serializable {
 	 */
 	private static final long serialVersionUID = -8901810005539629316L;
 
-	private String rest1 = "http://dominio.ddns.net:8086/TablasQueso/rest/quesos/todos";
-	private String rest = "http://dominio.ddns.net:8086/TablasQueso/rest/";
+	private String urlServer = ConectABM.urlServer();
 	private List<Queso> listquesos = new ArrayList<Queso>();
 	private List<String> listcat = new ArrayList<String>();
 	private List<String> listhum = new ArrayList<String>();
@@ -72,7 +71,7 @@ public class QuesosWeb implements Serializable {
 	public List<Queso> getListquesos() {
 
 		listquesos = new ArrayList<Queso>();
-		Queso[] quesos = gson.fromJson(ReadJson.readJsonFromUrl(rest1), Queso[].class);
+		Queso[] quesos = gson.fromJson(ReadJson.readJsonFromUrl(urlServer), Queso[].class);
 		for (Queso q : quesos) {
 			listquesos.add(q);
 		}
@@ -82,7 +81,7 @@ public class QuesosWeb implements Serializable {
 	public List<String> getListcat() {
 
 		listcat = new ArrayList<String>();
-		Categoria[] list = gson.fromJson(ReadJson.readJsonFromUrl(rest + "categoria/todas"), Categoria[].class);
+		Categoria[] list = gson.fromJson(ReadJson.readJsonFromUrl(urlServer + "categoria/todas"), Categoria[].class);
 		for (Categoria s : list) {
 			listcat.add(s.getReferencia());
 		}
@@ -93,7 +92,7 @@ public class QuesosWeb implements Serializable {
 	public List<String> getListhum() {
 
 		listhum = new ArrayList<String>();
-		Humedad[] list = gson.fromJson(ReadJson.readJsonFromUrl(rest + "hum/todas"), Humedad[].class);
+		Humedad[] list = gson.fromJson(ReadJson.readJsonFromUrl(urlServer + "hum/todas"), Humedad[].class);
 		for (Humedad s : list) {
 			listhum.add(s.getReferencia());
 		}
@@ -103,7 +102,7 @@ public class QuesosWeb implements Serializable {
 	public List<String> getListmadu() {
 
 		listmadu = new ArrayList<String>();
-		Maduracion[] list = gson.fromJson(ReadJson.readJsonFromUrl(rest + "maduracion/todas"), Maduracion[].class);
+		Maduracion[] list = gson.fromJson(ReadJson.readJsonFromUrl(urlServer + "maduracion/todas"), Maduracion[].class);
 		for (Maduracion s : list) {
 			listmadu.add(s.getReferencia());
 		}
@@ -114,7 +113,7 @@ public class QuesosWeb implements Serializable {
 	public List<String> getListecno() {
 
 		listecno = new ArrayList<String>();
-		Tecnologia[] list = gson.fromJson(ReadJson.readJsonFromUrl(rest + "tecnologias/todas"), Tecnologia[].class);
+		Tecnologia[] list = gson.fromJson(ReadJson.readJsonFromUrl(urlServer + "tecnologias/todas"), Tecnologia[].class);
 		for (Tecnologia s : list) {
 			listecno.add(s.getReferencia());
 		}
@@ -125,7 +124,7 @@ public class QuesosWeb implements Serializable {
 	public List<String> getListipol() {
 
 		listipol = new ArrayList<String>();
-		Tipoleche[] list = gson.fromJson(ReadJson.readJsonFromUrl(rest + "tipoleche/todos"), Tipoleche[].class);
+		Tipoleche[] list = gson.fromJson(ReadJson.readJsonFromUrl(urlServer + "tipoleche/todos"), Tipoleche[].class);
 		for (Tipoleche s : list) {
 			listipol.add(s.getNombre());
 		}
@@ -136,7 +135,7 @@ public class QuesosWeb implements Serializable {
 	public List<String> getListvar() {
 
 		listvar = new ArrayList<String>();
-		Variedad[] list = gson.fromJson(ReadJson.readJsonFromUrl(rest + "variedad/todas"), Variedad[].class);
+		Variedad[] list = gson.fromJson(ReadJson.readJsonFromUrl(urlServer + "variedad/todas"), Variedad[].class);
 		for (Variedad s : list) {
 			listvar.add(s.getNombreVar());
 		}
@@ -146,7 +145,7 @@ public class QuesosWeb implements Serializable {
 	public List<String> getListsubcat() {
 
 		listsubcat = new ArrayList<String>();
-		Subcatego[] list = gson.fromJson(ReadJson.readJsonFromUrl(rest + "subcat/todas"), Subcatego[].class);
+		Subcatego[] list = gson.fromJson(ReadJson.readJsonFromUrl(urlServer + "subcat/todas"), Subcatego[].class);
 		for (Subcatego s : list) {
 			listsubcat.add(s.getIdentScat());
 		}
@@ -257,7 +256,7 @@ public class QuesosWeb implements Serializable {
 		String json = gson.toJson(dato);
 
 		try {
-			ConectABM.conectPut(json, rest + "quesos/update");
+			ConectABM.conectPut(json, urlServer + "quesos/update");
 			FacesMessage msg = new FacesMessage("Queso Modificado");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 		} catch (IOException e) {
@@ -285,7 +284,7 @@ public class QuesosWeb implements Serializable {
 
 		try {
 
-			ConectABM.conectPost(json, rest + "quesos/crear");
+			ConectABM.conectPost(json, urlServer + "quesos/crear");
 			FacesMessage msg = new FacesMessage("Queso Creado");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 		} catch (IOException e) {
@@ -301,7 +300,7 @@ public class QuesosWeb implements Serializable {
 
 		try {
 
-			ConectABM.conectBorrar(json, rest + "quesos/borrar");
+			ConectABM.conectBorrar(json, urlServer + "quesos/borrar");
 			FacesMessage msg = new FacesMessage("Queso Eliminado");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 
@@ -316,7 +315,7 @@ public class QuesosWeb implements Serializable {
 	public Humedad findhumedad(String h) {
 
 		Humedad obj = new Humedad();
-		Humedad[] list = gson.fromJson(ReadJson.readJsonFromUrl(rest + "hum/todas"), Humedad[].class);
+		Humedad[] list = gson.fromJson(ReadJson.readJsonFromUrl(urlServer + "hum/todas"), Humedad[].class);
 		for (Humedad e : list) {
 			if (e.getReferencia().equals(h)) {
 				obj = e;
@@ -330,7 +329,7 @@ public class QuesosWeb implements Serializable {
 	public Variedad findvariedad(String h) {
 
 		Variedad obj = new Variedad();
-		Variedad[] list = gson.fromJson(ReadJson.readJsonFromUrl(rest + "variedad/todas"), Variedad[].class);
+		Variedad[] list = gson.fromJson(ReadJson.readJsonFromUrl(urlServer + "variedad/todas"), Variedad[].class);
 		for (Variedad e : list) {
 			if (e.getNombreVar().equals(h)) {
 				obj = e;
@@ -344,7 +343,7 @@ public class QuesosWeb implements Serializable {
 	public Categoria findcategoria(String h) {
 
 		Categoria obj = new Categoria();
-		Categoria[] list = gson.fromJson(ReadJson.readJsonFromUrl(rest + "categoria/todas"), Categoria[].class);
+		Categoria[] list = gson.fromJson(ReadJson.readJsonFromUrl(urlServer + "categoria/todas"), Categoria[].class);
 		for (Categoria e : list) {
 			if (e.getReferencia().equals(h)) {
 				obj = e;
@@ -358,7 +357,7 @@ public class QuesosWeb implements Serializable {
 	public Maduracion findmaduracion(String h) {
 
 		Maduracion obj = new Maduracion();
-		Maduracion[] list = gson.fromJson(ReadJson.readJsonFromUrl(rest + "maduracion/todas"), Maduracion[].class);
+		Maduracion[] list = gson.fromJson(ReadJson.readJsonFromUrl(urlServer + "maduracion/todas"), Maduracion[].class);
 		for (Maduracion e : list) {
 			if (e.getReferencia().equals(h)) {
 				obj = e;
@@ -372,7 +371,7 @@ public class QuesosWeb implements Serializable {
 	public Tecnologia findtecnologia(String h) {
 
 		Tecnologia obj = new Tecnologia();
-		Tecnologia[] list = gson.fromJson(ReadJson.readJsonFromUrl(rest + "tecnologias/todas"), Tecnologia[].class);
+		Tecnologia[] list = gson.fromJson(ReadJson.readJsonFromUrl(urlServer + "tecnologias/todas"), Tecnologia[].class);
 		for (Tecnologia e : list) {
 			if (e.getReferencia().equals(h)) {
 				obj = e;
@@ -386,7 +385,7 @@ public class QuesosWeb implements Serializable {
 	public Tipoleche findtipoleche(String h) {
 
 		Tipoleche obj = new Tipoleche();
-		Tipoleche[] list = gson.fromJson(ReadJson.readJsonFromUrl(rest + "tipoleche/todos"), Tipoleche[].class);
+		Tipoleche[] list = gson.fromJson(ReadJson.readJsonFromUrl(urlServer + "tipoleche/todos"), Tipoleche[].class);
 		for (Tipoleche e : list) {
 			if (e.getNombre().equals(h)) {
 				obj = e;
@@ -400,7 +399,7 @@ public class QuesosWeb implements Serializable {
 	public Subcatego findsubcategoria(String h) {
 
 		Subcatego obj = new Subcatego();
-		Subcatego[] list = gson.fromJson(ReadJson.readJsonFromUrl(rest + "subcat/todas"), Subcatego[].class);
+		Subcatego[] list = gson.fromJson(ReadJson.readJsonFromUrl(urlServer + "subcat/todas"), Subcatego[].class);
 		for (Subcatego e : list) {
 			if (e.getIdentScat().equals(h)) {
 				obj = e;

@@ -31,7 +31,7 @@ public class DepartamentoWeb implements Serializable{
 	 */
 	private static final long serialVersionUID = 7120439312754432359L;
 
-	private String rest = "http://dominio.ddns.net:8086/TablasQueso/rest/departamento/";
+	private String rest = ConectABM.urlServer() + "departamento/";
 	
 	private long idDepto;
 	private String descrDepto;

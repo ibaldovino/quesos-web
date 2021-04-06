@@ -37,7 +37,7 @@ public class CategoriaWeb implements Serializable {
 	private List<Queso> listquesos;
 	private List<Categoria> listcateg;
 	private Gson gson = new Gson();
-	private String rest = "http://dominio.ddns.net:8086/TablasQueso/rest/";
+	private String rest = ConectABM.urlServer();
 	private Categoria select;
 	
 	

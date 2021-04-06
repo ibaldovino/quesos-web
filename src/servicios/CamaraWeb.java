@@ -30,7 +30,7 @@ public class CamaraWeb implements Serializable{
 	 */
 	private static final long serialVersionUID = 7120439312754432359L;
 
-	private String rest = "http://dominio.ddns.net:8086/TablasQueso/rest/camara/";
+	private String rest = ConectABM.urlServer() + "camara/";
 	
 	private long idCam;
 	private String descCortaCam;

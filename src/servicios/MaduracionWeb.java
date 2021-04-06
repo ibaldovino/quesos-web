@@ -29,7 +29,7 @@ public class MaduracionWeb implements Serializable {
 	 */
 	private static final long serialVersionUID = 7120439312754432359L;
 
-	private String rest = "http://dominio.ddns.net:8086/TablasQueso/rest/maduracion/";
+	private String rest = ConectABM.urlServer()+ "maduracion/";
 	private long idMadur;
 	private String descrip;
 	private String referencia;

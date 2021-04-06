@@ -30,7 +30,7 @@ public class PaisWeb implements Serializable{
 	 */
 	private static final long serialVersionUID = 7120439312754432359L;
 
-	private String rest = "http://dominio.ddns.net:8086/TablasQueso/rest/paises/";
+	private String rest = ConectABM.urlServer() + "paises/";
 	
 	private long idPais;
 	private String descrPais;
