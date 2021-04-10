@@ -71,7 +71,7 @@ public class QuesosWeb implements Serializable {
 	public List<Queso> getListquesos() {
 
 		listquesos = new ArrayList<Queso>();
-		Queso[] quesos = gson.fromJson(ReadJson.readJsonFromUrl(urlServer), Queso[].class);
+		Queso[] quesos = gson.fromJson(ReadJson.readJsonFromUrl(urlServer+"quesos/todos"), Queso[].class);
 		for (Queso q : quesos) {
 			listquesos.add(q);
 		}
