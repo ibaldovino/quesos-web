@@ -42,6 +42,8 @@ public class RolWeb implements Serializable {
 	// Hola Julio mira esto
 
 	// Funciones GET
+	
+	//Otro comentario
 
 
 	public String getRest() {
