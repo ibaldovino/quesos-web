@@ -30,8 +30,7 @@ public class VariedadWeb implements Serializable{
 	 */
 	private static final long serialVersionUID = 7120439312754432359L;
 
-	private String rest = ConectABM.urlServer() + "variedad/";
-	private List<String> listquesos;
+	private String rest = "http://dominio.ddns.net:8086/TablasQueso/rest/variedad/";
 	private long IdVar;
 	private String nombreVar;
 	private String referencia;
@@ -80,17 +79,7 @@ public class VariedadWeb implements Serializable{
 	}
 
 
-	public List<String> getListquesos() {
-		Queso[] list = gson.fromJson(ReadJson.readJsonFromUrl("http://dominio.ddns.net:8086/TablasQueso/rest/quesos/todos"), Queso[].class);
-		for (Queso q : list) {
-			listquesos.add(q.getCodigoAuto());
-		}
-		return listquesos;
-	}
 
-	public void setListquesos(List<String> listquesos) {
-		this.listquesos = listquesos;
-	}
 
 	
 	
@@ -111,20 +100,7 @@ public class VariedadWeb implements Serializable{
 		this.referencia = referencia;
 	}
 
-	public Queso findvariedad(String h) {
 
-		Queso obj = new Queso();
-		Queso[] list = gson.fromJson(
-				ReadJson.readJsonFromUrl("http://dominio.ddns.net:8086/TablasQueso/rest/quesos/todos"), Queso[].class);
-		for (Queso e : list) {
-			if (e.getCodigoAuto().equals(h)) {
-				obj = e;
-			}
-		}
-
-		return obj;
-
-	}
 
 	
 	//Funciones GET

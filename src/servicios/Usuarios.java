@@ -5,9 +5,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.context.SessionScoped;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import com.google.gson.Gson;
@@ -16,7 +17,7 @@ import model.Subcatego;
 import model.Usuario;
 
 @Named("usu")
-@SessionScoped
+@ViewScoped
 public class Usuarios implements Serializable{
 
 	/**
@@ -24,7 +25,7 @@ public class Usuarios implements Serializable{
 	 */
 	private static final long serialVersionUID = 7120439312754432359L;
 
-	private String rest = ConectABM.urlServer() + "usuario/";
+	private String rest = "http://dominio.ddns.net:8086/TablasQueso/rest/usuario/";
 	private List<Subcatego> listusu;
 	private String nomUsuario;
 	private String pwdUsuario;
@@ -109,7 +110,7 @@ public class Usuarios implements Serializable{
 	}
 	
 	public String CerrarSesion() {
-		return "Login";
+		return "Login.xhtml";
 	}
 	
 	     

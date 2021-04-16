@@ -151,11 +151,11 @@ public class TecnologiaWeb implements Serializable{
 	
 	
 	public String BorrarTec(Tecnologia t) {
-			
+		System.out.print(t);
+	
+	
 	Gson gson = new Gson();
 	String json = gson.toJson(t);
-	
-	System.out.println(json);
 	
 	try {
 		

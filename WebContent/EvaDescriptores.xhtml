@@ -8,9 +8,9 @@
 <h:head>
 	<meta charset="utf-8"></meta>
 	<meta http-equiv="x-ua-compatible" content="ie=edge"></meta>
-	<title>Cheese - Localidad</title>
-	<meta name="description" content=""></meta>
-	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+	<title>Cheese - Descriptores</title>
+	<meta name="dedescription" content=""></meta>
+	<meta name="viewport" content="width=device-width, initial-descale=1"></meta>
 	<link rel="manifest" href="site.webmanifest"></link>
 	<link rel="shortcut icon" type="image/x-icon"
 		href="assets/img/favicon.ico"></link>
@@ -29,40 +29,41 @@
 	<link rel="stylesheet" type="text/css" href="CSS/modal.css"></link>
 
 	<link rel="stylesheet" href="assets/css/style.css"></link>
-
 	<script src="../js/jquery-3.6.0.min.js" type="text/javascript"></script>
 	<script src="../js/menu.js"></script>
+
+
 </h:head>
 <body>
 
 	<div id="menu"></div>
 
-	<h:form id="form">
+	<main>
+		<h:form id="form">
 
-		<main>
 
 			<p:growl id="msgs" life="2000" showDetail="true" />
 
-			<p:dataTable id="LocTabla" editable="true" var="loc"
-				value="#{dtEditView.localidades}" styleClass="table table-bordered"
+			<p:dataTable id="DescripTabla" editable="true" var="desc"
+				value="#{dtEditView.evaDescrip}" styleClass="table table-bordered"
 				paginator="true"
 				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 				rowsPerPageTemplate="5,10,15" rows="10" selectionMode="single"
-				selection="#{localidade.select}" rowKey="#{loc.idLocal}">
+				selection="#{evadescrip.select}" rowKey="#{desc.idDescript}">
 
 				<f:facet name="header">
 					<div class="products-table-header">
-						<span style="font-weight: bold">Mantenimiento Localidad</span>
+						<span style="font-weight: bold">Mantenimiento Descriptores</span>
 					</div>
 				</f:facet>
 
-				<p:ajax event="rowEdit" listener="#{localidade.Actualizar(loc)}"
-					update="LocTabla" />
-				<p:ajax event="rowSelect" listener="#{localidade.onRowSelect}"
+				<p:ajax event="rowEdit" listener="#{evadescrip.Actualizar(desc)}"
+					update="DescripTabla" />
+				<p:ajax event="rowSelect" listener="#{evadescrip.onRowSelect}"
 					update=":form:msgs" />
-				<p:ajax event="rowUnselect" listener="#{localidade.onRowUnselect}"
+				<p:ajax event="rowUnselect" listener="#{evadescrip.onRowUnselect}"
 					update=":form:msgs" />
-				<p:ajax event="rowEditCancel" listener="#{localidade.onRowCancel}"
+				<p:ajax event="rowEditCancel" listener="#{evadescrip.onRowCancel}"
 					update=":form:msgs" />
 
 				<p:column style="width:5%">
@@ -70,59 +71,64 @@
 				</p:column>
 
 
-				<p:column headerText="Id"
-					filterBy="#{loc.idLocal}" filterMatchMode="contains">
-					<h:outputText value="#{loc.idLocal}" />
+				<p:column headerText="Id" filterBy="#{desc.idDescript}"
+					filterMatchMode="contains">
+					<h:outputText value="#{desc.idDescript}" />
 
 				</p:column>
 
 
-				<p:column headerText="Nombre"
-					filterBy="#{loc.descrLocal}" filterMatchMode="contains">
+				<p:column headerText="Descripción" filterBy="#{desc.descrDescript}"
+					filterMatchMode="contains">
+
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{loc.descrLocal}" />
+							<h:outputText value="#{desc.descrDescript}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{loc.descrLocal}" />
+							<p:inputText value="#{desc.descrDescript}" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 
-				<p:column headerText="Departamento" filterBy="#{loc.departamento.descrDepto}"
+
+
+
+				<p:column headerText="Tipo Evaluación" filterBy="#{desc.evatipo.descrTipeva}"
 					filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{loc.departamento.descrDepto}" />
+							<h:outputText value="#{desc.evatipo.descrTipeva}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{loc.departamento.descrDepto}" />
+							<p:inputText value="#{desc.evatipo.descrTipeva}" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 				
-				<p:column headerText="Participantes" filterBy="#{loc.participantes}"
+				<p:column headerText="Evaluaciones" filterBy="#{desc.evaluaciones}"
 					filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{loc.participantes}" />
+							<h:outputText value="#{desc.evaluaciones}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{loc.participantes}" />
+							<p:inputText value="#{desc.evaluaciones}" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
-
-
+				
+				
+				
 
 				<p:column style="width:10%">
 
 
 					<p:growl id="message" showDetail="true" />
 					<p:commandButton icon="pi pi-trash" value="Eliminar"
-						action="#{localidade.Borrar(loc)}" update=":form:LocTabla">
+						action="#{evadescrip.Borrar(desc)}" update="DescripTabla">
 						<p:confirm header="Confirmar baja"
-							message="Estas seguro que desea eliminar esta Localidad?"
+							message="Estas seguro que desea eliminar este Descriptor?"
 							icon="pi pi-exclamation-triangle" />
 					</p:commandButton>
 
@@ -141,41 +147,38 @@
 						oncomplete="PF('mostrar').show();" update=":formNew"></p:commandButton>
 
 				</f:facet>
+
+
+
 			</p:dataTable>
-		</main>
-	</h:form>
+
+		</h:form>
+		<h:form id="formNew">
+			<p:dialog id="new" widgetVar="mostrar" header="Ingresar datos del Descriptor" modal="true"
+				showEffect="clip" resizable="false">
 
 
-	<h:form id="formNew">
-		<p:dialog id="new" widgetVar="mostrar"
-			header="Ingresar datos de localidade" modal="true" showEffect="clip"
-			resizable="false" layout="grid" styleClass="customPanelGrid"
-			contentStyleClass="ui-fluid">
+				<p:panelGrid columns="2" layout="grid" styleClass="customPanelGrid" contentStyleClass="ui-fluid">
+
+					
+					
+					<p:outputLabel value="Descripción: " />
+					<p:inputTextarea value="#{evadescrip.descrDescript}" />
+					
+					
+					
+
+					
+
+				</p:panelGrid>
 
 
-			<p:panelGrid columns="2" layout="grid" styleClass="customPanelGrid"
-				contentStyleClass="ui-fluid">
-				
-				<p:outputLabel value="Nombre: " />
-				<p:inputTextarea value="#{localidade.descrLocal}" />
-
-				<p:outputLabel value="Departamento" />
-				<p:selectOneMenu id="scref" value="#{localidade.depa}">
-					<f:selectItem itemLabel="Select..." noSelectionOption="true" />
-					<f:selectItems value="#{localidade.listDepa}" />
-				</p:selectOneMenu>
-
-				
-
-			</p:panelGrid>
-
-			<f:facet name="footer">
-
+<f:facet name="footer">
 				<p:commandButton id="btcrear" value="Crear" icon="pi pi-check"
-					action="#{localidade.Crear}" update=":form:LocTabla">
+					action="#{evadescrip.Crear}" update=":form:DescripTabla">
 
 					<p:confirm header="Confirmar alta"
-						message="Seguro desea dar de alta esta nueva Localidad?"
+						message="Estas seguro que desea dar de alta este Descriptor?"
 						icon="pi pi-exclamation-triangle" />
 				</p:commandButton>
 
@@ -186,10 +189,12 @@
 					<p:commandButton value="No" type="button"
 						styleClass="ui-confirmdialog-no" icon="pi pi-times" />
 				</p:confirmDialog>
-			</f:facet>
-		</p:dialog>
-	</h:form>
+				
+				</f:facet>
+			</p:dialog>
+		</h:form>
 
+	</main>
 
 
 </body>

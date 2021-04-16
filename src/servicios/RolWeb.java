@@ -32,18 +32,16 @@ public class RolWeb implements Serializable {
 	 */
 	private static final long serialVersionUID = 7120439312754432359L;
 
-	private String rest = "http://dominio.ddns.net:8086/TablasQueso/rest/role/";
+	private String rest = ConectABM.urlServer() + "role/";
 	private Role select;
 	private long idRol;
 	private String descrRol;
 	private List<Roltarea> roltareas;
 	private List<Usuario> usuarios;
 	
-	// Hola Julio mira esto
+	
 
 	// Funciones GET
-	
-	//Otro comentario
 
 
 	public String getRest() {

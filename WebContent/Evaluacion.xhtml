@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta charset="utf-8"></meta>
+	<meta http-equiv="x-ua-compatible" content="ie=edge"></meta>
+	<title>Cheese - Evaluacion</title>
+	<meta name="deevaription" content=""></meta>
+	<meta name="viewport" content="width=device-width, initial-evaale=1"></meta>
+	<link rel="manifest" href="site.webmanifest"></link>
+	<link rel="shortcut icon" type="image/x-icon"
+		href="assets/img/favicon.ico"></link>
+
+	<!-- CSS here -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css"></link>
+	<link rel="stylesheet" href="assets/css/owl.carousel.min.css"></link>
+	<link rel="stylesheet" href="assets/css/flaticon.css"></link>
+	<link rel="stylesheet" href="assets/css/slicknav.css"></link>
+	<link rel="stylesheet" href="assets/css/animate.min.css"></link>
+	<link rel="stylesheet" href="assets/css/magnific-popup.css"></link>
+	<link rel="stylesheet" href="assets/css/fontawesome-all.min.css"></link>
+	<link rel="stylesheet" href="assets/css/themify-icons.css"></link>
+	<link rel="stylesheet" href="assets/css/slick.css"></link>
+	<link rel="stylesheet" href="assets/css/nice-select.css"></link>
+	<link rel="stylesheet" type="text/css" href="CSS/modal.css"></link>
+
+	<link rel="stylesheet" href="assets/css/style.css"></link>
+	<script src="../js/jquery-3.6.0.min.js" type="text/javascript"></script>
+	<script src="../js/menu.js"></script>
+
+
+</h:head>
+<body>
+
+	<div id="menu"></div>
+
+	<main>
+		<h:form id="form">
+
+
+			<p:growl id="msgs" life="2000" showDetail="true" />
+
+			<p:dataTable id="EvaTabla" editable="true" var="eva"
+				value="#{dtEditView.evaluaciones}" styleClass="table table-bordered"
+				paginator="true"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15" rows="10" selectionMode="single"
+				selection="#{evaluacione.select}" rowKey="#{eva.idEvaluacion}">
+
+				<f:facet name="header">
+					<div class="products-table-header">
+						<span style="font-weight: bold">Mantenimiento Evaluación</span>
+					</div>
+				</f:facet>
+
+				<p:ajax event="rowEdit" listener="#{evaluacione.Actualizar(eva)}"
+					update="EvaTabla" />
+				<p:ajax event="rowSelect" listener="#{evaluacione.onRowSelect}"
+					update=":form:msgs" />
+				<p:ajax event="rowUnselect" listener="#{evaluacione.onRowUnselect}"
+					update=":form:msgs" />
+				<p:ajax event="rowEditCancel" listener="#{evaluacione.onRowCancel}"
+					update=":form:msgs" />
+
+				<p:column style="width:5%">
+					<p:rowEditor />
+				</p:column>
+
+
+				<p:column headerText="Id" filterBy="#{eva.idEvaluacion}"
+					filterMatchMode="contains">
+					<h:outputText value="#{eva.idEvaluacion}" />
+
+				</p:column>
+
+
+				<p:column headerText="Fecha" filterBy="#{eva.fechaEval}"
+					filterMatchMode="contains">
+
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{eva.fechaEval}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{eva.fechaEval}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+
+
+
+				<p:column headerText="Hora" filterBy="#{eva.horaEval}"
+					filterMatchMode="contains">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{eva.horaEval}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{eva.horaEval}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column headerText="Observaciones" filterBy="#{eva.observacEvaluac}"
+					filterMatchMode="contains">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{eva.observacEvaluac}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{eva.observacEvaluac}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column headerText="Tipo planilla" filterBy="#{eva.tipoPlanilla}"
+					filterMatchMode="contains">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{eva.tipoPlanilla}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{eva.tipoPlanilla}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Valor" filterBy="#{eva.valorEvaluac}"
+					filterMatchMode="contains">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{eva.valorEvaluac}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{eva.valorEvaluac}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				
+
+				<p:column headerText="Referencia" filterBy="#{eva.evadescrip}"
+					filterMatchMode="contains">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{eva.evadescrip}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{eva.evadescrip}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column headerText="Jurado" filterBy="#{eva.jurado}"
+					filterMatchMode="contains">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{eva.jurado}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{eva.jurado}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column headerText="Mesa" filterBy="#{eva.mesa}"
+					filterMatchMode="contains">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{eva.mesa}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{eva.mesa}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column headerText="Queso" filterBy="#{eva.queso}"
+					filterMatchMode="contains">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{eva.queso}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{eva.queso}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+
+				<p:column style="width:10%">
+
+
+					<p:growl id="message" showDetail="true" />
+					<p:commandButton icon="pi pi-trash" value="Eliminar"
+						action="#{evaluacione.Borrar(eva)}" update="evaluacioneTabla">
+						<p:confirm header="Confirmar baja"
+							message="Estas seguro que desea eliminar esta Sub-categoria?"
+							icon="pi pi-exclamation-triangle" />
+					</p:commandButton>
+
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="Sí" type="button"
+							styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+						<p:commandButton value="No" type="button"
+							styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+					</p:confirmDialog>
+
+				</p:column>
+
+
+				<f:facet name="footer">
+					<p:commandButton icon="pi pi-plus" value="Nuevo"
+						oncomplete="PF('mostrar').show();" update=":formNew"></p:commandButton>
+
+				</f:facet>
+
+
+
+			</p:dataTable>
+
+		</h:form>
+		<h:form id="formNew">
+			<p:dialog id="new" widgetVar="mostrar" header="Ingresar datos de Sub-Categorías" modal="true"
+				showEffect="clip" resizable="false">
+
+
+				<p:panelGrid columns="6" layout="grid" styleClass="customPanelGrid" contentStyleClass="ui-fluid">
+
+					<p:outputLabel value="Fecha: " />
+					<p:inputTextarea value="#{eva.fechaEval}" />
+					
+					<p:outputLabel value="Hora: " />
+					<p:inputTextarea value="#{eva.horaEval}" />
+					
+					<p:outputLabel value="Observaciones: " />
+					<p:inputTextarea value="#{eva.observacEvaluac}" />
+					
+					<p:outputLabel value="Tipo Planilla: " />
+					<p:inputTextarea value="#{eva.tipoPlanilla}" />
+					
+					<p:outputLabel value="Valor Evaluación: " />
+					<p:inputTextarea value="#{eva.valorEvaluac}" />
+					
+					
+					<p:outputLabel value="Descriptores" />
+					<p:selectOneMenu id="identeva" value="">
+						<f:selectItem itemLabel="Select..." noSelectionOption="true" />
+						<f:selectItem itemLabel="Ident.1" itemValue="Ident.1" />
+						<f:selectItem itemLabel="Ident.2" itemValue="Ident.2" />
+					</p:selectOneMenu>
+
+
+					<p:outputLabel value="Jurado" />
+					<p:selectOneMenu  value="">
+						<f:selectItem itemLabel="Select..." noSelectionOption="true" />
+						<f:selectItem itemLabel="Referencia1" itemValue="Referencia1" />
+						<f:selectItem itemLabel="Referencia2" itemValue="Referencia2" />
+					</p:selectOneMenu>
+					
+					<p:outputLabel value="Mesa" />
+					<p:selectOneMenu  value="">
+						<f:selectItem itemLabel="Select..." noSelectionOption="true" />
+						<f:selectItem itemLabel="Referencia1" itemValue="Referencia1" />
+						<f:selectItem itemLabel="Referencia2" itemValue="Referencia2" />
+					</p:selectOneMenu>
+					
+					<p:outputLabel value="Queso" />
+					<p:selectOneMenu  value="">
+						<f:selectItem itemLabel="Select..." noSelectionOption="true" />
+						<f:selectItem itemLabel="Referencia1" itemValue="Referencia1" />
+						<f:selectItem itemLabel="Referencia2" itemValue="Referencia2" />
+					</p:selectOneMenu>
+					
+
+					
+
+				</p:panelGrid>
+
+
+<f:facet name="footer">
+				<p:commandButton id="btcrear" value="Crear" icon="pi pi-check"
+					action="#{evaluacione.Crear}" update=":form:EvaTabla">
+
+					<p:confirm header="Confirmar alta"
+						message="Estas seguro que desea dar de alta esta Sub-categoria?"
+						icon="pi pi-exclamation-triangle" />
+				</p:commandButton>
+
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					<p:commandButton value="Sí" type="button"
+						onclick="PF('mostrar').hide();" styleClass="ui-confirmdialog-yes"
+						icon="pi pi-check" />
+					<p:commandButton value="No" type="button"
+						styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+				</p:confirmDialog>
+				
+				</f:facet>
+			</p:dialog>
+		</h:form>
+
+	</main>
+
+
+</body>
+</html>

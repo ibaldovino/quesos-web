@@ -8,7 +8,7 @@
 <h:head>
 	<meta charset="utf-8"></meta>
 	<meta http-equiv="x-ua-compatible" content="ie=edge"></meta>
-	<title>Cheese - Localidad</title>
+	<title>Cheese - Habilidad Jurado</title>
 	<meta name="description" content=""></meta>
 	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
 	<link rel="manifest" href="site.webmanifest"></link>
@@ -32,10 +32,12 @@
 
 	<script src="../js/jquery-3.6.0.min.js" type="text/javascript"></script>
 	<script src="../js/menu.js"></script>
+
 </h:head>
 <body>
-
 	<div id="menu"></div>
+
+
 
 	<h:form id="form">
 
@@ -43,26 +45,27 @@
 
 			<p:growl id="msgs" life="2000" showDetail="true" />
 
-			<p:dataTable id="LocTabla" editable="true" var="loc"
-				value="#{dtEditView.localidades}" styleClass="table table-bordered"
+			<p:dataTable id="HabiJuraTabla" editable="true" var="hbJ"
+				value="#{dtEditView.habijurados}" styleClass="table table-bordered"
 				paginator="true"
 				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 				rowsPerPageTemplate="5,10,15" rows="10" selectionMode="single"
-				selection="#{localidade.select}" rowKey="#{loc.idLocal}">
+				selection="#{habijurado.select}" rowKey="#{hbJ.idHabjur}">
 
 				<f:facet name="header">
 					<div class="products-table-header">
-						<span style="font-weight: bold">Mantenimiento Localidad</span>
+						<span style="font-weight: bold">Mantenimiento
+							Habilidad/Jurado</span>
 					</div>
 				</f:facet>
 
-				<p:ajax event="rowEdit" listener="#{localidade.Actualizar(loc)}"
-					update="LocTabla" />
-				<p:ajax event="rowSelect" listener="#{localidade.onRowSelect}"
+				<p:ajax event="rowEdit" listener="#{habijurado.Actualizar(hbJ)}"
+					update="HabiJuraTabla" />
+				<p:ajax event="rowSelect" listener="#{habijurado.onRowSelect}"
 					update=":form:msgs" />
-				<p:ajax event="rowUnselect" listener="#{localidade.onRowUnselect}"
+				<p:ajax event="rowUnselect" listener="#{habijurado.onRowUnselect}"
 					update=":form:msgs" />
-				<p:ajax event="rowEditCancel" listener="#{localidade.onRowCancel}"
+				<p:ajax event="rowEditCancel" listener="#{habijurado.onRowCancel}"
 					update=":form:msgs" />
 
 				<p:column style="width:5%">
@@ -70,45 +73,45 @@
 				</p:column>
 
 
-				<p:column headerText="Id"
-					filterBy="#{loc.idLocal}" filterMatchMode="contains">
-					<h:outputText value="#{loc.idLocal}" />
+				<p:column headerText="Id" filterBy="#{in.idHabjur}"
+					filterMatchMode="contains">
+					<h:outputText value="#{hbJ.idHabjur}" />
 
 				</p:column>
 
 
-				<p:column headerText="Nombre"
-					filterBy="#{loc.descrLocal}" filterMatchMode="contains">
+				<p:column headerText="Observaciones" filterBy="#{hbJ.observHabjur}"
+					filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{loc.descrLocal}" />
+							<h:outputText value="#{hbJ.observHabjur}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{loc.descrLocal}" />
+							<p:inputText value="#{hbJ.observHabjur}" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 
-				<p:column headerText="Departamento" filterBy="#{loc.departamento.descrDepto}"
+				<p:column headerText="Habilidad" filterBy="#{hbJ.habilidade}"
 					filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{loc.departamento.descrDepto}" />
+							<h:outputText value="#{hbJ.habilidade}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{loc.departamento.descrDepto}" />
+							<p:inputText value="#{hbJ.habilidade}" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
-				
-				<p:column headerText="Participantes" filterBy="#{loc.participantes}"
+
+				<p:column headerText="Jurado" filterBy="#{hbJ.jurado}"
 					filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{loc.participantes}" />
+							<h:outputText value="#{hbJ.jurado}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{loc.participantes}" />
+							<p:inputText value="#{hbJ.jurado}" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
@@ -120,9 +123,9 @@
 
 					<p:growl id="message" showDetail="true" />
 					<p:commandButton icon="pi pi-trash" value="Eliminar"
-						action="#{localidade.Borrar(loc)}" update=":form:LocTabla">
+						action="#{habijurado.Borrar(hbJ)}" update=":form:HabiJuraTabla">
 						<p:confirm header="Confirmar baja"
-							message="Estas seguro que desea eliminar esta Localidad?"
+							message="Estas seguro que desea eliminar esta Habilidad de Jurado?"
 							icon="pi pi-exclamation-triangle" />
 					</p:commandButton>
 
@@ -141,41 +144,41 @@
 						oncomplete="PF('mostrar').show();" update=":formNew"></p:commandButton>
 
 				</f:facet>
-			</p:dataTable>
-		</main>
-	</h:form>
 
+
+
+			</p:dataTable>
+
+
+
+		</main>
+
+	</h:form>
 
 	<h:form id="formNew">
 		<p:dialog id="new" widgetVar="mostrar"
-			header="Ingresar datos de localidade" modal="true" showEffect="clip"
-			resizable="false" layout="grid" styleClass="customPanelGrid"
-			contentStyleClass="ui-fluid">
+			header="Ingresar datos de Tipo habijurado" modal="true"
+			showEffect="clip" resizable="false">
 
 
 			<p:panelGrid columns="2" layout="grid" styleClass="customPanelGrid"
 				contentStyleClass="ui-fluid">
-				
-				<p:outputLabel value="Nombre: " />
-				<p:inputTextarea value="#{localidade.descrLocal}" />
 
-				<p:outputLabel value="Departamento" />
-				<p:selectOneMenu id="scref" value="#{localidade.depa}">
-					<f:selectItem itemLabel="Select..." noSelectionOption="true" />
-					<f:selectItems value="#{localidade.listDepa}" />
-				</p:selectOneMenu>
 
+				<p:outputLabel value="Observaciones: " />
+				<p:inputTextarea value="#{habijurado.observHabjur}" />
 				
+	
 
 			</p:panelGrid>
 
 			<f:facet name="footer">
 
-				<p:commandButton id="btcrear" value="Crear" icon="pi pi-check"
-					action="#{localidade.Crear}" update=":form:LocTabla">
+				<p:commandButton id="btcrear" value="Crear" icon="pi pi-check" action="#{habijurado.Crear}"
+					update=":form:HabiJuraTabla">
 
 					<p:confirm header="Confirmar alta"
-						message="Seguro desea dar de alta esta nueva Localidad?"
+						message="Estas seguro que desea dar de alta esta Habilidad de Jurado?"
 						icon="pi pi-exclamation-triangle" />
 				</p:commandButton>
 
@@ -189,8 +192,5 @@
 			</f:facet>
 		</p:dialog>
 	</h:form>
-
-
-
 </body>
 </html>

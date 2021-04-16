@@ -37,7 +37,7 @@
 <body>
 	<div id="menu"></div>
 
-	<div class="align-baseline">
+	
 
 		<h:form id="form">
 
@@ -46,26 +46,25 @@
 				<p:growl id="msgs" life="2000" showDetail="true" />
 
 				<p:dataTable id="IndTabla" editable="true" var="in"
-					value="#{dtEditView.industrias}" styleClass="table table-bordered"
+					value="#{dtEditView.tiposInd}" styleClass="table table-bordered"
 					paginator="true"
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="5,10,15" rows="10" selectionMode="single"
-					selection="#{industria.selectVar}" rowKey="#{in.idTipind}">
+					selection="#{tipindustria.select}" rowKey="#{in.idTipind}">
 
 					<f:facet name="header">
 						<div class="products-table-header">
-							<span style="font-weight: bold">Mantenimiento Tipo
-								Industria</span>
+							<span style="font-weight: bold">Mantenimiento Tipo Tndustria</span>
 						</div>
 					</f:facet>
 
-					<p:ajax event="rowEdit" listener="#{variedad.ActualizarSC(sc)}"
-						update="LocTabla" />
-					<p:ajax event="rowSelect" listener="#{variedad.onRowSelect}"
+					<p:ajax event="rowEdit" listener="#{tipindustria.Actualizar(in)}"
+						update="IndTabla" />
+					<p:ajax event="rowSelect" listener="#{tipindustria.onRowSelect}"
 						update=":form:msgs" />
-					<p:ajax event="rowUnselect" listener="#{variedad.onRowUnselect}"
+					<p:ajax event="rowUnselect" listener="#{tipindustria.onRowUnselect}"
 						update=":form:msgs" />
-					<p:ajax event="rowEditCancel" listener="#{variedad.onRowCancel}"
+					<p:ajax event="rowEditCancel" listener="#{tipindustria.onRowCancel}"
 						update=":form:msgs" />
 
 					<p:column style="width:5%">
@@ -117,13 +116,13 @@
 					</p:column>
 
 					<p:column headerText="Participantes"
-						filterBy="#{in.participantes.idQueso}" filterMatchMode="contains">
+						filterBy="#{in.participantes}" filterMatchMode="contains">
 						<p:cellEditor>
 							<f:facet name="output">
-								<h:outputText value="#{in.participantes.idQueso}" />
+								<h:outputText/>
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText value="#{in.participantes.idQueso}" />
+								<p:inputText  />
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -135,9 +134,9 @@
 
 						<p:growl id="message" showDetail="true" />
 						<p:commandButton icon="pi pi-trash" value="Eliminar"
-							action="#{subcat.BorrarSB(sc)}">
+							action="#{tipindustria.Borrar(in)}" update=":form:IndTabla">
 							<p:confirm header="Confirmar baja"
-								message="Estas seguro que desea eliminar esta Sub-categoria?"
+								message="Estas seguro que desea eliminar esta tipindustria?"
 								icon="pi pi-exclamation-triangle" />
 						</p:commandButton>
 
@@ -168,40 +167,36 @@
 		</h:form>
 
 		<h:form id="formNew">
-			<p:dialog id="new" widgetVar="mostrar" header="Ingresar datos de Tipo Industria" modal="true"
+			<p:dialog id="new" widgetVar="mostrar" header="Ingresar datos de Tipo industria" modal="true"
 				showEffect="clip" resizable="false">
 
 
 				<p:panelGrid columns="2" layout="grid" styleClass="customPanelGrid" contentStyleClass="ui-fluid">
 
 
-					<p:outputLabel value="Nombre Variedad" />
-					<p:selectOneMenu id="identSc" value="#{variedad.nombreVar}">
-						<f:selectItem itemLabel="Select..." noSelectionOption="true" />
-						<f:selectItem itemLabel="Ident.1" itemValue="Ident.1" />
-						<f:selectItem itemLabel="Ident.2" itemValue="Ident.2" />
-					</p:selectOneMenu>
-
-
-					<p:outputLabel value="Referencia" />
-					<p:selectOneMenu id="scref" value="#{variedad.referencia}">
-						<f:selectItem itemLabel="Select..." noSelectionOption="true" />
-						<f:selectItem itemLabel="Referencia1" itemValue="Referencia1" />
-						<f:selectItem itemLabel="Referencia2" itemValue="Referencia2" />
-					</p:selectOneMenu>
+					
 
 					<p:outputLabel value="Descripción: " />
-					<p:inputTextarea value="#{humedad.descrip}" />
+					<p:inputTextarea value="#{tipindustria.descrTipind}" />
+					
+					<p:outputLabel value="Precio 1er queso: " />
+					<p:inputText value="#{tipindustria.preInscPriQueso}" />
+					
+					
+					<p:outputLabel value="Precio 2do queso: " />
+					<p:inputText value="#{tipindustria.preInscSegQueso}" />
+					
+					
 
 				</p:panelGrid>
 
 <f:facet name="footer">
 
 				<p:commandButton id="btcrear" value="Crear" icon="pi pi-check"
-					update=":form:LocTabla">
+					update=":form:IndTabla" action="#{tipindustria.Crear}">
 
 					<p:confirm header="Confirmar alta"
-						message="Estas seguro que desea dar de alta esta Sub-categoria?"
+						message="Estas seguro que desea dar de alta este Tipo de Industria?"
 						icon="pi pi-exclamation-triangle" />
 				</p:commandButton>
 

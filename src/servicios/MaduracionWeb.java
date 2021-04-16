@@ -29,7 +29,8 @@ public class MaduracionWeb implements Serializable {
 	 */
 	private static final long serialVersionUID = 7120439312754432359L;
 
-	private String rest = ConectABM.urlServer()+ "maduracion/";
+	
+	private String rest = ConectABM.urlServer() + "maduracion/";
 	private long idMadur;
 	private String descrip;
 	private String referencia;

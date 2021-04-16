@@ -30,6 +30,7 @@ public class PaisWeb implements Serializable{
 	 */
 	private static final long serialVersionUID = 7120439312754432359L;
 
+	
 	private String rest = ConectABM.urlServer() + "paises/";
 	
 	private long idPais;

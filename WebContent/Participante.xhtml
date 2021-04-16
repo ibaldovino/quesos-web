@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta charset="utf-8"></meta>
+	<meta http-equiv="x-ua-compatible" content="ie=edge"></meta>
+	<title>Cheese - Participantes</title>
+	<meta name="description" content=""></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+	<link rel="manifest" href="site.webmanifest"></link>
+	<link rel="shortcut icon" type="image/x-icon"
+		href="assets/img/favicon.ico"></link>
+
+	<!-- CSS here -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css"></link>
+	<link rel="stylesheet" href="assets/css/owl.carousel.min.css"></link>
+	<link rel="stylesheet" href="assets/css/flaticon.css"></link>
+	<link rel="stylesheet" href="assets/css/slicknav.css"></link>
+	<link rel="stylesheet" href="assets/css/animate.min.css"></link>
+	<link rel="stylesheet" href="assets/css/magnific-popup.css"></link>
+	<link rel="stylesheet" href="assets/css/fontawesome-all.min.css"></link>
+	<link rel="stylesheet" href="assets/css/themify-icons.css"></link>
+	<link rel="stylesheet" href="assets/css/slick.css"></link>
+	<link rel="stylesheet" href="assets/css/nice-select.css"></link>
+	<link rel="stylesheet" type="text/css" href="CSS/modal.css"></link>
+	<!-- <link rel="stylesheet" type="text/css" href="CSS/Principal.css"></link> -->
+
+	<link rel="stylesheet" href="assets/css/style.css"></link>
+
+	<script src="../js/jquery-3.6.0.min.js" type="text/javascript"></script>
+	<script src="../js/menu.js"></script>
+
+</h:head>
+<body>
+
+	<div id="menu"></div>
+	<h:form id="form">
+
+		<main>
+
+			<p:growl id="msgs" life="3000" showDetail="true" />
+
+			<p:dataTable id="PartiTabla" var="part" value="#{dtEditView.participantes}"
+				styleClass="table table-bordered" paginator="true"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15" rows="10" editable="true"
+				selectionMode="single" selection="#{participantes.select}"
+				rowKey="#{part.idPart}">
+
+				<f:facet name="header">
+					<div class="products-table-header">
+						<span style="font-weight: bold">Mantenimiento Participante</span>
+					</div>
+				</f:facet>
+
+
+				<p:ajax event="rowEdit" listener="#{participantes.Actualizar(part)}"
+					update="PartiTabla" />
+				<p:ajax event="rowEditCancel" listener="#{participantes.onRowCancel}"
+					update=":form:msgs" />
+				<p:ajax event="rowSelect" listener="#{participantes.onRowSelect}"
+					update=":form:msgs" />
+				<p:ajax event="rowUnselect" listener="#{participantes.onRowUnselect}"
+					update=":form:msgs" />
+
+				<p:column style="width:5%">
+					<p:rowEditor />
+				</p:column>
+
+				<p:column headerText="Id" filterBy="#{part.idPart}"
+					filterMatchMode="contains">
+					<h:outputText value="#{part.idPart}" />
+				</p:column>
+				
+				<p:column headerText="Codigo" filterBy="#{part.codPart}"
+					filterMatchMode="contains">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{part.codPart}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{part.codPart}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				
+				<p:column headerText="Nombre" filterBy="#{part.nombrePart}"
+					filterMatchMode="contains">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{part.nombrePart}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{part.nombrePart}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="Apellido" filterBy="#{part.apellidoPart}"
+					filterMatchMode="contains">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{part.apellidoPart}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{part.apellidoPart}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				
+				
+				<p:column headerText="Dirección" filterBy="#{part.direccionPart}"
+					filterMatchMode="contains">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{part.direccionPart}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{part.direccionPart}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column headerText="Empresa" filterBy="#{part.empresaPart}"
+					filterMatchMode="contains">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{part.empresaPart}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{part.empresaPart}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column headerText="E-mail" filterBy="#{part.mailPart}"
+					filterMatchMode="contains">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{part.mailPart}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{part.mailPart}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column headerText="Ruc" filterBy="#{part.rucPart}"
+					filterMatchMode="contains">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{part.rucPart}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{part.rucPart}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column headerText="Teléfono" filterBy="#{part.telefonoPart}"
+					filterMatchMode="contains">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{part.telefonoPart}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{part.telefonoPart}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column headerText="Inscripciones" filterBy="#{part.inscripciones}"
+					filterMatchMode="contains">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{part.inscripciones}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{part.inscripciones}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column headerText="Localidad" filterBy="#{part.localidade}"
+					filterMatchMode="contains">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{part.localidade}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{part.localidade}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+
+				<p:column headerText="Industria" filterBy="#{part.tipindustria}"
+					filterMatchMode="contains">
+					<h:outputText value="#{part.tipindustria}" />
+				</p:column>
+
+				<p:column style="width:10%">
+					<p:growl id="message" showDetail="true" />
+					<p:commandButton icon="pi pi-trash" value="Eliminar"
+						action="#{participantes.Borrar(part)}" update=":form:PartiTabla">
+						<p:confirm header="Confirmar baja"
+							message="Estas seguro que desea eliminar esta Participante?"
+							icon="pi pi-exclamation-triangle" />
+					</p:commandButton>
+				</p:column>
+
+
+
+
+
+				<f:facet name="footer">
+
+						<p:commandButton icon="pi pi-plus" value="Nueva"
+							oncomplete="PF('mostrar').show();" update=":formNew">
+						</p:commandButton>
+
+				
+
+				</f:facet>
+
+			</p:dataTable>
+
+
+
+		</main>
+
+
+	</h:form>
+
+	<h:form id="formNew">
+		<p:dialog widgetVar="mostrar" header="Ingresar datos de participantes" modal="true"
+			showEffect="clip" resizable="false">
+
+
+			<p:panelGrid columns="6" layout="grid" styleClass="customPanelGrid" contentStyleClass="ui-fluid">
+
+				<p:outputLabel value="Código" />
+				<p:inputText value="#{participantes.codPart}" />
+
+				<p:outputLabel value="Nombre" />
+				<p:inputText value="#{participantes.nombrePart}" />
+				
+				<p:outputLabel value="Apellido" />
+				<p:inputText value="#{participantes.apellidoPart}"  />
+
+				<p:outputLabel value="Dirección" />
+				<p:inputText value="#{participantes.direccionPart}" />
+				
+				<p:outputLabel value="Empresa" />
+				<p:inputText value="#{participantes.empresaPart}"/>
+
+				<p:outputLabel value="E-mail" />
+				<p:inputText value="#{participantes.mailPart}" />
+				
+				<p:outputLabel value="Ruc" />
+				<p:inputText value="#{participantes.rucPart}"/>
+
+				<p:outputLabel value="Telefono" />
+				<p:inputText value="#{participantes.telefonoPart}" />
+				
+
+
+			</p:panelGrid>
+
+<f:facet name="footer">
+
+			<p:commandButton id="btcrear" value="Crear" icon="pi pi-check"
+				action="#{participantes.Crear}" update=":form:PartiTabla">
+
+				<p:confirm header="Confirmar alta"
+					message="Seguro desea dar de alta esta nueva Participante?"
+					icon="pi pi-exclamation-triangle" />
+			</p:commandButton>
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Sí" type="button"
+					onclick="PF('mostrar').hide();" styleClass="ui-confirmdialog-yes"
+					icon="pi pi-check" />
+				<p:commandButton value="No" type="button"
+					styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+			</p:confirmDialog>
+			</f:facet>
+		</p:dialog>
+
+	</h:form>
+
+
+
+
+</body>
+</html>

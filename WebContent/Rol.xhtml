@@ -8,7 +8,7 @@
 <h:head>
 	<meta charset="utf-8"></meta>
 	<meta http-equiv="x-ua-compatible" content="ie=edge"></meta>
-	<title>Cheese - Tecnologia</title>
+	<title>Cheese - Rol</title>
 	<meta name="description" content=""></meta>
 	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
 	<link rel="manifest" href="site.webmanifest"></link>
@@ -27,7 +27,6 @@
 	<link rel="stylesheet" href="assets/css/slick.css"></link>
 	<link rel="stylesheet" href="assets/css/nice-select.css"></link>
 	<link rel="stylesheet" type="text/css" href="CSS/modal.css"></link>
-	<!-- <link rel="stylesheet" type="text/css" href="CSS/Principal.css"></link> -->
 
 	<link rel="stylesheet" href="assets/css/style.css"></link>
 
@@ -38,137 +37,152 @@
 <body>
 
 	<div id="menu"></div>
-
 	<h:form id="form">
 
 		<main>
 
 			<p:growl id="msgs" life="3000" showDetail="true" />
 
-			<p:dataTable id="TablaTecn" var="tec"
-				value="#{dtEditView.tecnologias}" styleClass="table table-bordered"
-				paginator="true"
+			<p:dataTable id="TablaRol" var="rol" value="#{dtEditView.rolesV}"
+				styleClass="table table-bordered" paginator="true"
 				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 				rowsPerPageTemplate="5,10,15" rows="10" editable="true"
-				selectionMode="single" selection="#{tecnologia.select}"
-				rowKey="#{tec.idTecno}">
+				selectionMode="single" selection="#{role.select}"
+				rowKey="#{rol.idRol}">
 
 				<f:facet name="header">
 					<div class="products-table-header">
-						<span style="font-weight: bold">Mantenimiento Tecnología</span>
+						<span style="font-weight: bold">Mantenimiento Rol</span>
 					</div>
 				</f:facet>
 
-				<p:ajax event="rowEdit" listener="#{tecnologia.ActualizarTec(tec)}"
-					update="TablaTecn" />
-				<p:ajax event="rowSelect" listener="#{tecnologia.onRowSelect}"
+
+				<p:ajax event="rowEdit" listener="#{rolarea.Actualizar(rol)}"
+					update="TablaRol" />
+				<p:ajax event="rowEditCancel" listener="#{rolarea.onRowCancel}"
 					update=":form:msgs" />
-				<p:ajax event="rowUnselect" listener="#{tecnologia.onRowUnselect}"
+				<p:ajax event="rowSelect" listener="#{rolarea.onRowSelect}"
 					update=":form:msgs" />
-				<p:ajax event="rowEditCancel" listener="#{tecnologia.onRowCancel}"
+				<p:ajax event="rowUnselect" listener="#{rolarea.onRowUnselect}"
 					update=":form:msgs" />
 
 				<p:column style="width:5%">
 					<p:rowEditor />
 				</p:column>
 
-				<p:column headerText="Id" filterBy="#{tec.idTecno}"
+				<p:column headerText="Id" filterBy="#{rol.idRol}"
 					filterMatchMode="contains">
-					<h:outputText value="#{tec.idTecno}" />
+					<h:outputText value="#{rol.idRol}" />
 				</p:column>
-				<p:column headerText="Descripción" filterBy="#{tec.descrip}"
-					filterMatchMode="contains">
-					<h:outputText value="#{tec.descrip}" />
-				</p:column>
-				<p:column headerText="Referencia" filterBy="#{tec.referencia}"
+				<p:column headerText="Descripción" filterBy="#{rol.descrRol}"
 					filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{tec.referencia}" />
+							<h:outputText value="#{rol.descrRol}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{tec.referencia}" />
+							<p:inputText value="#{rol.descrRol}" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
-				<p:column headerText="Quesos" filterBy="#{tec.quesos.idQueso}"
+				<p:column headerText="Rol Tareas" filterBy="#{rol.roltareas.idRolTar}"
 					filterMatchMode="contains">
-					<h:outputText value="#{tec.quesos.idQueso}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{rol.roltareas.idRolTar}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{rol.roltareas.idRolTar}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column headerText="Usuario" filterBy="#{rol.usuarios}"
+					filterMatchMode="contains">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{rol.usuarios}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{rol.usuarios}" />
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 
 				<p:column style="width:10%">
 					<p:growl id="message" showDetail="true" />
 					<p:commandButton icon="pi pi-trash" value="Eliminar"
-						action="#{tecnologia.BorrarTec(tec)}">
+						action="#{rolarea.Borrar(rol)}" update="TablaRol">
 						<p:confirm header="Confirmar baja"
-							message="Seguro desea eliminar esta Tecnología?"
+							message="Estas seguro que desea eliminar este Rol?"
 							icon="pi pi-exclamation-triangle" />
 					</p:commandButton>
-					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-						<p:commandButton value="Sí" type="button"
-							styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
-						<p:commandButton value="No" type="button"
-							styleClass="ui-confirmdialog-no" icon="pi pi-times" />
-					</p:confirmDialog>
-					
-					
 				</p:column>
 
 
 
+
+
 				<f:facet name="footer">
-					<p:commandButton icon="pi pi-plus" value="Nueva"
-						oncomplete="PF('mostrar').show();" update=":formNew">
-					</p:commandButton>
+
+						<p:commandButton icon="pi pi-plus" value="Nueva"
+							oncomplete="PF('mostrar').show();" update=":formNew">
+						</p:commandButton>
+
+				
 
 				</f:facet>
+
 			</p:dataTable>
+
+
+
 		</main>
+
+
 	</h:form>
 
-<h:form id="formNew">
-	<p:dialog widgetVar="mostrar" header="Ingresar datos de Tecnología" modal="true"
-		showEffect="clip" resizable="false">
+	<h:form id="formNew">
+		<p:dialog widgetVar="mostrar" header="Ingresar datos de rolarea" modal="true"
+			showEffect="clip" resizable="false">
 
-		
+
 			<p:panelGrid columns="2" layout="grid" styleClass="customPanelGrid" contentStyleClass="ui-fluid">
 
 				<p:outputLabel value="Descripción" />
-				<p:inputTextarea value="#{tecnologia.descrip}" />
+				<p:inputTextarea value="#{rolarea.autorizadoSn}" />
+				
+				<p:outputLabel value="Rol Tarea" />
+				<p:inputTextarea value="#{rolarea.role.idRol}" />
 
-				<p:outputLabel value="Referencia" />
-				<p:inputTextarea value="#{tecnologia.referencia}" />
+				<p:outputLabel value="Usuario" />
+				<p:inputTextarea value="#{rolarea.tarea.idTarea}" />
 
-
-				<p:outputLabel value="Quesos" />
-				<p:selectOneMenu id="qsc">
-					<f:selectItem itemLabel="Select..." noSelectionOption="true" />
-					<f:selectItems value="xhch" />
-				</p:selectOneMenu>
 
 
 
 			</p:panelGrid>
 
+<f:facet name="footer">
 
-		<f:facet name="footer">
-		<p:commandButton id="btcrear" value="Crear" icon="pi pi-check"
-			action="#{tecnologia.CrearTec}" update=":form:TablaTecn">
+			<p:commandButton id="btcrear" value="Crear" icon="pi pi-check"
+				action="#{rolarea.Crear}" update=":form:TablaRol">
 
-			<p:confirm header="Confirmar alta"
-				message="Seguro desea dar de alta esta nueva Tecnología?"
-				icon="pi pi-exclamation-triangle" />
-		</p:commandButton>
+				<p:confirm header="Confirmar alta"
+					message="Seguro desea dar de alta este Rol Tarea?"
+					icon="pi pi-exclamation-triangle" />
+			</p:commandButton>
 
-		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-			<p:commandButton value="Sí" type="button"
-				onclick="PF('mostrar').hide();" styleClass="ui-confirmdialog-yes"
-				icon="pi pi-check" />
-			<p:commandButton value="No" type="button"
-				styleClass="ui-confirmdialog-no" icon="pi pi-times" />
-		</p:confirmDialog>
-		</f:facet>
-	</p:dialog>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Sí" type="button"
+					onclick="PF('mostrar').hide();" styleClass="ui-confirmdialog-yes"
+					icon="pi pi-check" />
+				<p:commandButton value="No" type="button"
+					styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+			</p:confirmDialog>
+			</f:facet>
+		</p:dialog>
+
 	</h:form>
 
 

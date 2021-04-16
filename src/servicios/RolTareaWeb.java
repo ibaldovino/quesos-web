@@ -31,7 +31,7 @@ public class RolTareaWeb implements Serializable {
 	 */
 	private static final long serialVersionUID = 7120439312754432359L;
 
-	private String rest = "http://dominio.ddns.net:8086/TablasQueso/rest/roltarea/";
+	private String rest = ConectABM.urlServer() + "roltarea/";
 	private Roltarea select;
 	private long idRoltar;
 	private String autorizadoSn;
@@ -99,7 +99,7 @@ public class RolTareaWeb implements Serializable {
 		List<Roltarea> list = new ArrayList<Roltarea>();
 
 		Gson gson = new Gson();
-		Roltarea[] lista = gson.fromJson(ReadJson.readJsonFromUrl(rest + "todos"), Roltarea[].class);
+		Roltarea[] lista = gson.fromJson(ReadJson.readJsonFromUrl(rest + "todas"), Roltarea[].class);
 		for (Roltarea rol : lista) {
 			list.add(rol);
 		}

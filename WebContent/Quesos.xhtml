@@ -3,8 +3,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:r="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<meta charset="utf-8"></meta>
@@ -44,6 +43,11 @@
                      rowsPerPageTemplate="5,10,15" rows="10"  editable="true" selectionMode="single" selection="#{quesos.select}" rowKey="#{qe.idQueso}"
 				reflow="true">
 				
+				<f:facet name="header">
+					<div class="products-table-header">
+						<span style="font-weight: bold">Mantenimiento Quesos</span>
+					</div>
+				</f:facet>
 				
 				<p:ajax event="rowEdit" listener="#{quesos.ActualizarQS(qe)}" update=":dtq:msgs" />
 				<p:ajax event="rowEditCancel" listener="#{quesos.onCancel}" update=":dtq:msgs"/>
@@ -178,9 +182,7 @@
 
 				</p:panelGrid>
 				
-				<p:separator />
-				
-				<div align="center">				
+			<f:facet name="footer">					
 				<p:commandButton id="btcrear"  value="Crear" styleClass="align-items-end"
 					action="#{quesos.CrearQS}" update=":dtq:TablaQueso"
 					>
@@ -189,7 +191,7 @@
 						message="Estas seguro que desea dar de alta este Queso?"
 						icon="pi pi-exclamation-triangle" />
 				</p:commandButton>
-				</div>
+				
 
 				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 					<p:commandButton value="Sí" type="button" update="TablaQueso" onclick="PF('mostrar').hide();"
@@ -197,7 +199,7 @@
 					<p:commandButton value="No" type="button"
 						styleClass="ui-confirmdialog-no" icon="pi pi-times" />
 				</p:confirmDialog>
-				
+			</f:facet>
 				
 				
 			</p:dialog>

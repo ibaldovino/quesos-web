@@ -8,7 +8,7 @@
 <h:head>
 	<meta charset="utf-8"></meta>
 	<meta http-equiv="x-ua-compatible" content="ie=edge"></meta>
-	<title>Cheese - Localidad</title>
+	<title>Cheese - Tipo Evaluacion</title>
 	<meta name="description" content=""></meta>
 	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
 	<link rel="manifest" href="site.webmanifest"></link>
@@ -29,13 +29,16 @@
 	<link rel="stylesheet" type="text/css" href="CSS/modal.css"></link>
 
 	<link rel="stylesheet" href="assets/css/style.css"></link>
-
-	<script src="../js/jquery-3.6.0.min.js" type="text/javascript"></script>
-	<script src="../js/menu.js"></script>
+	
+	<script src="../js/jquery-3.6.0.min.js"  type="text/javascript"></script>
+		<script src="../js/menu.js"></script>
+	
 </h:head>
 <body>
+<div id="menu">
+</div>
 
-	<div id="menu"></div>
+<div class="align-baseline">
 
 	<h:form id="form">
 
@@ -43,27 +46,21 @@
 
 			<p:growl id="msgs" life="2000" showDetail="true" />
 
-			<p:dataTable id="LocTabla" editable="true" var="loc"
-				value="#{dtEditView.localidades}" styleClass="table table-bordered"
-				paginator="true"
-				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-				rowsPerPageTemplate="5,10,15" rows="10" selectionMode="single"
-				selection="#{localidade.select}" rowKey="#{loc.idLocal}">
-
+			<p:dataTable id="evaTipoTabla" editable="true" var="evTip"
+				value="#{dtEditView.evaTipos}" styleClass="table table-bordered"
+				paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15" rows="10" selectionMode="single" selection="#{evatipo.select}" rowKey="#{evatipo.idEvatipo}">
+				
 				<f:facet name="header">
-					<div class="products-table-header">
-						<span style="font-weight: bold">Mantenimiento Localidad</span>
-					</div>
-				</f:facet>
-
-				<p:ajax event="rowEdit" listener="#{localidade.Actualizar(loc)}"
-					update="LocTabla" />
-				<p:ajax event="rowSelect" listener="#{localidade.onRowSelect}"
-					update=":form:msgs" />
-				<p:ajax event="rowUnselect" listener="#{localidade.onRowUnselect}"
-					update=":form:msgs" />
-				<p:ajax event="rowEditCancel" listener="#{localidade.onRowCancel}"
-					update=":form:msgs" />
+                <div class="products-table-header">
+                    <span style="font-weight: bold">Mantenimiento Tipo Evaluación</span>
+                </div>
+            </f:facet>
+				
+				<p:ajax event="rowEdit" listener="#{evaTipo.Actualizar(evTip)}" update="evaTipoTabla" />
+				<p:ajax event="rowSelect" listener="#{evaTipo.onRowSelect}" update=":form:msgs" />
+        		<p:ajax event="rowUnselect" listener="#{evaTipo.onRowUnselect}" update=":form:msgs" />
+				<p:ajax event="rowEditCancel" listener="#{evaTipo.onRowCancel}" update=":form:msgs"/>
 
 				<p:column style="width:5%">
 					<p:rowEditor />
@@ -71,58 +68,70 @@
 
 
 				<p:column headerText="Id"
-					filterBy="#{loc.idLocal}" filterMatchMode="contains">
-					<h:outputText value="#{loc.idLocal}" />
+					filterBy="#{evTip.idEvatipo}" filterMatchMode="contains">
+					<h:outputText value="#{evTip.idEvatipo}"/>
 
 				</p:column>
 
-
-				<p:column headerText="Nombre"
-					filterBy="#{loc.descrLocal}" filterMatchMode="contains">
+				
+				<p:column headerText="Descripcion" 
+					filterBy="#{evTip.descrTipeva}" filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{loc.descrLocal}" />
+							<h:outputText value="#{evTip.descrTipeva}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{loc.descrLocal}" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-
-				<p:column headerText="Departamento" filterBy="#{loc.departamento.descrDepto}"
-					filterMatchMode="contains">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{loc.departamento.descrDepto}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{loc.departamento.descrDepto}" />
+							<p:inputText value="#{evTip.descrTipeva}" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 				
-				<p:column headerText="Participantes" filterBy="#{loc.participantes}"
-					filterMatchMode="contains">
+				<p:column headerText="Orden" 
+					filterBy="#{evTip.ordenEval}" filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{loc.participantes}" />
+							<h:outputText value="#{evTip.ordenEval}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{loc.participantes}" />
+							<p:inputText value="#{evTip.ordenEval}" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
-
-
+				
+				<p:column headerText="Tipo" 
+					filterBy="#{evTip.tipoeval}" filterMatchMode="contains">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{evTip.tipoeval}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{evTip.tipoeval}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column headerText="Evaluacion Descripcion" 
+					filterMatchMode="contains">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText/>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				
 
 				<p:column style="width:10%">
 
 
 					<p:growl id="message" showDetail="true" />
 					<p:commandButton icon="pi pi-trash" value="Eliminar"
-						action="#{localidade.Borrar(loc)}" update=":form:LocTabla">
+						action="#{evaTipo.Borrar(evTip)}" update=":form:evaTipoTabla">
 						<p:confirm header="Confirmar baja"
-							message="Estas seguro que desea eliminar esta Localidad?"
+							message="Seguro desea eliminar este País?"
 							icon="pi pi-exclamation-triangle" />
 					</p:commandButton>
 
@@ -135,61 +144,50 @@
 
 				</p:column>
 
-
+				
 				<f:facet name="footer">
 					<p:commandButton icon="pi pi-plus" value="Nuevo"
 						oncomplete="PF('mostrar').show();" update=":formNew"></p:commandButton>
 
 				</f:facet>
+
+
+
 			</p:dataTable>
-		</main>
+			</main>
 	</h:form>
-
-
 	<h:form id="formNew">
-		<p:dialog id="new" widgetVar="mostrar"
-			header="Ingresar datos de localidade" modal="true" showEffect="clip"
-			resizable="false" layout="grid" styleClass="customPanelGrid"
-			contentStyleClass="ui-fluid">
-
-
-			<p:panelGrid columns="2" layout="grid" styleClass="customPanelGrid"
-				contentStyleClass="ui-fluid">
-				
-				<p:outputLabel value="Nombre: " />
-				<p:inputTextarea value="#{localidade.descrLocal}" />
-
-				<p:outputLabel value="Departamento" />
-				<p:selectOneMenu id="scref" value="#{localidade.depa}">
-					<f:selectItem itemLabel="Select..." noSelectionOption="true" />
-					<f:selectItems value="#{localidade.listDepa}" />
-				</p:selectOneMenu>
+	<p:dialog id="new" widgetVar="mostrar" header="Ingresar datos de País" modal="true"
+				showEffect="clip" resizable="false" >
 
 				
+					<p:panelGrid columns="2" layout="grid" styleClass="customPanelGrid" contentStyleClass="ui-fluid">
+					
+					
+						<p:outputLabel value="Nombre País" />
+						<p:inputText/>
+						
+					</p:panelGrid>
 
-			</p:panelGrid>
-
-			<f:facet name="footer">
-
-				<p:commandButton id="btcrear" value="Crear" icon="pi pi-check"
-					action="#{localidade.Crear}" update=":form:LocTabla">
+<f:facet name="footer">
+				
+				<p:commandButton id="btcrear" value="Crear"  icon="pi pi-check" action="#{evaTipo.CrearPais}"  update=":form:evaTipoTabla">
 
 					<p:confirm header="Confirmar alta"
-						message="Seguro desea dar de alta esta nueva Localidad?"
+						message="Seguro desea dar de alta este nuevo País?"
 						icon="pi pi-exclamation-triangle" />
 				</p:commandButton>
 
 				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-					<p:commandButton value="Sí" type="button"
-						onclick="PF('mostrar').hide();" styleClass="ui-confirmdialog-yes"
-						icon="pi pi-check" />
+					<p:commandButton value="Sí" type="button" onclick="PF('mostrar').hide();" 
+						styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
 					<p:commandButton value="No" type="button"
 						styleClass="ui-confirmdialog-no" icon="pi pi-times" />
 				</p:confirmDialog>
-			</f:facet>
-		</p:dialog>
-	</h:form>
-
+				</f:facet>
+			</p:dialog>
+</h:form>
+</div>
 
 
 </body>

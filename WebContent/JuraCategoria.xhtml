@@ -8,7 +8,7 @@
 <h:head>
 	<meta charset="utf-8"></meta>
 	<meta http-equiv="x-ua-compatible" content="ie=edge"></meta>
-	<title>Cheese - Localidad</title>
+	<title>Cheese - Jura Categoria</title>
 	<meta name="description" content=""></meta>
 	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
 	<link rel="manifest" href="site.webmanifest"></link>
@@ -43,26 +43,26 @@
 
 			<p:growl id="msgs" life="2000" showDetail="true" />
 
-			<p:dataTable id="LocTabla" editable="true" var="loc"
-				value="#{dtEditView.localidades}" styleClass="table table-bordered"
+			<p:dataTable id="JuraCatTabla" editable="true" var="jCat"
+				value="#{dtEditView.juraCategos}" styleClass="table table-bordered"
 				paginator="true"
 				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 				rowsPerPageTemplate="5,10,15" rows="10" selectionMode="single"
-				selection="#{localidade.select}" rowKey="#{loc.idLocal}">
+				selection="#{juracateg.select}" rowKey="#{jCat.idJurcat}">
 
 				<f:facet name="header">
 					<div class="products-table-header">
-						<span style="font-weight: bold">Mantenimiento Localidad</span>
+						<span style="font-weight: bold">Mantenimiento Jura Categoría </span>
 					</div>
 				</f:facet>
 
-				<p:ajax event="rowEdit" listener="#{localidade.Actualizar(loc)}"
-					update="LocTabla" />
-				<p:ajax event="rowSelect" listener="#{localidade.onRowSelect}"
+				<p:ajax event="rowEdit" listener="#{juracateg.Actualizar(jCat)}"
+					update="JuraCatTabla" />
+				<p:ajax event="rowSelect" listener="#{juracateg.onRowSelect}"
 					update=":form:msgs" />
-				<p:ajax event="rowUnselect" listener="#{localidade.onRowUnselect}"
+				<p:ajax event="rowUnselect" listener="#{juracateg.onRowUnselect}"
 					update=":form:msgs" />
-				<p:ajax event="rowEditCancel" listener="#{localidade.onRowCancel}"
+				<p:ajax event="rowEditCancel" listener="#{juracateg.onRowCancel}"
 					update=":form:msgs" />
 
 				<p:column style="width:5%">
@@ -71,44 +71,44 @@
 
 
 				<p:column headerText="Id"
-					filterBy="#{loc.idLocal}" filterMatchMode="contains">
-					<h:outputText value="#{loc.idLocal}" />
+					filterBy="#{jCat.idJurcat}" filterMatchMode="contains">
+					<h:outputText value="#{jCat.idJurcat}" />
 
 				</p:column>
 
 
-				<p:column headerText="Nombre"
-					filterBy="#{loc.descrLocal}" filterMatchMode="contains">
+				<p:column headerText="Observaciones"
+					filterBy="#{jCat.observJurcat}" filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{loc.descrLocal}" />
+							<h:outputText value="#{jCat.observJurcat}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{loc.descrLocal}" />
+							<p:inputText value="#{jCat.observJurcat}" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 
-				<p:column headerText="Departamento" filterBy="#{loc.departamento.descrDepto}"
-					filterMatchMode="contains">
+				<p:column headerText="Categoría"
+					filterBy="#{jCat.categoria.descrip}" filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{loc.departamento.descrDepto}" />
+							<h:outputText value="#{jCat.categoria.descrip}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{loc.departamento.descrDepto}" />
+							<p:inputText value="#{jCat.categoria.descrip}" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 				
-				<p:column headerText="Participantes" filterBy="#{loc.participantes}"
-					filterMatchMode="contains">
+				<p:column headerText="Jurado"
+					filterBy="#{jCat.jurado.cedula}" filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{loc.participantes}" />
+							<h:outputText value="#{jCat.jurado.cedula}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{loc.participantes}" />
+							<p:inputText value="#{jCat.jurado.cedula}" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
@@ -120,9 +120,9 @@
 
 					<p:growl id="message" showDetail="true" />
 					<p:commandButton icon="pi pi-trash" value="Eliminar"
-						action="#{localidade.Borrar(loc)}" update=":form:LocTabla">
+						action="#{juracateg.Borrar(jCat)}" update=":form:jCatTabla">
 						<p:confirm header="Confirmar baja"
-							message="Estas seguro que desea eliminar esta Localidad?"
+							message="Estas seguro que desea eliminar esta Categoría de Jura?"
 							icon="pi pi-exclamation-triangle" />
 					</p:commandButton>
 
@@ -148,7 +148,7 @@
 
 	<h:form id="formNew">
 		<p:dialog id="new" widgetVar="mostrar"
-			header="Ingresar datos de localidade" modal="true" showEffect="clip"
+			header="Ingresar datos de juracateg" modal="true" showEffect="clip"
 			resizable="false" layout="grid" styleClass="customPanelGrid"
 			contentStyleClass="ui-fluid">
 
@@ -156,13 +156,21 @@
 			<p:panelGrid columns="2" layout="grid" styleClass="customPanelGrid"
 				contentStyleClass="ui-fluid">
 				
-				<p:outputLabel value="Nombre: " />
-				<p:inputTextarea value="#{localidade.descrLocal}" />
+				<p:outputLabel value="Observaciones: " />
+				<p:inputTextarea value="#{juracateg.observJurcat}" />
 
-				<p:outputLabel value="Departamento" />
-				<p:selectOneMenu id="scref" value="#{localidade.depa}">
+				<p:outputLabel value="Categoría" />
+				<p:selectOneMenu value="#{juracateg.categoria.descrip}">
 					<f:selectItem itemLabel="Select..." noSelectionOption="true" />
-					<f:selectItems value="#{localidade.listDepa}" />
+					<f:selectItem itemLabel="Referencia1" itemValue="Referencia1" />
+					<f:selectItem itemLabel="Referencia2" itemValue="Referencia2" />
+				</p:selectOneMenu>
+				
+				<p:outputLabel value="Jurado" />
+				<p:selectOneMenu value="#{juracateg.jurado.cedula}">
+					<f:selectItem itemLabel="Select..." noSelectionOption="true" />
+					<f:selectItem itemLabel="Referencia1" itemValue="Referencia1" />
+					<f:selectItem itemLabel="Referencia2" itemValue="Referencia2" />
 				</p:selectOneMenu>
 
 				
@@ -172,10 +180,10 @@
 			<f:facet name="footer">
 
 				<p:commandButton id="btcrear" value="Crear" icon="pi pi-check"
-					action="#{localidade.Crear}" update=":form:LocTabla">
+					action="#{juracateg.CrearjCat}" update=":form:JuraCatTabla">
 
 					<p:confirm header="Confirmar alta"
-						message="Seguro desea dar de alta esta nueva Localidad?"
+						message="Seguro desea dar de alta esta nueva Categoría de Jura?"
 						icon="pi pi-exclamation-triangle" />
 				</p:commandButton>
 
