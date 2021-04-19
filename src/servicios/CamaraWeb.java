@@ -11,6 +11,7 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.event.RowEditEvent;
@@ -30,6 +31,7 @@ public class CamaraWeb implements Serializable{
 	 */
 	private static final long serialVersionUID = 7120439312754432359L;
 
+	
 	private String rest = ConectABM.urlServer() + "camara/";
 	
 	private long idCam;

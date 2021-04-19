@@ -9,9 +9,19 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
+import javax.inject.Singleton;
 import javax.ws.rs.core.MediaType;
 
-public class ConectABM {
+
+public class ConectABM implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5969381447639870034L;
 	
 	private static String mensajeConectABM;
 	
@@ -70,6 +80,7 @@ public class ConectABM {
 
 	}
 		
+	
 	public static String conectPut(String dato, String ur) throws IOException {
 		URL url = null;
 		try {
@@ -113,6 +124,7 @@ public class ConectABM {
 
 	}
 
+	
 	public static String conectBorrar(String dato, String ur) throws IOException {
 		URL url = null;
 		try {
@@ -155,7 +167,7 @@ public class ConectABM {
 		return mensajeConectABM;
 
 	}
-
+	
 	public static String urlServer() {
 		return "http://dominio.ddns.net:8086/TablasQueso/rest/";
 	}
