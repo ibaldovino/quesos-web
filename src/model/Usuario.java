@@ -7,7 +7,7 @@ import java.io.Serializable;
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private long idUsuario;
+	private Long idUsuario;
 	
 	private String apeUsuario;
 
@@ -36,11 +36,11 @@ public class Usuario implements Serializable {
 	public Usuario() {
 	}
 
-	public long getIdUsuario() {
+	public Long getIdUsuario() {
 		return this.idUsuario;
 	}
 
-	public void setIdUsuario(long idUsuario) {
+	public void setIdUsuario(Long idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 

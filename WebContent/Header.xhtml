@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-<html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui" >
 <body>
 <header>
        <div class="header-area">
@@ -63,7 +68,7 @@
 														<li><a href="SubCat.xhtml">Descrip/Tipo</a></li>
 													</ul></li>
 												<li><a href="about.html">Consultas/Listados</a></li>
-												<li><a href="about.html">Seguridad</a>
+												<li><a href="#">Seguridad</a>
 													<ul class="submenu">
 														<li><a href="Usuario.xhtml">Usuarios</a></li>
 														<li><a href="Rol.xhtml">Roles</a></li>
@@ -71,8 +76,15 @@
 														<li><a href="Tarea.xhtml">Tareas</a></li>
 														<li><a href="RolTarea.xhtml">Tareas/Roles</a></li>
 													</ul></li>
-
-											</ul>
+													<li>
+													<h:form id="cs">
+													<p:commandLink id="cerrarS" action="#{ControlLogin.cerrarSesion}" style="margin-right:20px;">
+													 <h:outputText value="Cerrar Sesion"/>
+													</p:commandLink>
+													</h:form>
+													</li>
+													
+										</ul>
 										</nav>
 									</div>
 								</div>
@@ -81,12 +93,16 @@
 									<div class="mobile_menu d-block d-lg-none"></div>
 								</div>
 							</div>
+							
 						</div>
 					</div>
 				</div>
+				
 			</div>
+			
         <!-- Header End -->
     </header>
+    
     
 </body>
 </html>

@@ -33,7 +33,7 @@ public class UsuariosWeb implements Serializable{
 
 	private String rest = ConectABM.urlServer() + "usuario/";
 	private Usuario select;
-	private long idUsuario;
+	private Long idUsuario;
 	private String apeUsuario;
 	private String fecaltUsuario;
 	private String fecbajUsuario;
