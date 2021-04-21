@@ -57,7 +57,7 @@
                 </div>
             </f:facet>
 				
-				<p:ajax event="rowEdit" listener="#{departamento.ActualizarCam(dep)}" update="DepaTabla" />
+				<p:ajax event="rowEdit" listener="#{departamento.Actualizar(dep)}" update="DepaTabla" />
 				<p:ajax event="rowSelect" listener="#{departamento.onRowSelect}" update=":form:msgs" />
         		<p:ajax event="rowUnselect" listener="#{departamento.onRowUnselect}" update=":form:msgs" />
 				<p:ajax event="rowEditCancel" listener="#{departamento.onRowCancel}" update=":form:msgs"/>
@@ -105,7 +105,7 @@
 
 					<p:growl id="message" showDetail="true" />
 					<p:commandButton icon="pi pi-trash" value="Eliminar"
-						action="#{departamento.BorrarDep(dep)}" update=":form:DepaTabla">
+						action="#{departamento.Borrar(dep)}" update=":form:DepaTabla">
 						<p:confirm header="Confirmar baja"
 							message="Seguro desea eliminar este Departamento?"
 							icon="pi pi-exclamation-triangle" />
@@ -139,13 +139,19 @@
 					
 					
 						<p:outputLabel value="Nombre Departamento" />
-						<p:inputTextarea value="#{departamento.descrDepto}" />
+						<p:inputText value="#{departamento.descrDepto}" />
+						
+						<p:outputLabel value="País" />
+				<p:selectOneMenu id="scref" value="#{departamento.pa}">
+					<f:selectItem itemLabel="Select..." noSelectionOption="true" />
+					<f:selectItems value="#{departamento.listPais}" />
+				</p:selectOneMenu>
 					
 					</p:panelGrid>
 
 <f:facet name="footer">
 				
-				<p:commandButton id="btcrear" value="Crear"  icon="pi pi-check" action="#{departamento.CrearDep}"  update=":form:DepaTabla">
+				<p:commandButton id="btcrear" value="Crear"  icon="pi pi-check" action="#{departamento.Crear}"  update=":form:DepaTabla">
 
 					<p:confirm header="Confirmar alta"
 						message="Seguro desea dar de alta este nuevo Departamento?"

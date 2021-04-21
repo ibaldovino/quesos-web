@@ -200,7 +200,7 @@
 					<p:commandButton icon="pi pi-trash" value="Eliminar"
 						action="#{evaluacione.Borrar(eva)}" update="evaluacioneTabla">
 						<p:confirm header="Confirmar baja"
-							message="Estas seguro que desea eliminar esta Sub-categoria?"
+							message="Estas seguro que desea eliminar esta Evaluación?"
 							icon="pi pi-exclamation-triangle" />
 					</p:commandButton>
 
@@ -226,26 +226,26 @@
 
 		</h:form>
 		<h:form id="formNew">
-			<p:dialog id="new" widgetVar="mostrar" header="Ingresar datos de Sub-Categorías" modal="true"
+			<p:dialog id="new" widgetVar="mostrar" header="Ingresar datos de Evaluación" modal="true"
 				showEffect="clip" resizable="false">
 
 
 				<p:panelGrid columns="6" layout="grid" styleClass="customPanelGrid" contentStyleClass="ui-fluid">
 
 					<p:outputLabel value="Fecha: " />
-					<p:inputTextarea value="#{eva.fechaEval}" />
+					<p:inputTextarea value="#{evaluacione.fechaEval}" />
 					
 					<p:outputLabel value="Hora: " />
-					<p:inputTextarea value="#{eva.horaEval}" />
+					<p:inputTextarea value="#{evaluacione.horaEval}" />
 					
 					<p:outputLabel value="Observaciones: " />
-					<p:inputTextarea value="#{eva.observacEvaluac}" />
+					<p:inputTextarea value="#{evaluacione.observacEvaluac}" />
 					
 					<p:outputLabel value="Tipo Planilla: " />
-					<p:inputTextarea value="#{eva.tipoPlanilla}" />
+					<p:inputTextarea value="#{evaluacione.tipoPlanilla}" />
 					
 					<p:outputLabel value="Valor Evaluación: " />
-					<p:inputTextarea value="#{eva.valorEvaluac}" />
+					<p:inputTextarea value="#{evaluacione.valorEvaluac}" />
 					
 					
 					<p:outputLabel value="Descriptores" />
@@ -288,7 +288,7 @@
 					action="#{evaluacione.Crear}" update=":form:EvaTabla">
 
 					<p:confirm header="Confirmar alta"
-						message="Estas seguro que desea dar de alta esta Sub-categoria?"
+						message="Seguro desea dar de alta esta Evaluación?"
 						icon="pi pi-exclamation-triangle" />
 				</p:commandButton>
 

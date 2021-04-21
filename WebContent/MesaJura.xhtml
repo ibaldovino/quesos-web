@@ -8,7 +8,7 @@
 <h:head>
 	<meta charset="utf-8"></meta>
 	<meta http-equiv="x-ua-compatible" content="ie=edge"></meta>
-	<title>Cheese - Estado</title>
+	<title>Cheese - Mesas</title>
 	<meta name="description" content=""></meta>
 	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
 	<link rel="manifest" href="site.webmanifest"></link>
@@ -29,71 +29,93 @@
 	<link rel="stylesheet" type="text/css" href="CSS/modal.css"></link>
 
 	<link rel="stylesheet" href="assets/css/style.css"></link>
-	
+
 	<script src="../js/jquery-3.6.0.min.js"  type="text/javascript"></script>
 		<script src="../js/menu.js"></script>
-	
 </h:head>
 <body>
 <div id="menu">
 </div>
 
-<div class="align-baseline">
 
 	<h:form id="form">
 
 		<main>
 
-			<p:growl id="msgs" life="2000" showDetail="true" />
+			<p:growl id="msjgs" life="2000" showDetail="true" />
 
-			<p:dataTable id="estadoUsuTabla" editable="true" var="est"
-				value="#{dtEditView.est}" styleClass="table table-bordered"
+			<p:dataTable id="MesaJuraTabla" editable="true" var="msjj"
+				value="#{dtEditView.mesas}" styleClass="table table-bordered"
 				paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                     rowsPerPageTemplate="5,10,15" rows="10" selectionMode="single" selection="#{estadoUsu.select}" rowKey="#{est.idEstadoUsuario}">
+                     rowsPerPageTemplate="5,10,15" rows="10" selectionMode="single" selection="#{mesajura.selectMesa}" rowKey="#{mesajura.idMesjur}">
 				
 				<f:facet name="header">
                 <div class="products-table-header">
-                    <span style="font-weight: bold">Mantenimiento Estado de Usuario</span>
+                    <span style="font-weight: bold">Mantenimiento Mesas</span>
                 </div>
             </f:facet>
 				
-				<p:ajax event="rowEdit" listener="#{estadoUsu.Actualizar(est)}" update="estadoUsuTabla" />
-				<p:ajax event="rowSelect" listener="#{estadoUsu.onRowSelect}" update=":form:msgs" />
-        		<p:ajax event="rowUnselect" listener="#{estadoUsu.onRowUnselect}" update=":form:msgs" />
-				<p:ajax event="rowEditCancel" listener="#{estadoUsu.onRowCancel}" update=":form:msgs"/>
+				
+				<p:ajax event="rowEdit" listener="#{mesajura.Actualizar(msj)}" update="MesaJuraTabla" />
+				<p:ajax event="rowSelect" listener="#{mesajura.onRowSelect}" update=":form:msjgs" />
+        		<p:ajax event="rowUnselect" listener="#{mesajura.onRowUnselect}" update=":form:msjgs" />
 
 				<p:column style="width:5%">
 					<p:rowEditor />
 				</p:column>
 
 
-				<p:column headerText="Id"
-					filterBy="#{est.idEstadoUsuario}" filterMatchMode="contains">
-					<h:outputText value="#{est.idEstadoUsuario}"/>
+				<p:column  headerText="Id"
+					filterBy="#{msj.idMesjur}" filterMatchMode="contains">
+					<h:outputText value="#{msj.idMesjur}"/>
 
 				</p:column>
 
 				
-				<p:column headerText="Descripcion estadoUsu" 
-					filterBy="#{est.descrEstado}" filterMatchMode="contains">
+				<p:column headerText="Función" 
+					filterBy="#{msj.funcion}" filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{est.descrEstado}" />
+							<h:outputText value="#{msj.funcion}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{est.descrEstado}" />
+							<p:inputText value="#{msj.funcion}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Observaciones" 
+					filterBy="#{msj.observMesjur}" filterMatchMode="contains">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{msj.observMesjur}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{msj.observMesjur}" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 				
-				<p:column headerText="Usuarios" 
-					filterMatchMode="contains" filterBy="#{est.usuarios}" >
+				<p:column headerText="Jurado"
+					filterBy="#{msj.jurado.cedula}" filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText />
+							<h:outputText value="#{msj.jurado.cedula}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText/>
+							<p:inputText value="#{msj.jurado.cedula}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column headerText="Mesas" 
+					filterBy="#{msj.mesa.nombreMesa}" filterMatchMode="contains">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{msj.mesa.nombreMesa}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{msj.mesa.nombreMesa}" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
@@ -105,9 +127,9 @@
 
 					<p:growl id="message" showDetail="true" />
 					<p:commandButton icon="pi pi-trash" value="Eliminar"
-						action="#{pais.Borrar(est)}" update=":form:estadoUsuTabla">
+						action="#{mesajura.Borrar(msj)}" update=":form:MesaJuraTabla" >
 						<p:confirm header="Confirmar baja"
-							message="Seguro desea eliminar este País?"
+							message="Seguro desea eliminar esta Mesa?"
 							icon="pi pi-exclamation-triangle" />
 					</p:commandButton>
 
@@ -126,38 +148,38 @@
 						oncomplete="PF('mostrar').show();" update=":formNew"></p:commandButton>
 
 				</f:facet>
-
-
-
 			</p:dataTable>
-			</main>
+		</main>
 	</h:form>
-	<h:form id="formNew">
-	<p:dialog id="new" widgetVar="mostrar" header="Ingresar datos de País" modal="true"
+	
+	
+		<h:form id="formNew">
+	<p:dialog id="new" widgetVar="mostrar" header="Ingresar datos de Mesa" modal="true"
 				showEffect="clip" resizable="false" >
 
-				
+			
 					<p:panelGrid columns="2" layout="grid" styleClass="customPanelGrid" contentStyleClass="ui-fluid">
 					
+					<p:outputLabel value="Nombre" />
+						<p:inputTextarea value="#{mesajura}" />
+						
+						<p:outputLabel value="Ubicación" />
+						<p:inputTextarea value="#{mesajura}" />
+				
+						
 					
-						<p:outputLabel value="Descripción" />
-						<p:inputText value="#{estadoUsu.descrEstado}" />
-						
-						<p:outputLabel value="Usuario" />
-						<p:inputText value="#{estadoUsu.usuarios}" />
-						
 					</p:panelGrid>
 
-<f:facet name="footer">
-				
-				<p:commandButton id="btcrear" value="Crear"  icon="pi pi-check" action="#{estadoUsu.Crear}"  update=":form:estadoUsuTabla">
+
+<f:facet name="footer">			
+				<p:commandButton id="btcrear" value="Crear"  icon="pi pi-check" action="#{mesajura.Crear}" update=":form:MesaJuraTabla">
 
 					<p:confirm header="Confirmar alta"
-						message="Seguro desea dar de alta este nuevo Estado?"
+						message="Estas seguro que desea dar de alta esta Mesa de Jura?"
 						icon="pi pi-exclamation-triangle" />
 				</p:commandButton>
 
-				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">MesaMesa
 					<p:commandButton value="Sí" type="button" onclick="PF('mostrar').hide();" 
 						styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
 					<p:commandButton value="No" type="button"
@@ -165,8 +187,8 @@
 				</p:confirmDialog>
 				</f:facet>
 			</p:dialog>
-</h:form>
-</div>
+	</h:form>
+
 
 
 </body>

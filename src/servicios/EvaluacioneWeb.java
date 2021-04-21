@@ -164,13 +164,13 @@ public class EvaluacioneWeb implements Serializable {
 
 		Evaluacione nueva = new Evaluacione();
 
-		nueva.setEvadescrip(evadescrip);
+		nueva.setEvadescrip(null);
 		nueva.setFechaEval(fechaEval);
 		nueva.setHoraEval(horaEval);
-		nueva.setJurado(jurado);
-		nueva.setMesa(mesa);
+		nueva.setJurado(null);
+		nueva.setMesa(null);
 		nueva.setObservacEvaluac(observacEvaluac);
-		nueva.setQueso(queso);
+		nueva.setQueso(null);
 		nueva.setTipoPlanilla(tipoPlanilla);
 		nueva.setValorEvaluac(valorEvaluac);
 

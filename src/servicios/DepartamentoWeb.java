@@ -39,11 +39,39 @@ public class DepartamentoWeb implements Serializable{
 	private Pais pais;
 	private List<Localidade> localidades;
 	private Departamento select;
+	private Gson gson = new Gson();
+	
+	private List<String> listPais = new ArrayList<String>();
+	private String pa;
+	
+	public List<String> getlistPais() {
+
+		listPais = new ArrayList<String>();
+		Pais[] list = gson.fromJson(ReadJson.readJsonFromUrl(ConectABM.urlServer() + "paises/todos"), Pais[].class);
+		for (Pais p : list) {
+			listPais.add(p.getDescrPais());
+		}
+
+		return listPais;
+	}
+	
 	
 
 	//Funciones GET
 	
 	
+	public String getPa() {
+		return pa;
+	}
+
+
+
+	public void setPa(String pa) {
+		this.pa = pa;
+	}
+
+
+
 	public String getRest() {
 		return rest;
 	}
@@ -106,14 +134,14 @@ public class DepartamentoWeb implements Serializable{
 	
 	//Funciones POST
 	
-	public String CrearDep () {
+	public String Crear () {
 		
 		
 		Departamento nuevo= new Departamento();
 		
 		
 		nuevo.setDescrDepto(descrDepto);
-		nuevo.setPais(null);
+		nuevo.setPais(findPais(pa));
 		nuevo.setLocalidades(null);
 		
 	    
@@ -134,7 +162,7 @@ public class DepartamentoWeb implements Serializable{
 	}
 	
 	
-	public String BorrarDep (Departamento d) {
+	public String Borrar (Departamento d) {
 		System.out.print(d);
 	
 	
@@ -155,7 +183,7 @@ public class DepartamentoWeb implements Serializable{
 	
 	}
 	
-	public void ActualizarCam (Departamento dep) {
+	public void Actualizar (Departamento dep) {
 		
 		
 		
@@ -189,7 +217,33 @@ public class DepartamentoWeb implements Serializable{
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 	
-		
+    public Departamento findDepartamento(String h) {
+
+		Departamento obj = new Departamento();
+		Departamento[] list = gson.fromJson(ReadJson.readJsonFromUrl(ConectABM.urlServer() +"departamento/todos"), Departamento[].class);
+		for (Departamento e : list) {
+			if (e.getDescrDepto().equals(h)) {
+				obj = e;
+			}
+		}
+
+		return obj;
+
+	}
+    
+    public Pais findPais(String h) {
+
+		Pais obj = new Pais();
+		Pais[] list = gson.fromJson(ReadJson.readJsonFromUrl(ConectABM.urlServer() +"paises/todos"), Pais[].class);
+		for (Pais e : list) {
+			if (e.getDescrPais().equals(h)) {
+				obj = e;
+			}
+		}
+
+		return obj;
+
+	}
 	     
 
 }

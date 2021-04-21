@@ -121,9 +121,9 @@ public class EstUsuarioWeb implements Serializable{
 			
 			Estusuario nueva= new Estusuario();
 			
-			
+			nueva.setIdEstadoUsuario(idEstadoUsuario);
 			nueva.setDescrEstado(descrEstado);
-			nueva.setUsuarios(usuarios);
+			nueva.setUsuarios(null);
 		    
 			System.out.println(nueva);
 			Gson gson = new Gson();
@@ -138,7 +138,7 @@ public class EstUsuarioWeb implements Serializable{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return "EstUsuario.xhtml";
+			return "EstadoUsu.xhtml";
 		}
 		
 		
@@ -159,7 +159,7 @@ public class EstUsuarioWeb implements Serializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "EstUsuario.xhtml";
+		return "EstadoUsu.xhtml";
 		
 		}
 		
