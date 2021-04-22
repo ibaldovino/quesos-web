@@ -51,17 +51,16 @@
 		</header>
     <main>
            
-<div id="divCS">
+<div id="btnCS">
            <p:growl showDetail="true" id="msg" />
 
-			<h:form id="cs">
+			<h:form>
 
-				<p:commandButton id="btnCS" action="#{ControlLogin.cerrarSesion()}"
+				<p:commandButton id="btncerrar" action="#{ControlLogin.cerrarSesion}"
 					icon="pi pi-sign-out" value="Cerrar Sesión">
-
 					<p:confirm icon="pi pi-exclamation-triangle"
 						message="Estas seguro desea Cerrar Sesión?"
-						header="Confirmar alta" />
+						header="Confirmar" />
 				</p:commandButton>
 
 				<p:confirmDialog hideEffect="fade" showEffect="fade" global="true">
