@@ -108,7 +108,7 @@ public void verificarSession() {
 	
 }
 
-public String cerrarSesion() {
+public void cerrarSesion() {
 	
 	System.out.println("Intento cerrar session");
 	Usuario usu = null;
@@ -123,13 +123,5 @@ public String cerrarSesion() {
 		e.printStackTrace();
 	}
 	   
-	String s = "Login.xhtml";
-	return s;
-	
-	/*
-	 * FacesContext context = PrimeFacesContext.getCurrentInstance(); try {
-	 * context.getExternalContext().redirect(rest + "Login.xhtml"); } catch
-	 * (IOException e) { // TODO Auto-generated catch block e.printStackTrace(); }
-	 */
-}
+	}
 }
