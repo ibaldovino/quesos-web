@@ -4,18 +4,16 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.annotation.ManagedBean;
+
 import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.ManagedProperty;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
 import com.google.gson.Gson;
 
-import model.Camara;
 import model.Usuario;
 
 
