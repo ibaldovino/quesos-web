@@ -6,6 +6,9 @@
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:p="http://primefaces.org/ui">
     <h:head>
+    
+   <f:event  listener="#{ControlLogin.verificarSession}" type="preRenderComponent" />
+   
         <meta charset="utf-8"></meta>
         <meta http-equiv="x-ua-compatible" content="ie=edge"></meta>
         <title>Cheese</title>
@@ -48,18 +51,27 @@
     <main>
            
 <div id="divCS">
-           <p:growl showDetail="true" id="message" />
-       <p:commandButton id="btnCS" action="#{usu.CerrarSesion()}" icon="pi pi-sign-out" value="Cerrar Sesión">
+           <p:growl showDetail="true" id="msg" />
 
-					<p:confirm icon="pi pi-exclamation-triangle" message="Estas seguro desea Cerrar Sesión?" header="Confirmar alta" />
+			<h:form id="cs">
+
+				<p:commandButton id="btnCS" action="#{ControlLogin.cerrarSesion()}"
+					icon="pi pi-sign-out" value="Cerrar Sesión">
+
+					<p:confirm icon="pi pi-exclamation-triangle"
+						message="Estas seguro desea Cerrar Sesión?"
+						header="Confirmar alta" />
 				</p:commandButton>
 
 				<p:confirmDialog hideEffect="fade" showEffect="fade" global="true">
-					<p:commandButton icon="pi pi-check" value="Sí" styleClass="ui-confirmdialog-yes" type="button" />
-					<p:commandButton icon="pi pi-times" value="No" styleClass="ui-confirmdialog-no" type="button" />
+					<p:commandButton icon="pi pi-check" value="Sí"
+						styleClass="ui-confirmdialog-yes" type="button" />
+					<p:commandButton icon="pi pi-times" value="No"
+						styleClass="ui-confirmdialog-no" type="button" />
 				</p:confirmDialog>
-        
-</div>
+			</h:form>
+
+		</div>
         
 
     </main>

@@ -8,7 +8,7 @@
 <h:head>
 	<meta charset="utf-8"></meta>
 	<meta http-equiv="x-ua-compatible" content="ie=edge"></meta>
-	<title>Cheese - usuado</title>
+	<title>Cheese - Usuarios</title>
 	<meta name="description" content=""></meta>
 	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
 	<link rel="manifusu" href="site.webmanifusu"></link>
@@ -46,10 +46,10 @@
 
 			<p:growl id="msgs" life="2000" showDetail="true" />
 
-			<p:dataTable id="UsuarioTabla" editable="true" var="usu"
+			<p:dataTable id="UsuarioTabla" editable="true" var="user"
 				value="#{dtEditView.usuarios}" styleClass="table table-bordered"
 				paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                     rowsPerPageTemplate="5,10,15" rows="10" selectionMode="single" rowKey="#{usu.idUsuario}">
+                     rowsPerPageTemplate="5,10,15" rows="10" selectionMode="single" rowKey="#{user.idUsuario}">
 				
 				<f:facet name="header">
                 <div class="products-table-header">
@@ -57,7 +57,7 @@
                 </div>
             </f:facet>
 				
-				<p:ajax event="rowEdit" listener="#{usus.Actualizar(usu)}" update="UsuarioTabla" />
+				<p:ajax event="rowEdit" listener="#{usus.Actualizar(user)}" update="UsuarioTabla" />
 				<p:ajax event="rowSelect" listener="#{usus.onRowSelect}" update=":form:msgs" />
         		<p:ajax event="rowUnselect" listener="#{usus.onRowUnselect}" update=":form:msgs" />
 				<p:ajax event="rowEditCancel" listener="#{usus.onRowCancel}" update=":form:msgs"/>
@@ -68,140 +68,140 @@
 
 
 				<p:column headerText="Id"
-					filterBy="#{usu.idUsuario}" filterMatchMode="contains">
-					<h:outputText value="#{usu.idUsuario}"/>
+					filterBy="#{user.idUsuario}" filterMatchMode="contains">
+					<h:outputText value="#{user.idUsuario}"/>
 
 				</p:column>
 
 				
 				<p:column headerText="Nombre" 
-					filterBy="#{usu.nomUsuario}" filterMatchMode="contains">
+					filterBy="#{user.nomUsuario}" filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{usu.nomUsuario}" />
+							<h:outputText value="#{user.nomUsuario}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{usu.nomUsuario}" />
+							<p:inputText value="#{user.nomUsuario}" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 				
 				<p:column headerText="Apellido" 
-					filterBy="#{usu.apeUsuario}" filterMatchMode="contains">
+					filterBy="#{user.apeUsuario}" filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{usu.apeUsuario}" />
+							<h:outputText value="#{user.apeUsuario}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{usu.apeUsuario}" />
+							<p:inputText value="#{user.apeUsuario}" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 				
 				<p:column headerText="Fecha Alta" 
-					filterBy="#{usu.fecaltUsuario}" filterMatchMode="contains">
+					filterBy="#{user.fecaltUsuario}" filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{usu.fecaltUsuario}" />
+							<h:outputText value="#{user.fecaltUsuario}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{usu.fecaltUsuario}" />
+							<p:inputText value="#{user.fecaltUsuario}" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 				
 				<p:column headerText="Fecha Baja" 
-					filterBy="#{usu.fecbajUsuario}" filterMatchMode="contains">
+					filterBy="#{user.fecbajUsuario}" filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{usu.fecbajUsuario}" />
+							<h:outputText value="#{user.fecbajUsuario}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{usu.fecbajUsuario}" />
+							<p:inputText value="#{user.fecbajUsuario}" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 				
 				<p:column headerText="Fecha Sus" 
-					filterBy="#{usu.fecsusUsuario}" filterMatchMode="contains">
+					filterBy="#{user.fecsusUsuario}" filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{usu.fecsusUsuario}" />
+							<h:outputText value="#{user.fecsusUsuario}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{usu.fecsusUsuario}" />
+							<p:inputText value="#{user.fecsusUsuario}" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 				
 				<p:column headerText="E-mail" 
-					filterBy="#{usu.mailUsuario}" filterMatchMode="contains">
+					filterBy="#{user.mailUsuario}" filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{usu.mailUsuario}" />
+							<h:outputText value="#{user.mailUsuario}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{usu.mailUsuario}" />
+							<p:inputText value="#{user.mailUsuario}" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 				
 				<p:column headerText="Contraseña" 
-					filterBy="#{usu.pwdUsuario}" filterMatchMode="contains">
+					filterBy="#{user.pwdUsuario}" filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{usu.pwdUsuario}" />
+							<h:outputText value="#{user.pwdUsuario}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{usu.pwdUsuario}" />
+							<p:inputText value="#{user.pwdUsuario}" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 				
 				<p:column headerText="Nombre Usuario" 
-					filterBy="#{usu.usuario}" filterMatchMode="contains">
+					filterBy="#{user.usuario}" filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{usu.usuario}" />
+							<h:outputText value="#{user.usuario}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{usu.usuario}" />
+							<p:inputText value="#{user.usuario}" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 				
 				<p:column headerText="Teléfono" 
-					filterBy="#{usu.telefUsuario}" filterMatchMode="contains">
+					filterBy="#{user.telefUsuario}" filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{usu.telefUsuario}" />
+							<h:outputText value="#{user.telefUsuario}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{usu.telefUsuario}" />
+							<p:inputText value="#{user.telefUsuario}" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 				
 				<p:column headerText="Estado" 
-					filterBy="#{usu.estusuario}" filterMatchMode="contains">
+					filterBy="#{user.estusuario}" filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{usu.estusuario}" />
+							<h:outputText value="#{user.estusuario.idEstadoUsuario}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{usu.estusuario}" />
+							<p:inputText value="#{user.estusuario.idEstadoUsuario}" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 				
 				<p:column headerText="Rol" 
-					filterBy="#{usu.role.descrRol}" filterMatchMode="contains">
+					filterBy="#{user.role.descrRol}" filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{usu.role.descrRol}" />
+							<h:outputText value="#{user.role.descrRol}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{usu.role.descrRol}" />
+							<p:inputText value="#{user.role.descrRol}" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>

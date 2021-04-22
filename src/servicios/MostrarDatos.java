@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import model.Camara;
+import model.Categoria;
 import model.Departamento;
 import model.Estusuario;
 import model.Evadescrip;
@@ -78,6 +79,7 @@ public class MostrarDatos implements Serializable {
 	private List<Mesajura> mesajurados;
 	private List<Participante> participantes;
 	private List<Habijurado> habijurados;
+	private List<Categoria> categoria;
     
          
     @Inject
@@ -136,6 +138,8 @@ public class MostrarDatos implements Serializable {
     private ParticipanteWeb serparticipantes;
     @Inject
     private HabiJuradoWeb serhabijurados;
+    @Inject
+    private CategoriaWeb sercategoria;
     
      
     @PostConstruct
@@ -168,9 +172,22 @@ public class MostrarDatos implements Serializable {
     	juraCategos=serjuracateg.getJuracateg();
     	participantes= serparticipantes.getParticipantes();
     	habijurados= serhabijurados.getHabijurado();
+    	categoria=sercategoria.getListcateg();
     }
     
     
+
+	public List<Categoria> getCategoria() {
+		return categoria;
+	}
+
+
+
+	public void setCategoria(List<Categoria> categoria) {
+		this.categoria = categoria;
+	}
+
+
 
 	public List<Habijurado> getHabijurados() {
 		return habijurados;

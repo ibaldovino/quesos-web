@@ -10,7 +10,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-
+import org.primefaces.PrimeFaces;
+import org.primefaces.context.PrimeFacesContext;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
@@ -21,7 +22,7 @@ import model.Estusuario;
 import model.Role;
 import model.Usuario;
 
-@Named("usus")
+@Named(value="usus")
 @ViewScoped
 public class UsuariosWeb implements Serializable{
 
@@ -32,7 +33,7 @@ public class UsuariosWeb implements Serializable{
 
 	private String rest = ConectABM.urlServer() + "usuario/";
 	private Usuario select;
-	private long idUsuario;
+	private Long idUsuario;
 	private String apeUsuario;
 	private String fecaltUsuario;
 	private String fecbajUsuario;
@@ -227,31 +228,30 @@ public class UsuariosWeb implements Serializable{
 
 	
 	
-	public String ValidarUsuario(String nomAcceso, String contra){
-		// Verifico que el usuario ingredado exista en la base
-		Usuario usuarioAcc;
-		System.out.println("------------------Datos del Usuario--------------");
-		System.out.println("El usuario ingresado fue: " + nomAcceso);
-		System.out.println("La password ingresada fue: " + contra);
-
-		// Valido que el usuario ingresado exista en la base, de no ser asì mandamos
-		// mensaje
-		Gson gson = new Gson();
-		
-		usuarioAcc = gson.fromJson(ReadJson.readJsonFromUrl(rest+"usuact"+"/"+nomAcceso+"/"+contra), Usuario.class);
-		
-		if (usuarioAcc == null) {
-			FacesMessage msg = new FacesMessage("El usuario ingresado no existe");
-	        FacesContext.getCurrentInstance().addMessage(null, msg);
-		} else {
-			System.out.println("Login Exitoso");
-			nomAcceso= "";
-			contra= "";
-			return "Index";
-		}
-		
-		return null;
-	}
+	/*
+	 * public String ValidarUsuario(String nomAcceso, String contra){ // Verifico
+	 * que el usuario ingredado exista en la base Usuario usuarioAcc;
+	 * System.out.println("------------------Datos del Usuario--------------");
+	 * System.out.println("El usuario ingresado fue: " + nomAcceso);
+	 * System.out.println("La password ingresada fue: " + contra);
+	 * 
+	 * // Valido que el usuario ingresado exista en la base, de no ser asì mandamos
+	 * // mensaje Gson gson = new Gson();
+	 * 
+	 * usuarioAcc =
+	 * gson.fromJson(ReadJson.readJsonFromUrl(rest+"usuact"+"/"+nomAcceso+"/"+contra
+	 * ), Usuario.class);
+	 * 
+	 * if (usuarioAcc == null) { FacesMessage msg = new
+	 * FacesMessage("El usuario ingresado no existe");
+	 * FacesContext.getCurrentInstance().addMessage(null, msg); } else {
+	 * System.out.println("Login Exitoso"); nomAcceso= ""; contra= ""; return
+	 * "Index"; }
+	 * 
+	 * return null; }
+	 */
+	
+	
 	
 	//Funciones POST
 	
@@ -346,12 +346,9 @@ public class UsuariosWeb implements Serializable{
 		        FacesContext.getCurrentInstance().addMessage(null, msg);
 		    }	
 		    
-		    public String CerrarSesion() {
-				return "Login.xhtml";
-			}
+		   
 			
-			
-	
-	     
+		    
+		    	     
 
 }

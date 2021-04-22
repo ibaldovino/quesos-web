@@ -25,7 +25,7 @@
 
 <h:form >
 
-<p:growl id="message" showDetail="true" />
+<p:growl id="msg" showDetail="true" />
 
 	<p:panelGrid id="gridAlta"  name="Grid" columns="2"  >
     	<f:facet name="header">
@@ -54,7 +54,7 @@
 		<br/>
 		<p:column>
 		<p:commandButton icon="ui-icon-cancel" action="Cancelar" value="Cancelar" />
-		<p:commandButton icon="ui-icon-check" action="#{usus.ValidarUsuario(usus.nomUsuario, usus.pwdUsuario)}" value="Ingresar" update="message"/>
+		<p:commandButton icon="ui-icon-check" action="#{ControlLogin.ValidarUsuario(usus.nomUsuario, usus.pwdUsuario)}" value="Ingresar" update="msg"/>
 		
 		</p:column>
 	</p:panelGrid>
