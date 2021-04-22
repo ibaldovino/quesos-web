@@ -1,5 +1,6 @@
 package servicios;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -114,6 +115,13 @@ public String cerrarSesion() {
 	FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usu);
 	FacesMessage msg = new FacesMessage("Sesion cerrada");
 	FacesContext.getCurrentInstance().addMessage(null, msg);
+	FacesContext context = FacesContext.getCurrentInstance();
+	try {
+		context.getExternalContext().redirect("Login.xhtml");
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	   
 	String s = "Login.xhtml";
 	return s;
