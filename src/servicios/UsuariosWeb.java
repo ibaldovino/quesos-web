@@ -228,30 +228,6 @@ public class UsuariosWeb implements Serializable{
 
 	
 	
-	/*
-	 * public String ValidarUsuario(String nomAcceso, String contra){ // Verifico
-	 * que el usuario ingredado exista en la base Usuario usuarioAcc;
-	 * System.out.println("------------------Datos del Usuario--------------");
-	 * System.out.println("El usuario ingresado fue: " + nomAcceso);
-	 * System.out.println("La password ingresada fue: " + contra);
-	 * 
-	 * // Valido que el usuario ingresado exista en la base, de no ser asì mandamos
-	 * // mensaje Gson gson = new Gson();
-	 * 
-	 * usuarioAcc =
-	 * gson.fromJson(ReadJson.readJsonFromUrl(rest+"usuact"+"/"+nomAcceso+"/"+contra
-	 * ), Usuario.class);
-	 * 
-	 * if (usuarioAcc == null) { FacesMessage msg = new
-	 * FacesMessage("El usuario ingresado no existe");
-	 * FacesContext.getCurrentInstance().addMessage(null, msg); } else {
-	 * System.out.println("Login Exitoso"); nomAcceso= ""; contra= ""; return
-	 * "Index"; }
-	 * 
-	 * return null; }
-	 */
-	
-	
 	
 	//Funciones POST
 	
