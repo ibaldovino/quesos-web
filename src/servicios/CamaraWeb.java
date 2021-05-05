@@ -138,6 +138,35 @@ public class CamaraWeb implements Serializable{
 		
 		Camara nueva= new Camara();
 		
+		//Validaciones
+		
+		if(descCortaCam.equals("")) {
+			FacesMessage msgVal = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Descripción Corta", "La descripción corta no puede estar vacía");
+	        FacesContext.getCurrentInstance().addMessage(null, msgVal);
+	        return "Camara.xhtml";
+		}
+		if(descLargaCam.equals("")) {
+			FacesMessage msgVal = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Descripción Larga", "La descripción Larga no puede estar vacía");
+	        FacesContext.getCurrentInstance().addMessage(null, msgVal);
+	        return "Camara.xhtml";
+		}
+		if(lugarCam.equals("")) {
+			FacesMessage msgVal = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Lugar Camara", "Lugar Camara no puede estar vacío");
+	        FacesContext.getCurrentInstance().addMessage(null, msgVal);
+	        return "Camara.xhtml";
+		}
+		if(nroCam == null) {
+			FacesMessage msgVal = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Numero de Camara", "El numero de camara no puede estar vacío");
+	        FacesContext.getCurrentInstance().addMessage(null, msgVal);
+	        return "Camara.xhtml";
+		}
+		if(temperaturaCam == null) {
+			FacesMessage msgVal = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Temperatura Camara", "La temperatura no puede estar vacía");
+	        FacesContext.getCurrentInstance().addMessage(null, msgVal);
+	        return "Camara.xhtml";
+		}
+		
+		
 		
 		nueva.setDescCortaCam(descCortaCam);
 		nueva.setDescLargaCam(descLargaCam);

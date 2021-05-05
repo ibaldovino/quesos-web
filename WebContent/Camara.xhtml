@@ -44,7 +44,8 @@
 
 		<main>
 
-			<p:growl id="msgs" life="3000" showDetail="true" />
+			<p:growl id="msgs" life="2000" showDetail="true" />
+			
 
 			<p:dataTable id="TablaCam" var="cm" value="#{dtEditView.camaras}"
 				styleClass="table table-bordered" paginator="true"
@@ -83,7 +84,7 @@
 							<h:outputText value="#{cm.descCortaCam}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{cm.descCortaCam}" />
+							<p:inputText value="#{cm.descCortaCam}" maxlength="100"/>
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
@@ -94,7 +95,7 @@
 							<h:outputText value="#{cm.descLargaCam}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{cm.descLargaCam}" />
+							<p:inputText value="#{cm.descLargaCam}"  maxlength="200"/>
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
@@ -105,7 +106,7 @@
 							<h:outputText value="#{cm.lugarCam}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{cm.lugarCam}" />
+							<p:inputText value="#{cm.lugarCam}" maxlength="200"/>
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
@@ -116,7 +117,7 @@
 							<h:outputText value="#{cm.nroCam}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{cm.nroCam}" />
+							<p:inputNumber value="#{cm.nroCam}" maxlength="2" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
@@ -128,7 +129,7 @@
 							<h:outputText value="#{cm.temperaturaCam}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{cm.temperaturaCam}" />
+							<p:inputNumber value="#{cm.temperaturaCam}" maxlength="3"/>
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
@@ -150,7 +151,7 @@
 
 				<f:facet name="footer">
 					<p:commandButton icon="pi pi-plus" value="Nueva"
-						oncomplete="PF('mostrar').show();" update=":formNew">
+						oncomplete="PF('mostrar').show();" update=":NuevaCamara">
 					</p:commandButton>
 
 				</f:facet>
@@ -159,25 +160,30 @@
 		</main>
 	</h:form>
 
-	<h:form id="formNew">
+	<h:form id="NuevaCamara" title="Nueva Camara">
+	
+	     <p:messages id="msgVal" showDetail="true" autoUpdate="true" closable="true" globalOnly="true"/>
+            
 		<p:dialog widgetVar="mostrar" header="Ingresar datos de Cámara"
 			modal="true" showEffect="clip" resizable="false" minimizable="true">
 
 
 			<p:panelGrid columns="6" layout="grid" styleClass="customPanelGrid"
-				contentStyleClass="ui-fluid">
+				contentStyleClass="ui-fluid" cellpadding="10">
 
 				<p:outputLabel value="Descripción corta: " />
-				<p:inputTextarea value="#{camara.descCortaCam}" />
+				<p:inputTextarea id="Descripcion_Corta" value="#{camara.descCortaCam}" maxlength="100" placeholder="Max. 100 Caracteres" />
+				
 
 				<p:outputLabel value="Descripción larga: " />
-				<p:inputTextarea value="#{camara.descLargaCam}" />
+				<p:inputTextarea value="#{camara.descLargaCam}" maxlength="200" placeholder="Max. 200 Caracteres"/>
 
 				<p:outputLabel value="Lugar: " />
-				<p:inputText value="#{camara.lugarCam}" />
+				<p:inputText value="#{camara.lugarCam}" maxlength="200" placeholder="Max. 200 Caracteres"/>
 
 				<p:outputLabel value="Número Cámara: " />
-				<p:inputNumber value="#{camara.nroCam}" />
+				<p:inputNumber id="NumeroCamara" value="#{camara.nroCam}" />
+				
 
 				<p:outputLabel value="Temperatura cámara: " />
 				<p:inputNumber value="#{camara.temperaturaCam}" />
