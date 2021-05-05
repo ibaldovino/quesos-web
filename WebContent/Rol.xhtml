@@ -32,6 +32,7 @@
 
 	<script src="../js/jquery-3.6.0.min.js" type="text/javascript"></script>
 	<script src="../js/menu.js"></script>
+	<script src="../js/pie.js"></script>
 
 </h:head>
 <body>
@@ -57,13 +58,13 @@
 				</f:facet>
 
 
-				<p:ajax event="rowEdit" listener="#{rolarea.Actualizar(rol)}"
+				<p:ajax event="rowEdit" listener="#{role.Actualizar(rol)}"
 					update="TablaRol" />
-				<p:ajax event="rowEditCancel" listener="#{rolarea.onRowCancel}"
+				<p:ajax event="rowEditCancel" listener="#{role.onRowCancel}"
 					update=":form:msgs" />
-				<p:ajax event="rowSelect" listener="#{rolarea.onRowSelect}"
+				<p:ajax event="rowSelect" listener="#{role.onRowSelect}"
 					update=":form:msgs" />
-				<p:ajax event="rowUnselect" listener="#{rolarea.onRowUnselect}"
+				<p:ajax event="rowUnselect" listener="#{role.onRowUnselect}"
 					update=":form:msgs" />
 
 				<p:column style="width:5%">
@@ -85,34 +86,12 @@
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
-				<p:column headerText="Rol Tareas" filterBy="#{rol.roltareas.idRolTar}"
-					filterMatchMode="contains">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{rol.roltareas.idRolTar}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{rol.roltareas.idRolTar}" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
 				
-				<p:column headerText="Usuario" filterBy="#{rol.usuarios}"
-					filterMatchMode="contains">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{rol.usuarios}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{rol.usuarios}" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
 
 				<p:column style="width:10%">
 					<p:growl id="message" showDetail="true" />
 					<p:commandButton icon="pi pi-trash" value="Eliminar"
-						action="#{rolarea.Borrar(rol)}" update="TablaRol">
+						action="#{role.Borrar(rol)}" update="TablaRol">
 						<p:confirm header="Confirmar baja"
 							message="Estas seguro que desea eliminar este Rol?"
 							icon="pi pi-exclamation-triangle" />
@@ -143,20 +122,14 @@
 	</h:form>
 
 	<h:form id="formNew">
-		<p:dialog widgetVar="mostrar" header="Ingresar datos de rolarea" modal="true"
+		<p:dialog widgetVar="mostrar" header="Ingresar datos de role" modal="true"
 			showEffect="clip" resizable="false">
 
 
 			<p:panelGrid columns="2" layout="grid" styleClass="customPanelGrid" contentStyleClass="ui-fluid">
 
 				<p:outputLabel value="Descripción" />
-				<p:inputTextarea value="#{rolarea.autorizadoSn}" />
-				
-				<p:outputLabel value="Rol Tarea" />
-				<p:inputTextarea value="#{rolarea.role.idRol}" />
-
-				<p:outputLabel value="Usuario" />
-				<p:inputTextarea value="#{rolarea.tarea.idTarea}" />
+				<p:inputTextarea value="#{role.descrRol}" />
 
 
 
@@ -166,7 +139,7 @@
 <f:facet name="footer">
 
 			<p:commandButton id="btcrear" value="Crear" icon="pi pi-check"
-				action="#{rolarea.Crear}" update=":form:TablaRol">
+				action="#{role.Crear}" update=":form:TablaRol">
 
 				<p:confirm header="Confirmar alta"
 					message="Seguro desea dar de alta este Rol Tarea?"
@@ -185,7 +158,11 @@
 
 	</h:form>
 
-
+<footer>
+    
+    <div id="pie"></div>
+    
+    </footer>
 
 
 </body>

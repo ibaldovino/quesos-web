@@ -32,6 +32,7 @@
 
 	<script src="../js/jquery-3.6.0.min.js"  type="text/javascript"></script>
 		<script src="../js/menu.js"></script>
+		<script src="../js/pie.js"></script>
 </h:head>
 <body>
 <div id="menu">
@@ -47,11 +48,11 @@
 			<p:dataTable id="MesaJuraTabla" editable="true" var="msjj"
 				value="#{dtEditView.mesas}" styleClass="table table-bordered"
 				paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                     rowsPerPageTemplate="5,10,15" rows="10" selectionMode="single" selection="#{mesajura.selectMesa}" rowKey="#{mesajura.idMesjur}">
+                     rowsPerPageTemplate="5,10,15" rows="10" selectionMode="single" selection="#{mesajura.select}" rowKey="#{mesajura.idMesjur}">
 				
 				<f:facet name="header">
                 <div class="products-table-header">
-                    <span style="font-weight: bold">Mantenimiento Mesas</span>
+                    <span style="font-weight: bold">Mantenimiento Mesas Jura</span>
                 </div>
             </f:facet>
 				
@@ -189,7 +190,11 @@
 			</p:dialog>
 	</h:form>
 
-
+<footer>
+    
+    <div id="pie"></div>
+    
+    </footer>
 
 </body>
 </html>

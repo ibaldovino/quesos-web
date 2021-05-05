@@ -31,6 +31,7 @@
 	<link rel="stylesheet" href="assets/css/style.css"></link>
 	<script src="../js/jquery-3.6.0.min.js" type="text/javascript"></script>
 	<script src="../js/menu.js"></script>
+	<script src="../js/pie.js"></script>
 
 
 </h:head>
@@ -106,17 +107,7 @@
 					</p:cellEditor>
 				</p:column>
 				
-				<p:column headerText="Evaluaciones" filterBy="#{desc.evaluaciones}"
-					filterMatchMode="contains">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{desc.evaluaciones}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{desc.evaluaciones}" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
+				
 				
 				
 				
@@ -165,6 +156,10 @@
 					<p:outputLabel value="Descripción: " />
 					<p:inputTextarea value="#{evadescrip.descrDescript}" />
 					
+					<p:outputLabel value="Tipo evaluación: " />
+					<p:inputTextarea value="#{evadescrip.evatipo.descrTipeva}" />
+					
+					
 					
 					
 
@@ -195,6 +190,12 @@
 		</h:form>
 
 	</main>
+	
+	<footer>
+    
+    <div id="pie"></div>
+    
+    </footer>
 
 
 </body>

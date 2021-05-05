@@ -32,6 +32,7 @@
 
 	<script src="../js/jquery-3.6.0.min.js"  type="text/javascript"></script>
 		<script src="../js/menu.js"></script>
+		<script src="../js/pie.js"></script>
 </h:head>
 <body>
 <div id="menu">
@@ -96,29 +97,7 @@
 					</p:cellEditor>
 				</p:column>
 				
-				<p:column headerText="Evaluaciones"
-					filterBy="#{ms.evaluaciones}" filterMatchMode="contains">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{ms.evaluaciones}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{ms.evaluaciones}" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
 				
-				<p:column headerText="Mesas de Juras" 
-					filterBy="#{ms.mesaJuras}" filterMatchMode="contains">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{ms.mesajuras}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{ms.mesajuras}" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
 				
 				
 
@@ -165,19 +144,7 @@
 						
 						<p:outputLabel value="Ubicación" />
 						<p:inputTextarea value="#{mesa.ubicacion}" />
-						
-						
-						<p:outputLabel value="Evaluaciones" />
-						<p:selectOneMenu >
-							<f:selectItem itemLabel="Select..." noSelectionOption="true" />
-							<f:selectItems  />
-						</p:selectOneMenu>
-						
-						<p:outputLabel value="Mesas Juras" />
-						<p:selectOneMenu >
-							<f:selectItem itemLabel="Select..." noSelectionOption="true" />
-							<f:selectItems  />
-						</p:selectOneMenu>
+
 						
 					
 					</p:panelGrid>
@@ -201,7 +168,11 @@
 			</p:dialog>
 	</h:form>
 
-
+<footer>
+    
+    <div id="pie"></div>
+    
+    </footer>
 
 </body>
 </html>

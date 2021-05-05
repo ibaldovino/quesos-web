@@ -86,17 +86,6 @@
 					</p:cellEditor>
 				</p:column>
 				
-				<p:column headerText="Rol tareas" 
-					filterMatchMode="contains">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText/>
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
 				
 				
 
@@ -142,9 +131,6 @@
 					
 						<p:outputLabel value="Descripción" />
 						<p:inputTextarea value="#{tarea.descrTarea}" />
-						
-						<p:outputLabel value="Rol" />
-						<p:inputTextarea value="#{tarea.roltareas}" />
 						
 					</p:panelGrid>
 

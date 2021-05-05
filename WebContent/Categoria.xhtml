@@ -26,14 +26,16 @@
 	
 	<script src="../js/jquery-3.6.0.min.js"  type="text/javascript"></script>
 		<script src="../js/menu.js"></script>
+		<script src="../js/pie.js"></script>
 </h:head>
 
 <body>
 <div id="menu">
 </div>
 	
-<div>
-<h:form id="ftc">
+	<main>
+
+<h:form id="form">
 
 		<p:growl id="msgs" life="2000" showDetail="true" />
 		
@@ -43,10 +45,15 @@
                      rowsPerPageTemplate="5,10,15" rows="10"  editable="true" selectionMode="single" selection="#{categ.select}" rowKey="#{ca.idCateg}"
 				reflow="true">
 				
+				<f:facet name="header">
+					<div class="products-table-header">
+						<span style="font-weight: bold">Mantenimiento Categoría </span>
+					</div>
+				</f:facet>
 				
-				<p:ajax event="rowEdit" listener="#{categ.onEdit}" update=":ftc:msgs" />
-				<p:ajax event="rowEditCancel" listener="#{categ.onCancel}" update=":ftc:msgs"/>
-				<p:ajax event="rowSelect" listener="#{categ.onRowSelect}" update=":ftc:msgs" />
+				<p:ajax event="rowEdit" listener="#{categ.onEdit}" update=":form:msgs" />
+				<p:ajax event="rowEditCancel" listener="#{categ.onCancel}" update=":form:msgs"/>
+				<p:ajax event="rowSelect" listener="#{categ.onRowSelect}" update=":form:msgs" />
         		<!-- <p:ajax event="rowUnselect" listener="#{quesos.onRowUnselect}" update=":dtq:msgs" /> -->
 				
 				<p:column style="width:3%">
@@ -117,8 +124,7 @@
 
 			</p:dataTable>
 	</h:form>
-</div>
-<div>
+
 <h:form id="formNew">
 			<p:dialog widgetVar="mostrar" header="Ingrese caracteristicas de la nueva Categoria" modal="true" 
 				showEffect="clip" resizable="true" position="center" responsive="true" minimizable="true">
@@ -171,7 +177,7 @@
 				
 								
 				<p:commandButton id="btcrear"  value="Crear" styleClass="align-items-end"
-					action="#{categ.CrearCA}" update=":ftc:TablaCategoria"
+					action="#{categ.CrearCA}" update=":form:TablaCategoria"
 					>
 
 					<p:confirm header="Confirmar alta"
@@ -192,7 +198,13 @@
 			</p:dialog>
 </h:form>
 
-	</div>	
+</main>
+
+<footer>
+    
+    <div id="pie"></div>
+    
+    </footer>
 
 </body>
 </html>

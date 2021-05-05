@@ -4,6 +4,5 @@
 jQuery.noConflict();
 
 jQuery(function () {
-    jQuery("#menu").load("../Header.xhtml"); 
+    jQuery("#pie").load("../Footer.xhtml"); 
 });
-
