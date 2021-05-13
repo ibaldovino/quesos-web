@@ -213,7 +213,7 @@
 
 					<p:growl id="message" showDetail="true" />
 					<p:commandButton icon="pi pi-trash" value="Eliminar"
-						action="#{usus.Borrar(usu)}" update=":form:UsuarioTabla">
+						action="#{usus.Borrar(user)}" update=":form:UsuarioTabla">
 						<p:confirm header="Confirmar baja"
 							message="Seguro desea eliminar este Usuario?"
 							icon="pi pi-exclamation-triangle" />
@@ -243,55 +243,57 @@
 	<h:form id="formNew">
 	<p:dialog id="new" widgetVar="mostrar" header="Ingresar datos de Usuario" modal="true"
 				showEffect="clip" resizable="false" >
-
+<p:outputPanel id="manage-product-content">
+			
+			<p:growl id="msgs2" life="2000" showDetail="true" />
 				
 					<p:panelGrid columns="6" layout="grid" styleClass="customPanelGrid" contentStyleClass="ui-fluid">
 					
 					<p:outputLabel value="Nombre: " />
-				<p:inputTextarea value="#{jurado.nombre}" />
+				<p:inputText value="#{usus.nomUsuario}" required="true" requiredMessage="Se debe ingresar Nombre"/>
 				
 				<p:outputLabel value="Apellido: " />
-				<p:inputTextarea value="#{jurado.nombre}" />
+				<p:inputText value="#{usus.apeUsuario}" required="true" requiredMessage="Se debe ingresar Apellido"/>
 				
 				<p:outputLabel value="Fecha Alta: " />
-				<p:inputTextarea value="#{jurado.nombre}" />
+				<p:inputText value="#{usus.fecaltUsuario}" required="true" requiredMessage="Se debe ingresar Fecha de Alta"/>
 				
 				<p:outputLabel value="Fecha Baja: " />
-				<p:inputTextarea value="#{jurado.nombre}" />
+				<p:inputText value="#{usus.fecbajUsuario}" required="true" requiredMessage="Se debe ingresar Fecha de Baja"/>
 				
 				<p:outputLabel value="Fecha Sus: " />
-				<p:inputTextarea value="#{jurado.nombre}" />
+				<p:inputText value="#{usus.fecsusUsuario}" required="true" requiredMessage="Se debe ingresar Fecha de Sus"/>
 				
 				<p:outputLabel value="E-mail: " />
-				<p:inputTextarea value="#{jurado.nombre}" />
+				<p:inputText value="#{usus.mailUsuario}" required="true" requiredMessage="Se debe ingresar E-mail"/>
 				
 				<p:outputLabel value="Contraseña: " />
-				<p:inputTextarea value="#{jurado.nombre}" />
+				<p:inputText value="#{usus.pwdUsuario}" required="true" requiredMessage="Se debe ingresar Contraseña"/>
 				
 				<p:outputLabel value="Nombre Usuario: " />
-				<p:inputTextarea value="#{jurado.nombre}" />
+				<p:inputText value="#{usus.usuario}" required="true" requiredMessage="Se debe ingresar Nombre usuario"/>
 				
 				<p:outputLabel value="Teléfono: " />
-				<p:inputTextarea value="#{jurado.nombre}" />
+				<p:inputText value="#{usus.telefUsuario}" required="true" requiredMessage="Se debe ingresar Teléfono"/>
 				
 				<p:outputLabel value="Estado Usuario: " />
 				<p:selectOneMenu>
 					<f:selectItem itemLabel="Select..." noSelectionOption="true" />
-					<f:selectItems />
+					<f:selectItems  value="#{usus.estusuario.descrEstado}" />
 				</p:selectOneMenu>
 				
 				<p:outputLabel value="Rol: " />
 				<p:selectOneMenu>
 					<f:selectItem itemLabel="Select..." noSelectionOption="true" />
-					<f:selectItems />
+					<f:selectItems value="#{usus.role.descrRol}"/>
 				</p:selectOneMenu>
 						
 						
 					</p:panelGrid>
-
+</p:outputPanel>
 <f:facet name="footer">
 				
-				<p:commandButton id="btcrear" value="Crear"  icon="pi pi-check" action="#{usus.Crear}"  update=":form:UsuarioTabla">
+				<p:commandButton id="btcrear" value="Crear"  icon="pi pi-check" action="#{usus.Crear}"  update="manage-product-content" process="manage-product-content @this">
 
 					<p:confirm header="Confirmar alta"
 						message="Seguro desea dar de alta este nuevo Usuario?"
@@ -299,7 +301,7 @@
 				</p:commandButton>
 
 				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-					<p:commandButton value="Sí" type="button" onclick="PF('mostrar').hide();" 
+					<p:commandButton value="Sí" type="button" 
 						styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
 					<p:commandButton value="No" type="button"
 						styleClass="ui-confirmdialog-no" icon="pi pi-times" />

@@ -187,41 +187,46 @@
 
 
 	<h:form id="formNew">
+	
 		<p:dialog id="new" widgetVar="mostrar"
 			header="Ingresar datos de Jurados" modal="true" showEffect="clip"
 			resizable="false">
-
+			 <p:outputPanel id="manage-product-content">
+			
+			<p:growl id="msgs2" life="2000" showDetail="true" />
+	
 
 			<p:panelGrid columns="6" layout="grid" styleClass="customPanelGrid"
 				contentStyleClass="ui-fluid">
 
 				<p:outputLabel value="Nombre: " />
-				<p:inputTextarea value="#{jurado.nombre}" />
+				<p:inputText value="#{jurado.nombre}" required="true" requiredMessage="Se debe ingresar Nombre" />
 
 				<p:outputLabel value="Apellido: " />
-				<p:inputTextarea value="#{jurado.apellido}" />
+				<p:inputText value="#{jurado.apellido}" required="true" requiredMessage="Se debe ingresar apellido"/>
+				
 
 				<p:outputLabel value="Cédula: " />
-				<p:inputTextarea value="#{jurado.cedula}" />
+				<p:inputNumber value="#{jurado.cedula}" decimalPlaces="0" required="true" requiredMessage="Se debe ingresar Cédula"/>
 
 				<p:outputLabel value="Dirección: " />
-				<p:inputTextarea value="#{jurado.direccion}" />
+				<p:inputText value="#{jurado.direccion}" required="true" requiredMessage="Se debe ingresar Dirección" />
 
 				<p:outputLabel value="E-mail: " />
-				<p:inputTextarea value="#{jurado.email}" />
+				<p:inputText value="#{jurado.email}"  required="true" requiredMessage="Se debe ingresar E-mail"/>
 				
 				<p:outputLabel value="Teléfono/Cel: " />
-				<p:inputTextarea value="#{jurado.telefonoCel}" />
+				<p:inputNumber value="#{jurado.telefonoCel}" decimalPlaces="0" required="true" requiredMessage="Se debe ingresar Teléfono/Cel" />
 
 				
 
 
 			</p:panelGrid>
-
+</p:outputPanel>
 
 			<f:facet name="footer">
 				<p:commandButton id="btcrear" value="Crear" icon="pi pi-check" action="#{jurado.CrearJur}"
-					update=":form:JuradoTabla" >
+					update="manage-product-content" process="manage-product-content @this">
 
 					<p:confirm header="Confirmar alta"
 						message="Seguro desea dar de alta este nuevo Jurado?"
@@ -229,8 +234,7 @@
 				</p:commandButton>
 
 				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-					<p:commandButton value="Sí" type="button"
-						onclick="PF('mostrar').hide();" styleClass="ui-confirmdialog-yes"
+					<p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes"
 						icon="pi pi-check" />
 					<p:commandButton value="No" type="button"
 						styleClass="ui-confirmdialog-no" icon="pi pi-times" />

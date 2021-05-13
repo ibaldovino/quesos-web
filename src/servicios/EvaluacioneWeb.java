@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -36,8 +37,7 @@ public class EvaluacioneWeb implements Serializable {
 	private String rest = ConectABM.urlServer() + "evaluacione/";
 	Gson gson = new Gson();
 	private long idEvaluacion;
-	private String fechaEval;
-	private String horaEval;
+	private Date fechaEval;
 	private String observacEvaluac;
 	private String tipoPlanilla;
 	private BigDecimal valorEvaluac;
@@ -65,21 +65,14 @@ public class EvaluacioneWeb implements Serializable {
 		this.idEvaluacion = idEvaluacion;
 	}
 
-	public String getFechaEval() {
+	public Date getFechaEval() {
 		return fechaEval;
 	}
 
-	public void setFechaEval(String fechaEval) {
+	public void setFechaEval(Date fechaEval) {
 		this.fechaEval = fechaEval;
 	}
 
-	public String getHoraEval() {
-		return horaEval;
-	}
-
-	public void setHoraEval(String horaEval) {
-		this.horaEval = horaEval;
-	}
 
 	public String getObservacEvaluac() {
 		return observacEvaluac;
@@ -166,7 +159,6 @@ public class EvaluacioneWeb implements Serializable {
 
 		nueva.setEvadescrip(null);
 		nueva.setFechaEval(fechaEval);
-		nueva.setHoraEval(horaEval);
 		nueva.setJurado(null);
 		nueva.setMesa(null);
 		nueva.setObservacEvaluac(observacEvaluac);

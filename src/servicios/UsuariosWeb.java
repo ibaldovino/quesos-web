@@ -4,6 +4,7 @@ package servicios;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -35,9 +36,9 @@ public class UsuariosWeb implements Serializable{
 	private Usuario select;
 	private Long idUsuario;
 	private String apeUsuario;
-	private String fecaltUsuario;
-	private String fecbajUsuario;
-	private String fecsusUsuario;
+	private Date fecaltUsuario;
+	private Date fecbajUsuario;
+	private Date fecsusUsuario;
 	private String mailUsuario;
 	private String nomUsuario;
 	private String pwdUsuario;
@@ -96,37 +97,37 @@ public class UsuariosWeb implements Serializable{
 
 
 
-	public String getFecaltUsuario() {
+	public Date getFecaltUsuario() {
 		return fecaltUsuario;
 	}
 
 
 
-	public void setFecaltUsuario(String fecaltUsuario) {
+	public void setFecaltUsuario(Date fecaltUsuario) {
 		this.fecaltUsuario = fecaltUsuario;
 	}
 
 
 
-	public String getFecbajUsuario() {
+	public Date getFecbajUsuario() {
 		return fecbajUsuario;
 	}
 
 
 
-	public void setFecbajUsuario(String fecbajUsuario) {
+	public void setFecbajUsuario(Date fecbajUsuario) {
 		this.fecbajUsuario = fecbajUsuario;
 	}
 
 
 
-	public String getFecsusUsuario() {
+	public Date getFecsusUsuario() {
 		return fecsusUsuario;
 	}
 
 
 
-	public void setFecsusUsuario(String fecsusUsuario) {
+	public void setFecsusUsuario(Date fecsusUsuario) {
 		this.fecsusUsuario = fecsusUsuario;
 	}
 
@@ -235,17 +236,18 @@ public class UsuariosWeb implements Serializable{
 				
 				Usuario nueva= new Usuario();
 				
+				nueva.setIdUsuario(idUsuario);
 				nueva.setApeUsuario(apeUsuario);
-				nueva.setEstusuario(estusuario);
+				nueva.setEstusuario(null);
 				nueva.setFecaltUsuario(fecaltUsuario);
 				nueva.setFecbajUsuario(fecbajUsuario);
 				nueva.setFecsusUsuario(fecsusUsuario);
 				nueva.setMailUsuario(mailUsuario);
 				nueva.setNomUsuario(nomUsuario);
 				nueva.setPwdUsuario(pwdUsuario);
-				nueva.setRole(role);
+				nueva.setRole(null);
 				nueva.setTelefUsuario(telefUsuario);
-				nueva.setUsuario(apeUsuario);
+				nueva.setUsuario(usuario);
 			    
 				System.out.println(nueva);
 				Gson gson = new Gson();
@@ -256,6 +258,8 @@ public class UsuariosWeb implements Serializable{
 					ConectABM.conectPost(json,rest+"crear");
 					FacesMessage msg = new FacesMessage("Estado Usuario Creado");
 			        FacesContext.getCurrentInstance().addMessage(null, msg);
+			        PrimeFaces.current().executeScript("PF('mostrar').hide()");
+			        PrimeFaces.current().ajax().update("form:UsuarioTabla");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -264,7 +268,7 @@ public class UsuariosWeb implements Serializable{
 			}
 			
 			
-			public String BorrarVar (Usuario v) {
+			public String Borrar (Usuario v) {
 				System.out.print(v);
 			
 			
@@ -285,7 +289,7 @@ public class UsuariosWeb implements Serializable{
 			
 			}
 			
-			public void ActualizarVar (Usuario var) {
+			public void Actualizar (Usuario var) {
 				
 				
 				

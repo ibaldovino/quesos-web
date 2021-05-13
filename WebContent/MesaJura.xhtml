@@ -157,7 +157,9 @@
 		<h:form id="formNew">
 	<p:dialog id="new" widgetVar="mostrar" header="Ingresar datos de Mesa" modal="true"
 				showEffect="clip" resizable="false" >
-
+<p:outputPanel id="manage-product-content">
+			
+			<p:growl id="msgs2" life="2000" showDetail="true" />
 			
 					<p:panelGrid columns="2" layout="grid" styleClass="customPanelGrid" contentStyleClass="ui-fluid">
 					
@@ -170,10 +172,10 @@
 						
 					
 					</p:panelGrid>
-
+</p:outputPanel>
 
 <f:facet name="footer">			
-				<p:commandButton id="btcrear" value="Crear"  icon="pi pi-check" action="#{mesajura.Crear}" update=":form:MesaJuraTabla">
+				<p:commandButton id="btcrear" value="Crear"  icon="pi pi-check" action="#{mesajura.Crear}" update="manage-product-content" process="manage-product-content @this">
 
 					<p:confirm header="Confirmar alta"
 						message="Estas seguro que desea dar de alta esta Mesa de Jura?"
@@ -181,8 +183,7 @@
 				</p:commandButton>
 
 				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">MesaMesa
-					<p:commandButton value="Sí" type="button" onclick="PF('mostrar').hide();" 
-						styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+					<p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
 					<p:commandButton value="No" type="button"
 						styleClass="ui-confirmdialog-no" icon="pi pi-times" />
 				</p:confirmDialog>

@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 
 
 public class Evaluacione implements Serializable {
@@ -11,10 +12,7 @@ public class Evaluacione implements Serializable {
 	private long idEvaluacion;
 
 
-	private String fechaEval;
-
-
-	private String horaEval;
+	private Date fechaEval;
 
 	
 	private String observacEvaluac;
@@ -47,21 +45,14 @@ public class Evaluacione implements Serializable {
 		this.idEvaluacion = idEvaluacion;
 	}
 
-	public String getFechaEval() {
+	public Date getFechaEval() {
 		return this.fechaEval;
 	}
 
-	public void setFechaEval(String fechaEval) {
+	public void setFechaEval(Date fechaEval) {
 		this.fechaEval = fechaEval;
 	}
 
-	public String getHoraEval() {
-		return this.horaEval;
-	}
-
-	public void setHoraEval(String horaEval) {
-		this.horaEval = horaEval;
-	}
 
 	public String getObservacEvaluac() {
 		return this.observacEvaluac;

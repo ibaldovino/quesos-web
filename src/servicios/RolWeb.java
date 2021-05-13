@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+import org.primefaces.PrimeFaces;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
@@ -111,8 +112,8 @@ public class RolWeb implements Serializable {
 				
 				Role nueva= new Role();
 				nueva.setDescrRol(descrRol);
-				nueva.setRoltareas(roltareas);
-				nueva.setUsuarios(usuarios);
+				nueva.setRoltareas(null);
+				nueva.setUsuarios(null);
 				
 				System.out.println(nueva);
 				Gson gson = new Gson();
@@ -123,6 +124,8 @@ public class RolWeb implements Serializable {
 					ConectABM.conectPost(json,rest+"crear");
 					FacesMessage msg = new FacesMessage("Rol Creado");
 			        FacesContext.getCurrentInstance().addMessage(null, msg);
+			        PrimeFaces.current().executeScript("PF('mostrar').hide()");
+			        PrimeFaces.current().ajax().update("form:JuradoTabla");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

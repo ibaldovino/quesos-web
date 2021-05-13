@@ -152,6 +152,8 @@ public class MesaWeb implements Serializable{
 	    nueva.setNombreMesa(nombreMesa);
 	    nueva.setUbicacion(ubicacion);
 	    
+	    
+	    
 		System.out.println(nueva);
 		Gson gson = new Gson();
 		String json = gson.toJson(nueva);
@@ -164,7 +166,9 @@ public class MesaWeb implements Serializable{
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		
+		
+	    }
 		return "Mesa.xhtml";
 	}
 	

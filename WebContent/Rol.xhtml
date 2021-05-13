@@ -86,7 +86,7 @@
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
-				
+
 
 				<p:column style="width:10%">
 					<p:growl id="message" showDetail="true" />
@@ -104,11 +104,11 @@
 
 				<f:facet name="footer">
 
-						<p:commandButton icon="pi pi-plus" value="Nueva"
-							oncomplete="PF('mostrar').show();" update=":formNew">
-						</p:commandButton>
+					<p:commandButton icon="pi pi-plus" value="Nueva"
+						oncomplete="PF('mostrar').show();" update=":formNew">
+					</p:commandButton>
 
-				
+
 
 				</f:facet>
 
@@ -122,47 +122,53 @@
 	</h:form>
 
 	<h:form id="formNew">
-		<p:dialog widgetVar="mostrar" header="Ingresar datos de role" modal="true"
-			showEffect="clip" resizable="false">
+		<p:dialog widgetVar="mostrar" header="Ingresar datos de role"
+			modal="true" showEffect="clip" resizable="false">
+
+			<p:outputPanel id="manage-product-content">
+
+				<p:growl id="msgs2" life="2000" showDetail="true" />
 
 
-			<p:panelGrid columns="2" layout="grid" styleClass="customPanelGrid" contentStyleClass="ui-fluid">
+				<p:panelGrid columns="2" layout="grid" styleClass="customPanelGrid"
+					contentStyleClass="ui-fluid">
 
-				<p:outputLabel value="Descripción" />
-				<p:inputTextarea value="#{role.descrRol}" />
+					<p:outputLabel value="Descripción" />
+					<p:inputTextarea value="#{role.descrRol}" required="true"  requiredMessage="Se debe ingresar Descripción"/>
 
 
 
 
-			</p:panelGrid>
+				</p:panelGrid>
 
-<f:facet name="footer">
+			</p:outputPanel>
 
-			<p:commandButton id="btcrear" value="Crear" icon="pi pi-check"
-				action="#{role.Crear}" update=":form:TablaRol">
+			<f:facet name="footer">
 
-				<p:confirm header="Confirmar alta"
-					message="Seguro desea dar de alta este Rol Tarea?"
-					icon="pi pi-exclamation-triangle" />
-			</p:commandButton>
+				<p:commandButton id="btcrear" value="Crear" icon="pi pi-check"
+					action="#{role.Crear}" update="manage-product-content" process="manage-product-content @this">
 
-			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-				<p:commandButton value="Sí" type="button"
-					onclick="PF('mostrar').hide();" styleClass="ui-confirmdialog-yes"
-					icon="pi pi-check" />
-				<p:commandButton value="No" type="button"
-					styleClass="ui-confirmdialog-no" icon="pi pi-times" />
-			</p:confirmDialog>
+					<p:confirm header="Confirmar alta"
+						message="Seguro desea dar de alta este Rol Tarea?"
+						icon="pi pi-exclamation-triangle" />
+				</p:commandButton>
+
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					<p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes"
+						icon="pi pi-check" />
+					<p:commandButton value="No" type="button"
+						styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+				</p:confirmDialog>
 			</f:facet>
 		</p:dialog>
 
 	</h:form>
 
-<footer>
-    
-    <div id="pie"></div>
-    
-    </footer>
+	<footer>
+
+		<div id="pie"></div>
+
+	</footer>
 
 
 </body>

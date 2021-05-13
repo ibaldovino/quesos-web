@@ -94,7 +94,7 @@
 
 					<p:growl id="message" showDetail="true" />
 					<p:commandButton icon="pi pi-trash" value="Eliminar"
-						action="#{pais.BorrarTarea(ta)}" update=":form:TareaTabla">
+						action="#{tarea.BorrarTarea(ta)}" update=":form:TareaTabla">
 						<p:confirm header="Confirmar baja"
 							message="Seguro desea eliminar este País?"
 							icon="pi pi-exclamation-triangle" />
@@ -122,30 +122,31 @@
 			</main>
 	</h:form>
 	<h:form id="formNew">
-	<p:dialog id="new" widgetVar="mostrar" header="Ingresar datos de País" modal="true"
+	<p:dialog id="new" widgetVar="mostrar" header="Ingresar datos de Tarea" modal="true"
 				showEffect="clip" resizable="false" >
+<p:outputPanel id="manage-product-content">
 
+				<p:growl id="msgs2" life="2000" showDetail="true" />
 				
 					<p:panelGrid columns="2" layout="grid" styleClass="customPanelGrid" contentStyleClass="ui-fluid">
 					
 					
 						<p:outputLabel value="Descripción" />
-						<p:inputTextarea value="#{tarea.descrTarea}" />
+						<p:inputTextarea value="#{tarea.descrTarea}" required="true"  requiredMessage="Se debe ingresar Descripción"/>
 						
 					</p:panelGrid>
-
+</p:outputPanel>
 <f:facet name="footer">
 				
-				<p:commandButton id="btcrear" value="Crear"  icon="pi pi-check" action="#{pais.CrearPais}"  update=":form:TareaTabla">
+				<p:commandButton id="btcrear" value="Crear"  icon="pi pi-check" action="#{tarea.CrearTarea}"  update="manage-product-content" process="manage-product-content @this">
 
 					<p:confirm header="Confirmar alta"
-						message="Seguro desea dar de alta este nuevo País?"
+						message="Seguro desea dar de alta esta nueva Tarea?"
 						icon="pi pi-exclamation-triangle" />
 				</p:commandButton>
 
 				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-					<p:commandButton value="Sí" type="button" onclick="PF('mostrar').hide();" 
-						styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+					<p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
 					<p:commandButton value="No" type="button"
 						styleClass="ui-confirmdialog-no" icon="pi pi-times" />
 				</p:confirmDialog>

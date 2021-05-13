@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+import org.primefaces.PrimeFaces;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
@@ -69,13 +70,7 @@ public class TareaWeb implements Serializable{
 		this.roltareas = roltareas;
 	}
 
-	public String getRest() {
-		return rest;
-	}
-
-	public void setRest1(String rest) {
-		this.rest = rest;
-	}
+	
 
 	
 	//Funciones GET
@@ -101,6 +96,7 @@ public class TareaWeb implements Serializable{
 			Tarea nueva= new Tarea();
 			
 			nueva.setDescrTarea(descrTarea);
+			nueva.setIdTarea(idTarea);
 			nueva.setRoltareas(roltareas);
 		    
 			System.out.println(nueva);
@@ -112,6 +108,7 @@ public class TareaWeb implements Serializable{
 				ConectABM.conectPost(json,rest+"crear");
 				FacesMessage msg = new FacesMessage("Tarea Creada");
 		        FacesContext.getCurrentInstance().addMessage(null, msg);
+		        PrimeFaces.current().executeScript("PF('mostrar').hide()");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

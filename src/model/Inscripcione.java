@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 
 
 public class Inscripcione implements Serializable {
@@ -11,13 +12,10 @@ public class Inscripcione implements Serializable {
 	private long idInsc;
 
 
-	private String fechaCte;
+	private Date fechaCte;
 
 
-	private String fechaInsc;
-
-
-	private String horaInsc;
+	private Date fechaInsc;
 
 
 	private BigDecimal nroCte;
@@ -51,29 +49,22 @@ public class Inscripcione implements Serializable {
 		this.idInsc = idInsc;
 	}
 
-	public String getFechaCte() {
+	public Date getFechaCte() {
 		return this.fechaCte;
 	}
 
-	public void setFechaCte(String fechaCte) {
+	public void setFechaCte(Date fechaCte) {
 		this.fechaCte = fechaCte;
 	}
 
-	public String getFechaInsc() {
+	public Date getFechaInsc() {
 		return this.fechaInsc;
 	}
 
-	public void setFechaInsc(String fechaInsc) {
+	public void setFechaInsc(Date fechaInsc) {
 		this.fechaInsc = fechaInsc;
 	}
 
-	public String getHoraInsc() {
-		return this.horaInsc;
-	}
-
-	public void setHoraInsc(String horaInsc) {
-		this.horaInsc = horaInsc;
-	}
 
 	public BigDecimal getNroCte() {
 		return this.nroCte;

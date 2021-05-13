@@ -30,13 +30,12 @@
 
 	<link rel="stylesheet" href="assets/css/style.css"></link>
 
-	<script src="../js/jquery-3.6.0.min.js"  type="text/javascript"></script>
-		<script src="../js/menu.js"></script>
-		<script src="../js/pie.js"></script>
+	<script src="../js/jquery-3.6.0.min.js" type="text/javascript"></script>
+	<script src="../js/menu.js"></script>
+	<script src="../js/pie.js"></script>
 </h:head>
 <body>
-<div id="menu">
-</div>
+	<div id="menu"></div>
 
 
 	<h:form id="form">
@@ -47,34 +46,39 @@
 
 			<p:dataTable id="MesaTabla" editable="true" var="ms"
 				value="#{dtEditView.mesas}" styleClass="table table-bordered"
-				paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                     rowsPerPageTemplate="5,10,15" rows="10" selectionMode="single" selection="#{mesa.selectMesa}" rowKey="#{mesa.idMesa}">
-				
+				paginator="true"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15" rows="10" selectionMode="single"
+				selection="#{mesa.selectMesa}" rowKey="#{mesa.idMesa}">
+
 				<f:facet name="header">
-                <div class="products-table-header">
-                    <span style="font-weight: bold">Mantenimiento Mesas</span>
-                </div>
-            </f:facet>
-				
-				
-				<p:ajax event="rowEdit" listener="#{mesa.ActualizarMesa(ms)}" update="MesaTabla" />
-				<p:ajax event="rowSelect" listener="#{mesa.onRowSelect}" update=":form:msgs" />
-        		<p:ajax event="rowUnselect" listener="#{mesa.onRowUnselect}" update=":form:msgs" />
+					<div class="products-table-header">
+						<span style="font-weight: bold">Mantenimiento Mesas</span>
+					</div>
+				</f:facet>
+
+
+				<p:ajax event="rowEdit" listener="#{mesa.ActualizarMesa(ms)}"
+					update="MesaTabla" />
+				<p:ajax event="rowSelect" listener="#{mesa.onRowSelect}"
+					update=":form:msgs" />
+				<p:ajax event="rowUnselect" listener="#{mesa.onRowUnselect}"
+					update=":form:msgs" />
 
 				<p:column style="width:5%">
 					<p:rowEditor />
 				</p:column>
 
 
-				<p:column  headerText="Id"
-					filterBy="#{ms.idMesa}" filterMatchMode="contains">
-					<h:outputText value="#{ms.idMesa}"/>
+				<p:column headerText="Id" filterBy="#{ms.idMesa}"
+					filterMatchMode="contains">
+					<h:outputText value="#{ms.idMesa}" />
 
 				</p:column>
 
-				
-				<p:column headerText="Nombre Mesa" 
-					filterBy="#{ms.nombreMesa}" filterMatchMode="contains">
+
+				<p:column headerText="Nombre Mesa" filterBy="#{ms.nombreMesa}"
+					filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
 							<h:outputText value="#{ms.nombreMesa}" />
@@ -85,8 +89,8 @@
 					</p:cellEditor>
 				</p:column>
 
-				<p:column headerText="Ubicación" 
-					filterBy="#{ms.referencia}" filterMatchMode="contains">
+				<p:column headerText="Ubicación" filterBy="#{ms.referencia}"
+					filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
 							<h:outputText value="#{ms.ubicacion}" />
@@ -96,17 +100,17 @@
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
-				
-				
-				
-				
+
+
+
+
 
 				<p:column style="width:10%">
 
 
 					<p:growl id="message" showDetail="true" />
 					<p:commandButton icon="pi pi-trash" value="Eliminar"
-						action="#{mesa.BorrarMesa(ms)}" update=":form:MesaTabla" >
+						action="#{mesa.BorrarMesa(ms)}" update=":form:MesaTabla">
 						<p:confirm header="Confirmar baja"
 							message="Seguro desea eliminar esta Mesa?"
 							icon="pi pi-exclamation-triangle" />
@@ -121,7 +125,7 @@
 
 				</p:column>
 
-				
+
 				<f:facet name="footer">
 					<p:commandButton icon="pi pi-plus" value="Nuevo"
 						oncomplete="PF('mostrar').show();" update=":formNew"></p:commandButton>
@@ -130,49 +134,46 @@
 			</p:dataTable>
 		</main>
 	</h:form>
-	
-	
-		<h:form id="formNew">
-	<p:dialog id="new" widgetVar="mostrar" header="Ingresar datos de Mesa" modal="true"
-				showEffect="clip" resizable="false" >
-
-			
-					<p:panelGrid columns="2" layout="grid" styleClass="customPanelGrid" contentStyleClass="ui-fluid">
-					
-					<p:outputLabel value="Nombre" />
-						<p:inputTextarea value="#{mesa.nombreMesa}" />
-						
-						<p:outputLabel value="Ubicación" />
-						<p:inputTextarea value="#{mesa.ubicacion}" />
-
-						
-					
-					</p:panelGrid>
 
 
-<f:facet name="footer">			
-				<p:commandButton id="btcrear" value="Crear"  icon="pi pi-check" action="#{mesa.CrearMesa}" update=":form:MesaTabla">
+	<h:form id="formNew">
+		<p:dialog id="new" widgetVar="mostrar" header="Ingresar datos de Mesa"
+			modal="true" showEffect="clip" resizable="false">
+
+
+			<p:panelGrid columns="2" layout="grid" styleClass="customPanelGrid"
+				contentStyleClass="ui-fluid">
+
+				<p:outputLabel value="Nombre" />
+				<p:inputText value="#{mesa.nombreMesa}" 
+					requiredMessage="Campo Obligatorio" title="Ingresar nombre" />
+				<p:outputLabel value="Ubicación" />
+				<p:inputText value="#{mesa.ubicacion}" title="Ingresar ubicación" />
+
+
+
+			</p:panelGrid>
+
+
+			<f:facet name="footer">
+				<p:commandButton id="btcrear" value="Crear" icon="pi pi-check"
+					action="#{mesa.CrearMesa}" update=":form:MesaTabla">
 
 					<p:confirm header="Confirmar alta"
 						message="Estas seguro que desea dar de alta esta Mesa?"
 						icon="pi pi-exclamation-triangle" />
 				</p:commandButton>
 
-				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-					<p:commandButton value="Sí" type="button" onclick="PF('mostrar').hide();" 
-						styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
-					<p:commandButton value="No" type="button"
-						styleClass="ui-confirmdialog-no" icon="pi pi-times" />
-				</p:confirmDialog>
-				</f:facet>
-			</p:dialog>
+
+			</f:facet>
+		</p:dialog>
 	</h:form>
 
-<footer>
-    
-    <div id="pie"></div>
-    
-    </footer>
+	<footer>
+
+		<div id="pie"></div>
+
+	</footer>
 
 </body>
 </html>

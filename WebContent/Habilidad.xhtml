@@ -58,11 +58,11 @@
 					</div>
 				</f:facet>
 
-				<p:ajax event="rowEdit" listener="#{mesa.ActualizarSC(sc)}"
+				<p:ajax event="rowEdit" listener="#{habilidad.ActualizarSC(sc)}"
 					update="HabiTabla" />
-				<p:ajax event="rowSelect" listener="#{mesa.onRowSelect}"
+				<p:ajax event="rowSelect" listener="#{habilidad.onRowSelect}"
 					update=":form:msgs" />
-				<p:ajax event="rowUnselect" listener="#{mesa.onRowUnselect}"
+				<p:ajax event="rowUnselect" listener="#{habilidad.onRowUnselect}"
 					update=":form:msgs" />
 
 				<p:column style="width:1%">
@@ -139,10 +139,10 @@
 
 <f:facet name="footer">
 			<p:commandButton id="btcrear" value="Crear" icon="pi pi-check"
-				update=":form:MesaTabla">
+				update=":form:HabiTabla">
 
 				<p:confirm header="Confirmar alta"
-					message="Estas seguro que desea dar de alta esta Sub-categoria?"
+					message="Seguro desea dar de alta esta Habilidad?"
 					icon="pi pi-exclamation-triangle" />
 			</p:commandButton>
 

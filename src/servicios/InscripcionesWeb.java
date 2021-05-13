@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -36,9 +37,8 @@ public class InscripcionesWeb implements Serializable {
 	private String rest = ConectABM.urlServer() + "inscripcione/";
 	private Inscripcione select;
 	private long idInsc;
-	private String fechaCte;
-	private String fechaInsc;
-	private String horaInsc;
+	private Date fechaCte;
+	private Date fechaInsc;
 	private BigDecimal nroCte;
 	private String observInscrip;
 	private String otros;
@@ -75,29 +75,22 @@ public class InscripcionesWeb implements Serializable {
 		this.idInsc = idInsc;
 	}
 
-	public String getFechaCte() {
+	public Date getFechaCte() {
 		return fechaCte;
 	}
 
-	public void setFechaCte(String fechaCte) {
+	public void setFechaCte(Date fechaCte) {
 		this.fechaCte = fechaCte;
 	}
 
-	public String getFechaInsc() {
+	public Date getFechaInsc() {
 		return fechaInsc;
 	}
 
-	public void setFechaInsc(String fechaInsc) {
+	public void setFechaInsc(Date fechaInsc) {
 		this.fechaInsc = fechaInsc;
 	}
 
-	public String getHoraInsc() {
-		return horaInsc;
-	}
-
-	public void setHoraInsc(String horaInsc) {
-		this.horaInsc = horaInsc;
-	}
 
 	public BigDecimal getNroCte() {
 		return nroCte;
@@ -185,7 +178,7 @@ public class InscripcionesWeb implements Serializable {
 				nueva.setCamara(camara);
 				nueva.setFechaCte(fechaCte);
 				nueva.setFechaInsc(fechaInsc);
-				nueva.setHoraInsc(horaInsc);
+				//nueva.setHoraInsc(horaInsc);
 				nueva.setNroCte(nroCte);
 				nueva.setObservInscrip(observInscrip);
 				nueva.setOtros(otros);
