@@ -125,7 +125,7 @@ public class RolWeb implements Serializable {
 					FacesMessage msg = new FacesMessage("Rol Creado");
 			        FacesContext.getCurrentInstance().addMessage(null, msg);
 			        PrimeFaces.current().executeScript("PF('mostrar').hide()");
-			        PrimeFaces.current().ajax().update("form:JuradoTabla");
+			        PrimeFaces.current().ajax().update("form:TablaRol");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
