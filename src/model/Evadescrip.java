@@ -10,7 +10,6 @@ public class Evadescrip implements Serializable {
 
 	private long idDescript;
 
-	
 	private String descrDescript;
 
 	

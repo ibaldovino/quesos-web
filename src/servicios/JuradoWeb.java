@@ -358,7 +358,7 @@ public class JuradoWeb implements Serializable{
 				
 				try {
 					ConectABM.conectPut(json,rest+"update");
-					Vaciar();
+
 					FacesMessage msg = new FacesMessage("Jurado Modificado");
 			        FacesContext.getCurrentInstance().addMessage(null, msg);
 				} catch (IOException e) {
@@ -386,10 +386,6 @@ public class JuradoWeb implements Serializable{
 	        FacesMessage msg = new FacesMessage("Jurado Deseleccionado", s);
 	        FacesContext.getCurrentInstance().addMessage(null, msg);
 	    }	
-		
-		
-		public void Vaciar() {
-		}
 		
 	     
 

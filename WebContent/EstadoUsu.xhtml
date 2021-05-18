@@ -96,9 +96,9 @@
 
 					<p:growl id="message" showDetail="true" />
 					<p:commandButton icon="pi pi-trash" value="Eliminar"
-						action="#{pais.Borrar(est)}" update=":form:estadoUsuTabla">
+						action="#{estadoUsu.Borrar(est)}" update=":form:estadoUsuTabla">
 						<p:confirm header="Confirmar baja"
-							message="Seguro desea eliminar este País?"
+							message="Seguro desea eliminar este Estado?"
 							icon="pi pi-exclamation-triangle" />
 					</p:commandButton>
 
@@ -124,7 +124,7 @@
 			</main>
 	</h:form>
 	<h:form id="formNew">
-	<p:dialog id="new" widgetVar="mostrar" header="Ingresar datos de País" modal="true"
+	<p:dialog id="new" widgetVar="mostrar" header="Ingresar datos del Estado" modal="true"
 				showEffect="clip" resizable="false" >
 <p:outputPanel id="manage-product-content">
 			

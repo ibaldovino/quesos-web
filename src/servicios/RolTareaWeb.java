@@ -17,6 +17,8 @@ import org.primefaces.event.UnselectEvent;
 
 import com.google.gson.Gson;
 
+import model.Tarea;
+import model.Tarea;
 import model.Role;
 import model.Roltarea;
 import model.Tarea;
@@ -39,17 +41,73 @@ public class RolTareaWeb implements Serializable {
 	private Role role;
 	private Tarea tarea;
 	
+private Gson gson = new Gson();
+	
+	private List<String> listRol = new ArrayList<String>();
+	private String rol;
+	
+
+	public List<String> getlistRol() {
+
+		listRol = new ArrayList<String>();
+		Role[] list = gson.fromJson(ReadJson.readJsonFromUrl(ConectABM.urlServer() + "role/todos"), Role[].class);
+		for (Role r : list) {
+			listRol.add(r.getDescrRol());
+		}
+
+		return listRol;
+	}
+	
+	private List<String> listTarea = new ArrayList<String>();
+	private String tar;
+	
+	public List<String> getlistTarea() {
+
+		listTarea = new ArrayList<String>();
+		Tarea[] list = gson.fromJson(ReadJson.readJsonFromUrl(ConectABM.urlServer() + "tarea/todas"), Tarea[].class);
+		for (Tarea t : list) {
+			listTarea.add(t.getDescrTarea());
+		}
+
+		return listTarea;
+	}
+	
 	
 	
 
 	// Funciones GET
 
-
 	
+
+	public String getRol() {
+		return rol;
+	}
+
+
+
+
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
+
+
+
+
+	public String getTar() {
+		return tar;
+	}
+
+
+
+
+	public void setTar(String tar) {
+		this.tar = tar;
+	}
 
 	public String getRest() {
 		return rest;
 	}
+
 
 	public void setRest(String rest) {
 		this.rest = rest;
@@ -114,8 +172,8 @@ public class RolTareaWeb implements Serializable {
 				
 				Roltarea nueva= new Roltarea();
 				nueva.setAutorizadoSn(autorizadoSn);
-				nueva.setRole(role);
-				nueva.setTarea(tarea);
+				nueva.setRole(findRol(rol));
+				nueva.setTarea(findTarea(tar));
 				
 				System.out.println(nueva);
 				Gson gson = new Gson();
@@ -132,7 +190,7 @@ public class RolTareaWeb implements Serializable {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				return "Rol.xhtml";
+				return "RolTarea.xhtml";
 			}
 
 	public String Borrar(Roltarea del) {
@@ -151,7 +209,7 @@ public class RolTareaWeb implements Serializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "Rol.xhtml";
+		return "RolTarea.xhtml";
 
 	}
 
@@ -186,6 +244,34 @@ public class RolTareaWeb implements Serializable {
 		String s = String.valueOf(event.getObject().getIdRoltar());
 		FacesMessage msg = new FacesMessage("Rol Tarea Deseleccionado", s);
 		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+	
+	public Role findRol(String r) {
+
+		Role obj = new Role();
+		Role[] list = gson.fromJson(ReadJson.readJsonFromUrl(ConectABM.urlServer() +"role/todos"), Role[].class);
+		for (Role e : list) {
+			if (e.getDescrRol().equals(r)) {
+				obj = e;
+			}
+		}
+
+		return obj;
+
+	}
+	
+	public Tarea findTarea(String t) {
+
+		Tarea obj = new Tarea();
+		Tarea[] list = gson.fromJson(ReadJson.readJsonFromUrl(ConectABM.urlServer() +"tarea/todas"), Tarea[].class);
+		for (Tarea e : list) {
+			if (e.getDescrTarea().equals(t)) {
+				obj = e;
+			}
+		}
+
+		return obj;
+
 	}
 
 }

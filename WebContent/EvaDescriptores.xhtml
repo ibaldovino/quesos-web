@@ -148,29 +148,32 @@
 			<p:dialog id="new" widgetVar="mostrar" header="Ingresar datos del Descriptor" modal="true"
 				showEffect="clip" resizable="false">
 
-
+<p:outputPanel id="manage-product-content">
+			
+			<p:growl id="msgs2" life="2000" showDetail="true" />
 				<p:panelGrid columns="2" layout="grid" styleClass="customPanelGrid" contentStyleClass="ui-fluid">
 
 					
 					
 					<p:outputLabel value="Descripción: " />
-					<p:inputTextarea value="#{evadescrip.descrDescript}" />
+					<p:inputTextarea value="#{evadescrip.descrDescript}"  required="true" requiredMessage="Se debe ingresar Descripción" />
 					
 					<p:outputLabel value="Tipo evaluación: " />
-					<p:inputTextarea value="#{evadescrip.evatipo.descrTipeva}" />
-					
-					
+					<p:selectOneMenu value="#{evadescrip.evaT}"  required="true" requiredMessage="Se debe ingresar Tipo de Evaluación">
+						<f:selectItem itemLabel="Select..." noSelectionOption="true" />
+						<f:selectItems value="#{evadescrip.listEvaT}" />
+					</p:selectOneMenu>
 					
 					
 
 					
 
 				</p:panelGrid>
-
+</p:outputPanel>
 
 <f:facet name="footer">
 				<p:commandButton id="btcrear" value="Crear" icon="pi pi-check"
-					action="#{evadescrip.Crear}" update=":form:DescripTabla">
+					action="#{evadescrip.Crear}" update="manage-product-content" process="manage-product-content @this">
 
 					<p:confirm header="Confirmar alta"
 						message="Estas seguro que desea dar de alta este Descriptor?"
@@ -178,8 +181,7 @@
 				</p:commandButton>
 
 				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-					<p:commandButton value="Sí" type="button"
-						onclick="PF('mostrar').hide();" styleClass="ui-confirmdialog-yes"
+					<p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes"
 						icon="pi pi-check" />
 					<p:commandButton value="No" type="button"
 						styleClass="ui-confirmdialog-no" icon="pi pi-times" />

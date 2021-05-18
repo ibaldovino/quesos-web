@@ -92,20 +92,6 @@
 					</p:cellEditor>
 				</p:column>
 
-
-
-
-				<p:column headerText="Hora" filterBy="#{eva.horaEval}"
-					filterMatchMode="contains">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{eva.horaEval}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{eva.horaEval}" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
 				
 				<p:column headerText="Observaciones" filterBy="#{eva.observacEvaluac}"
 					filterMatchMode="contains">
@@ -199,7 +185,7 @@
 
 					<p:growl id="message" showDetail="true" />
 					<p:commandButton icon="pi pi-trash" value="Eliminar"
-						action="#{evaluacione.Borrar(eva)}" update="evaluacioneTabla">
+						action="#{evaluacione.Borrar(eva)}" update="EvaTabla">
 						<p:confirm header="Confirmar baja"
 							message="Estas seguro que desea eliminar esta Evaluación?"
 							icon="pi pi-exclamation-triangle" />
@@ -229,53 +215,48 @@
 		<h:form id="formNew">
 			<p:dialog id="new" widgetVar="mostrar" header="Ingresar datos de Evaluación" modal="true"
 				showEffect="clip" resizable="false">
-
+<p:outputPanel id="manage-product-content">
+			
+			<p:growl id="msgs2" life="2000" showDetail="true" />
 
 				<p:panelGrid columns="6" layout="grid" styleClass="customPanelGrid" contentStyleClass="ui-fluid">
 
 					<p:outputLabel value="Fecha: " />
-					<p:inputTextarea value="#{evaluacione.fechaEval}" />
-					
-					<p:outputLabel value="Hora: " />
-					<p:inputTextarea value="#{evaluacione.horaEval}" />
+					<p:datePicker value="#{evaluacione.fechaEval}"  required="true" requiredMessage="Se debe ingresar Fecha"/>
 					
 					<p:outputLabel value="Observaciones: " />
-					<p:inputTextarea value="#{evaluacione.observacEvaluac}" />
+					<p:inputTextarea value="#{evaluacione.observacEvaluac}"  required="true" requiredMessage="Se debe ingresar Observaciones" />
 					
 					<p:outputLabel value="Tipo Planilla: " />
-					<p:inputTextarea value="#{evaluacione.tipoPlanilla}" />
+					<p:inputText value="#{evaluacione.tipoPlanilla}"  required="true" requiredMessage="Se debe ingresar Tipo Planilla" />
 					
 					<p:outputLabel value="Valor Evaluación: " />
-					<p:inputTextarea value="#{evaluacione.valorEvaluac}" />
+					<p:inputNumber value="#{evaluacione.valorEvaluac}"  decimalPlaces="0" required="true" requiredMessage="Se debe ingresar Valor Evaluación" />
 					
 					
 					<p:outputLabel value="Descriptores" />
-					<p:selectOneMenu id="identeva" value="">
+					<p:selectOneMenu value="#{evaluacione.evaD}"  required="true" requiredMessage="Se debe ingresar Descriptores">
 						<f:selectItem itemLabel="Select..." noSelectionOption="true" />
-						<f:selectItem itemLabel="Ident.1" itemValue="Ident.1" />
-						<f:selectItem itemLabel="Ident.2" itemValue="Ident.2" />
+						<f:selectItems value="#{evaluacione.listEvaDes}" />
 					</p:selectOneMenu>
 
 
 					<p:outputLabel value="Jurado" />
-					<p:selectOneMenu  value="">
+					<p:selectOneMenu value="#{evaluacione.jura}"  required="true" requiredMessage="Se debe ingresar Jurado">
 						<f:selectItem itemLabel="Select..." noSelectionOption="true" />
-						<f:selectItem itemLabel="Referencia1" itemValue="Referencia1" />
-						<f:selectItem itemLabel="Referencia2" itemValue="Referencia2" />
+						<f:selectItems value="#{evaluacione.listJura}" />
 					</p:selectOneMenu>
-					
+
 					<p:outputLabel value="Mesa" />
-					<p:selectOneMenu  value="">
+					<p:selectOneMenu value="#{evaluacione.mes}"  required="true" requiredMessage="Se debe ingresar Mesa">
 						<f:selectItem itemLabel="Select..." noSelectionOption="true" />
-						<f:selectItem itemLabel="Referencia1" itemValue="Referencia1" />
-						<f:selectItem itemLabel="Referencia2" itemValue="Referencia2" />
+						<f:selectItems value="#{evaluacione.listMesa}" />
 					</p:selectOneMenu>
 					
 					<p:outputLabel value="Queso" />
-					<p:selectOneMenu  value="">
+					<p:selectOneMenu value="#{evaluacione.quesoS}"  required="true" requiredMessage="Se debe ingresar Queso">
 						<f:selectItem itemLabel="Select..." noSelectionOption="true" />
-						<f:selectItem itemLabel="Referencia1" itemValue="Referencia1" />
-						<f:selectItem itemLabel="Referencia2" itemValue="Referencia2" />
+						<f:selectItems value="#{evaluacione.listQueso}" />
 					</p:selectOneMenu>
 					
 
@@ -283,10 +264,10 @@
 
 				</p:panelGrid>
 
-
+</p:outputPanel>
 <f:facet name="footer">
 				<p:commandButton id="btcrear" value="Crear" icon="pi pi-check"
-					action="#{evaluacione.Crear}" update=":form:EvaTabla">
+					action="#{evaluacione.Crear}" update="manage-product-content" process="manage-product-content @this">
 
 					<p:confirm header="Confirmar alta"
 						message="Seguro desea dar de alta esta Evaluación?"
@@ -294,8 +275,7 @@
 				</p:commandButton>
 
 				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-					<p:commandButton value="Sí" type="button"
-						onclick="PF('mostrar').hide();" styleClass="ui-confirmdialog-yes"
+					<p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes"
 						icon="pi pi-check" />
 					<p:commandButton value="No" type="button"
 						styleClass="ui-confirmdialog-no" icon="pi pi-times" />

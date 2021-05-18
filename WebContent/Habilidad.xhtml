@@ -50,7 +50,7 @@
 				paginator="true"
 				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 				rowsPerPageTemplate="5,10,15" rows="10" selectionMode="single"
-				selection="#{hb.selectHabi}" rowKey="#{hb.idHabili}">
+				selection="#{habilidad.selectHabi}" rowKey="#{hb.idHabili}">
 
 				<f:facet name="header">
 					<div class="products-table-header">
@@ -58,7 +58,7 @@
 					</div>
 				</f:facet>
 
-				<p:ajax event="rowEdit" listener="#{habilidad.ActualizarSC(sc)}"
+				<p:ajax event="rowEdit" listener="#{habilidad.Actualizar(hb)}"
 					update="HabiTabla" />
 				<p:ajax event="rowSelect" listener="#{habilidad.onRowSelect}"
 					update=":form:msgs" />
@@ -78,7 +78,7 @@
 
 
 				<p:column headerText="Descripcion" style="width:50px"
-					filterBy="#{hb.desHabildad}" filterMatchMode="contains">
+					filterBy="#{hd.desHabildad}" filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
 							<h:outputText value="#{hb.desHabildad}" />
@@ -98,7 +98,7 @@
 
 					<p:growl id="message" showDetail="true" />
 					<p:commandButton icon="pi pi-trash" value="Eliminar"
-						action="#{subcat.BorrarSB(sc)}">
+						action="#{habilidad.Borrar(hb)}">
 						<p:confirm header="Confirmar baja"
 							message="Estas seguro que desea eliminar esta Sub-categoria?"
 							icon="pi pi-exclamation-triangle" />
@@ -127,19 +127,21 @@
 		<p:dialog id="new" widgetVar="mostrar" header="Ingresar datos de Habilidad" modal="true"
 			showEffect="clip" resizable="false">
 
-
+<p:outputPanel id="manage-product-content">
+			
+			<p:growl id="msgs2" life="2000" showDetail="true" />
 			<p:panelGrid columns="2" layout="grid" styleClass="customPanelGrid" contentStyleClass="ui-fluid">
 
 				<p:outputLabel value="Descripción: " />
-				<p:inputTextarea value="#{hb.desHabildad}" />
+				<p:inputTextarea value="#{habilidad.desHabildad}"  required="true" requiredMessage="Se debe ingresar Descripción"/>
 
 
 			</p:panelGrid>
-
+</p:outputPanel>
 
 <f:facet name="footer">
-			<p:commandButton id="btcrear" value="Crear" icon="pi pi-check"
-				update=":form:HabiTabla">
+			<p:commandButton id="btcrear" value="Crear" icon="pi pi-check" action="#{habilidad.Crear}"
+				update="manage-product-content" process="manage-product-content @this">
 
 				<p:confirm header="Confirmar alta"
 					message="Seguro desea dar de alta esta Habilidad?"
@@ -147,8 +149,7 @@
 			</p:commandButton>
 
 			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-				<p:commandButton value="Sí" type="button"
-					onclick="PF('mostrar').hide();" styleClass="ui-confirmdialog-yes"
+				<p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes"
 					icon="pi pi-check" />
 				<p:commandButton value="No" type="button"
 					styleClass="ui-confirmdialog-no" icon="pi pi-times" />

@@ -12,7 +12,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import org.primefaces.PrimeFaces;
-import org.primefaces.context.PrimeFacesContext;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
@@ -46,6 +45,38 @@ public class UsuariosWeb implements Serializable{
 	private String usuario;
 	private Estusuario estusuario;
 	private Role role;
+	
+	private Gson gson = new Gson();
+	
+	private List<String> listRol = new ArrayList<String>();
+	private String rol;
+	
+
+	public List<String> getlistRol() {
+
+		listRol = new ArrayList<String>();
+		Role[] list = gson.fromJson(ReadJson.readJsonFromUrl(ConectABM.urlServer() + "role/todos"), Role[].class);
+		for (Role r : list) {
+			listRol.add(r.getDescrRol());
+		}
+
+		return listRol;
+	}
+	
+	private List<String> listEstado = new ArrayList<String>();
+	private String estado;
+	
+	public List<String> getlistEstado() {
+
+		listEstado = new ArrayList<String>();
+		Estusuario[] list = gson.fromJson(ReadJson.readJsonFromUrl(ConectABM.urlServer() + "estusuario/todos"), Estusuario[].class);
+		for (Estusuario p : list) {
+			listEstado.add(p.getDescrEstado());
+		}
+
+		return listEstado;
+	}
+
 	
 	
 	
@@ -215,6 +246,26 @@ public class UsuariosWeb implements Serializable{
 		this.role = role;
 	}
 
+	public String getRol() {
+		return rol;
+	}
+
+
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
+
+
+	public String getEstado() {
+		return estado;
+	}
+
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+
 
 
 	public List<Usuario> getUsuarios() {
@@ -238,14 +289,14 @@ public class UsuariosWeb implements Serializable{
 				
 				nueva.setIdUsuario(idUsuario);
 				nueva.setApeUsuario(apeUsuario);
-				nueva.setEstusuario(null);
-				nueva.setFecaltUsuario(fecaltUsuario);
-				nueva.setFecbajUsuario(fecbajUsuario);
-				nueva.setFecsusUsuario(fecsusUsuario);
+				nueva.setEstusuario(findEstado(estado));
+				nueva.setFecaltUsuario(null);
+				nueva.setFecbajUsuario(null);
+				nueva.setFecsusUsuario(null);
 				nueva.setMailUsuario(mailUsuario);
 				nueva.setNomUsuario(nomUsuario);
 				nueva.setPwdUsuario(pwdUsuario);
-				nueva.setRole(null);
+				nueva.setRole(findRol(rol));
 				nueva.setTelefUsuario(telefUsuario);
 				nueva.setUsuario(usuario);
 			    
@@ -328,7 +379,33 @@ public class UsuariosWeb implements Serializable{
 		    
 		   
 			
-		    
+		    public Role findRol(String r) {
+
+				Role obj = new Role();
+				Role[] list = gson.fromJson(ReadJson.readJsonFromUrl(ConectABM.urlServer() +"role/todos"), Role[].class);
+				for (Role e : list) {
+					if (e.getDescrRol().equals(r)) {
+						obj = e;
+					}
+				}
+
+				return obj;
+
+			}
+			
+			public Estusuario findEstado(String m) {
+
+				Estusuario obj = new Estusuario();
+				Estusuario[] list = gson.fromJson(ReadJson.readJsonFromUrl(ConectABM.urlServer() +"estusuario/todos"), Estusuario[].class);
+				for (Estusuario e : list) {
+					if (e.getDescrEstado().equals(m)) {
+						obj = e;
+					}
+				}
+
+				return obj;
+
+			}
 		    	     
 
 }

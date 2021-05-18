@@ -256,13 +256,13 @@
 				<p:inputText value="#{usus.apeUsuario}" required="true" requiredMessage="Se debe ingresar Apellido"/>
 				
 				<p:outputLabel value="Fecha Alta: " />
-				<p:inputText value="#{usus.fecaltUsuario}" required="true" requiredMessage="Se debe ingresar Fecha de Alta"/>
+				<p:datePicker value="#{usus.fecaltUsuario}" required="true" requiredMessage="Se debe ingresar Fecha de Alta"/>
 				
 				<p:outputLabel value="Fecha Baja: " />
-				<p:inputText value="#{usus.fecbajUsuario}" required="true" requiredMessage="Se debe ingresar Fecha de Baja"/>
+				<p:datePicker value="#{usus.fecbajUsuario}" required="true" requiredMessage="Se debe ingresar Fecha de Baja"/>
 				
 				<p:outputLabel value="Fecha Sus: " />
-				<p:inputText value="#{usus.fecsusUsuario}" required="true" requiredMessage="Se debe ingresar Fecha de Sus"/>
+				<p:datePicker value="#{usus.fecsusUsuario}" required="true" requiredMessage="Se debe ingresar Fecha de Sus"/>
 				
 				<p:outputLabel value="E-mail: " />
 				<p:inputText value="#{usus.mailUsuario}" required="true" requiredMessage="Se debe ingresar E-mail"/>
@@ -277,15 +277,15 @@
 				<p:inputText value="#{usus.telefUsuario}" required="true" requiredMessage="Se debe ingresar Teléfono"/>
 				
 				<p:outputLabel value="Estado Usuario: " />
-				<p:selectOneMenu>
+				<p:selectOneMenu value="#{usus.estado}" required="true" requiredMessage="Se debe ingresar Estado Usuario">
 					<f:selectItem itemLabel="Select..." noSelectionOption="true" />
-					<f:selectItems  value="#{usus.estusuario.descrEstado}" />
+					<f:selectItems  value="#{usus.listEstado}" />
 				</p:selectOneMenu>
 				
 				<p:outputLabel value="Rol: " />
-				<p:selectOneMenu>
+				<p:selectOneMenu value="#{usus.rol}" required="true" requiredMessage="Se debe ingresar Rol">
 					<f:selectItem itemLabel="Select..." noSelectionOption="true" />
-					<f:selectItems value="#{usus.role.descrRol}"/>
+					<f:selectItems value="#{usus.listRol}"/>
 				</p:selectOneMenu>
 						
 						

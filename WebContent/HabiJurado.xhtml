@@ -93,26 +93,26 @@
 					</p:cellEditor>
 				</p:column>
 
-				<p:column headerText="Habilidad" filterBy="#{hbJ.habilidade}"
+				<p:column headerText="Habilidad" filterBy="#{hbJ.habilidade.desHabildad}"
 					filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{hbJ.habilidade}" />
+							<h:outputText value="#{hbJ.habilidade.desHabildad}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{hbJ.habilidade}" />
+							<p:inputText value="#{hbJ.habilidade.desHabildad}" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 
-				<p:column headerText="Jurado" filterBy="#{hbJ.jurado}"
+				<p:column headerText="Jurado" filterBy="#{hbJ.jurado.cedula}"
 					filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{hbJ.jurado}" />
+							<h:outputText value="#{hbJ.jurado.cedula}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{hbJ.jurado}" />
+							<p:inputText value="#{hbJ.jurado.cedula}" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
@@ -160,23 +160,39 @@
 		<p:dialog id="new" widgetVar="mostrar"
 			header="Ingresar datos de Tipo habijurado" modal="true"
 			showEffect="clip" resizable="false">
-
+ <p:outputPanel id="manage-product-content">
+			
+			<p:growl id="msgs2" life="2000" showDetail="true" />
 
 			<p:panelGrid columns="2" layout="grid" styleClass="customPanelGrid"
 				contentStyleClass="ui-fluid">
 
 
 				<p:outputLabel value="Observaciones: " />
-				<p:inputTextarea value="#{habijurado.observHabjur}" />
+				<p:inputTextarea value="#{habijurado.observHabjur}" required="true" requiredMessage="Se debe ingresar Observaciones"/>
+				
+				<p:outputLabel value="Habilidad" />
+					<p:selectOneMenu value="#{habijurado.habi}" required="true" requiredMessage="Se debe ingresar Habilidad">
+						<f:selectItem itemLabel="Select..." noSelectionOption="true" required="true" requiredMessage="Se debe ingresar Cédula"/>
+						<f:selectItems value="#{habijurado.listHabi}" />
+					</p:selectOneMenu>
+				
+				<p:outputLabel value="Jurado" />
+					<p:selectOneMenu value="#{habijurado.jura}" required="true" requiredMessage="Se debe ingresar Jurado">
+						<f:selectItem itemLabel="Select..." noSelectionOption="true" />
+						<f:selectItems value="#{habijurado.listJura}" />
+					</p:selectOneMenu>
+
+					
 				
 	
 
 			</p:panelGrid>
-
+</p:outputPanel>
 			<f:facet name="footer">
 
 				<p:commandButton id="btcrear" value="Crear" icon="pi pi-check" action="#{habijurado.Crear}"
-					update=":form:HabiJuraTabla">
+					update="manage-product-content" process="manage-product-content @this">
 
 					<p:confirm header="Confirmar alta"
 						message="Estas seguro que desea dar de alta esta Habilidad de Jurado?"
@@ -184,8 +200,7 @@
 				</p:commandButton>
 
 				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-					<p:commandButton value="Sí" type="button"
-						onclick="PF('mostrar').hide();" styleClass="ui-confirmdialog-yes"
+					<p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes"
 						icon="pi pi-check" />
 					<p:commandButton value="No" type="button"
 						styleClass="ui-confirmdialog-no" icon="pi pi-times" />
