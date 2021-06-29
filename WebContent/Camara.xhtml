@@ -161,43 +161,47 @@
 	</h:form>
 
 	<h:form id="NuevaCamara" title="Nueva Camara">
-	
-	     <p:messages id="msgVal" showDetail="true" autoUpdate="true" closable="true" globalOnly="true"/>
-            
-		<p:dialog widgetVar="mostrar" header="Ingresar datos de Cámara"
+	<p:dialog widgetVar="mostrar" header="Ingresar datos de Cámara"
 			modal="true" showEffect="clip" resizable="false" minimizable="true">
+<p:outputPanel id="manage-product-content">	
+	     <p:growl id="msgs2" life="2000" showDetail="true" />
+            
+		
 
 
 			<p:panelGrid columns="6" layout="grid" styleClass="customPanelGrid"
 				contentStyleClass="ui-fluid" cellpadding="10">
 
 				<p:outputLabel value="Descripción corta: " />
-				<p:inputTextarea id="Descripcion_Corta" value="#{camara.descCortaCam}" maxlength="100" placeholder="Max. 100 Caracteres" />
+				<p:inputTextarea id="Descripcion_Corta" value="#{camara.descCortaCam}" maxlength="100" placeholder="Max. 100 Caracteres"
+				required="true"  requiredMessage="Se debe ingresar Descripción Corta" />
 				
 
 				<p:outputLabel value="Descripción larga: " />
-				<p:inputTextarea value="#{camara.descLargaCam}" maxlength="200" placeholder="Max. 200 Caracteres"/>
+				<p:inputTextarea value="#{camara.descLargaCam}" maxlength="200" placeholder="Max. 200 Caracteres"
+				required="true"  requiredMessage="Se debe ingresar Descripción Larga"/>
 
 				<p:outputLabel value="Lugar: " />
-				<p:inputText value="#{camara.lugarCam}" maxlength="200" placeholder="Max. 200 Caracteres"/>
+				<p:inputText value="#{camara.lugarCam}" maxlength="200" placeholder="Max. 200 Caracteres" 
+				required="true"  requiredMessage="Se debe ingresar Lugar"/>
 
 				<p:outputLabel value="Número Cámara: " />
-				<p:inputNumber id="NumeroCamara" value="#{camara.nroCam}" />
+				<p:inputNumber id="NumeroCamara" value="#{camara.nroCam}"  required="true"  requiredMessage="Se debe ingresar Número de Camara"/>
 				
 
 				<p:outputLabel value="Temperatura cámara: " />
-				<p:inputNumber value="#{camara.temperaturaCam}" />
+				<p:inputNumber value="#{camara.temperaturaCam}" required="true"  requiredMessage="Se debe ingresar Temperatura"/>
 
 				<p:outputLabel value="Inscripciones" />
 				<p:selectOneMenu id="qsc">
-					<f:selectItem itemLabel="Select..." noSelectionOption="true" />
+					<f:selectItem itemLabel="Select..." noSelectionOption="true"  required="true"  requiredMessage="Se debe ingresar Inscripcion"/>
 					<f:selectItems />
 				</p:selectOneMenu>
 
 
 
 			</p:panelGrid>
-
+</p:outputPanel>
 
 			<f:facet name="footer">
 				<p:commandButton id="btcrear" value="Crear" icon="pi pi-check"
@@ -210,7 +214,7 @@
 
 				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 					<p:commandButton value="Sí" type="button"
-						onclick="PF('mostrar').hide();" styleClass="ui-confirmdialog-yes"
+						 styleClass="ui-confirmdialog-yes"
 						icon="pi pi-check" />
 					<p:commandButton value="No" type="button"
 						styleClass="ui-confirmdialog-no" icon="pi pi-times" />
