@@ -121,9 +121,9 @@
 
 					<p:growl id="message" showDetail="true" />
 					<p:commandButton icon="pi pi-trash" value="Eliminar"
-						action="#{juracateg.Borrar(jCat)}" update=":form:jCatTabla">
+						action="#{juracateg.Borrar(jCat)}" update=":form:JuraCatTabla">
 						<p:confirm header="Confirmar baja"
-							message="Estas seguro que desea eliminar esta Categoría de Jura?"
+							message="Seguro desea eliminar esta Categoría de Jura?"
 							icon="pi pi-exclamation-triangle" />
 					</p:commandButton>
 
@@ -152,36 +152,36 @@
 			header="Ingresar datos de juracateg" modal="true" showEffect="clip"
 			resizable="false" layout="grid" styleClass="customPanelGrid"
 			contentStyleClass="ui-fluid">
-
+ <p:outputPanel id="manage-product-content">
+			
+			<p:growl id="msgs2" life="2000" showDetail="true" />
 
 			<p:panelGrid columns="2" layout="grid" styleClass="customPanelGrid"
 				contentStyleClass="ui-fluid">
 				
 				<p:outputLabel value="Observaciones: " />
-				<p:inputTextarea value="#{juracateg.observJurcat}" />
+				<p:inputTextarea value="#{juracateg.observJurcat}" required="true" requiredMessage="Se debe ingresar Observaciones" />
 
 				<p:outputLabel value="Categoría" />
-				<p:selectOneMenu value="#{juracateg.categoria.descrip}">
+				<p:selectOneMenu value="#{juracateg.categ}" required="true" requiredMessage="Se debe ingresar Categoría">
 					<f:selectItem itemLabel="Select..." noSelectionOption="true" />
-					<f:selectItem itemLabel="Referencia1" itemValue="Referencia1" />
-					<f:selectItem itemLabel="Referencia2" itemValue="Referencia2" />
+					<f:selectItems value="#{juracateg.listCat}" />
 				</p:selectOneMenu>
 				
 				<p:outputLabel value="Jurado" />
-				<p:selectOneMenu value="#{juracateg.jurado.cedula}">
+				<p:selectOneMenu value="#{juracateg.jura}" required="true" requiredMessage="Se debe ingresar Jurado">
 					<f:selectItem itemLabel="Select..." noSelectionOption="true" />
-					<f:selectItem itemLabel="Referencia1" itemValue="Referencia1" />
-					<f:selectItem itemLabel="Referencia2" itemValue="Referencia2" />
+					<f:selectItems value="#{juracateg.listJura}" />
 				</p:selectOneMenu>
 
 				
 
 			</p:panelGrid>
-
+</p:outputPanel>
 			<f:facet name="footer">
 
 				<p:commandButton id="btcrear" value="Crear" icon="pi pi-check"
-					action="#{juracateg.CrearjCat}" update=":form:JuraCatTabla">
+					action="#{juracateg.Crear}" update="manage-product-content" process="manage-product-content @this">
 
 					<p:confirm header="Confirmar alta"
 						message="Seguro desea dar de alta esta nueva Categoría de Jura?"
@@ -189,8 +189,7 @@
 				</p:commandButton>
 
 				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-					<p:commandButton value="Sí" type="button"
-						onclick="PF('mostrar').hide();" styleClass="ui-confirmdialog-yes"
+					<p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes"
 						icon="pi pi-check" />
 					<p:commandButton value="No" type="button"
 						styleClass="ui-confirmdialog-no" icon="pi pi-times" />

@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+import org.primefaces.PrimeFaces;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
@@ -38,13 +39,42 @@ public class EvaDescripWeb implements Serializable {
 	private List<Evaluacione> evaluaciones;
 	private Evadescrip select;
 	
+	private List<String> listEvaT = new ArrayList<String>();
+	private String evaT;
+	
+	
+
+
+
+	public List<String> getlistEvaT() {
+
+		listEvaT = new ArrayList<String>();
+		Evatipo[] list = gson.fromJson(ReadJson.readJsonFromUrl(ConectABM.urlServer() + "evatipo/todos"), Evatipo[].class);
+		for (Evatipo e : list) {
+			listEvaT.add(e.getDescrTipeva());
+		}
+
+		return listEvaT;
+	}
+	
 	
 
 	// Funciones GET
 
+	public String getEvaT() {
+		return evaT;
+	}
+
+
+
+	public void setEvaT(String evaT) {
+		this.evaT = evaT;
+	}
+
 	public String getRest() {
 		return rest;
 	}
+
 
 	public void setRest(String rest) {
 		this.rest = rest;
@@ -110,7 +140,7 @@ public class EvaDescripWeb implements Serializable {
 
 		nueva.setDescrDescript(descrDescript);
 		nueva.setEvaluaciones(null);
-		nueva.setEvatipo(null);
+		nueva.setEvatipo(findEvaT(evaT));
 
 		System.out.println(nueva);
 		Gson gson = new Gson();
@@ -121,6 +151,8 @@ public class EvaDescripWeb implements Serializable {
 			ConectABM.conectPost(json, rest + "crear");
 			FacesMessage msg = new FacesMessage("Evadescrip Creada");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
+	        PrimeFaces.current().executeScript("PF('mostrar').hide()");
+	        PrimeFaces.current().ajax().update("form:DescripTabla");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -139,6 +171,8 @@ public class EvaDescripWeb implements Serializable {
 			ConectABM.conectBorrar(json, rest + "borrar");
 			FacesMessage msg = new FacesMessage("Evadescrip Eliminada");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
+			PrimeFaces.current().executeScript("PF('mostrar').hide()");
+	        PrimeFaces.current().ajax().update("form:DescripTabla");
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -181,6 +215,20 @@ public class EvaDescripWeb implements Serializable {
 		String s = String.valueOf(event.getObject().getIdDescript());
 		FacesMessage msg = new FacesMessage("Evadescrip Deseleccionada", s);
 		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+	
+	public Evatipo findEvaT(String m) {
+
+		Evatipo obj = new Evatipo();
+		Evatipo[] list = gson.fromJson(ReadJson.readJsonFromUrl(ConectABM.urlServer() +"evatipo/todos"), Evatipo[].class);
+		for (Evatipo e : list) {
+			if (e.getDescrTipeva().equals(m)) {
+				obj = e;
+			}
+		}
+
+		return obj;
+
 	}
 
 

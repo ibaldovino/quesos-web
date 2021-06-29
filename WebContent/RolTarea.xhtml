@@ -85,19 +85,19 @@
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
-				<p:column headerText="Rol" filterBy="#{rolT.role}"
+				<p:column headerText="Rol" filterBy="#{rolT.descrRol}"
 					filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{rolT.role}" />
+							<h:outputText value="#{rolT.role.descrRol}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{rolT.role}" />
+							<p:inputText value="#{rolT.role.descrRol}" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 				
-				<p:column headerText="Tarea" filterBy="#{rolT.tarea}"
+				<p:column headerText="Tarea" filterBy="#{rolT.tarea.idTarea}"
 					filterMatchMode="contains">
 					<p:cellEditor>
 						<f:facet name="output">
@@ -112,9 +112,9 @@
 				<p:column style="width:10%">
 					<p:growl id="message" showDetail="true" />
 					<p:commandButton icon="pi pi-trash" value="Eliminar"
-						action="#{roltarea.BorrarrolT(rolT)}" update="TablaRolT">
+						action="#{roltarea.Borrar(rolT)}" update="TablaRolT">
 						<p:confirm header="Confirmar baja"
-							message="Estas seguro que desea eliminar esta rolTuración?"
+							message="Estas seguro que desea eliminar Rol/Tarea?"
 							icon="pi pi-exclamation-triangle" />
 					</p:commandButton>
 				</p:column>
@@ -155,15 +155,15 @@
 				<p:inputTextarea value="#{roltarea.autorizadoSn}" required="true" requiredMessage="Se debe ingresar Autorización"/>
 
 				<p:outputLabel value="Rol" />
-				<p:selectOneMenu>
+				<p:selectOneMenu value="#{roltarea.rol}" required="true" requiredMessage="Se debe ingresar Rol">
 					<f:selectItem itemLabel="Select..." noSelectionOption="true" />
-					<f:selectItems value="#{roltarea.role.idRol}" />
+					<f:selectItems value="#{roltarea.listRol}" />
 				</p:selectOneMenu>
 				
 				<p:outputLabel value="Tarea" />
-				<p:selectOneMenu>
+				<p:selectOneMenu value="#{roltarea.tar}" required="true" requiredMessage="Se debe ingresar Tarea">
 					<f:selectItem itemLabel="Select..." noSelectionOption="true" />
-					<f:selectItems value="#{roltarea.tarea.idTarea}" />
+					<f:selectItems value="#{roltarea.listTarea}" />
 				</p:selectOneMenu>
 
 

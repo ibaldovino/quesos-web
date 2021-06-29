@@ -149,7 +149,9 @@
 	<h:form id="formNew">
 	<p:dialog id="new" widgetVar="mostrar" header="Ingresar datos de Evaluación" modal="true"
 				showEffect="clip" resizable="false" >
-
+<p:outputPanel id="manage-product-content">
+			
+			<p:growl id="msgs2" life="2000" showDetail="true" />
 				
 					<p:panelGrid columns="2" layout="grid" styleClass="customPanelGrid" contentStyleClass="ui-fluid">
 					
@@ -158,10 +160,10 @@
 						<p:inputText/>
 						
 					</p:panelGrid>
-
+</p:outputPanel>
 <f:facet name="footer">
 				
-				<p:commandButton id="btcrear" value="Crear"  icon="pi pi-check" action="#{evaTipo.CrearPais}"  update=":form:evaTipoTabla">
+				<p:commandButton id="btcrear" value="Crear"  icon="pi pi-check" action="#{evaTipo.CrearPais}" update="manage-product-content" process="manage-product-content @this">
 
 					<p:confirm header="Confirmar alta"
 						message="Seguro desea dar de alta este nuevo País?"
@@ -169,8 +171,7 @@
 				</p:commandButton>
 
 				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-					<p:commandButton value="Sí" type="button" onclick="PF('mostrar').hide();" 
-						styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+					<p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
 					<p:commandButton value="No" type="button"
 						styleClass="ui-confirmdialog-no" icon="pi pi-times" />
 				</p:confirmDialog>

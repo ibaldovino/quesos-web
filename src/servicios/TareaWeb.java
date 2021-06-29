@@ -109,6 +109,7 @@ public class TareaWeb implements Serializable{
 				FacesMessage msg = new FacesMessage("Tarea Creada");
 		        FacesContext.getCurrentInstance().addMessage(null, msg);
 		        PrimeFaces.current().executeScript("PF('mostrar').hide()");
+		        PrimeFaces.current().ajax().update("form:TareaTabla");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
