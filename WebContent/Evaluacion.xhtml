@@ -212,10 +212,11 @@
 			</p:dataTable>
 
 		</h:form>
-		<h:form id="formNew">
-			<p:dialog id="new" widgetVar="mostrar" header="Ingresar datos de Evaluación" modal="true"
+		
+<h:form id="formNew">
+	<p:dialog id="new" widgetVar="mostrar" header="Ingresar datos de Evaluación" modal="true"
 				showEffect="clip" resizable="false">
-<p:outputPanel id="manage-product-content">
+		<p:outputPanel id="manage-product-content">
 			
 			<p:growl id="msgs2" life="2000" showDetail="true" />
 
@@ -264,8 +265,9 @@
 
 				</p:panelGrid>
 
-</p:outputPanel>
-<f:facet name="footer">
+			</p:outputPanel>
+
+			<f:facet name="footer">
 				<p:commandButton id="btcrear" value="Crear" icon="pi pi-check"
 					action="#{evaluacione.Crear}" update="manage-product-content" process="manage-product-content @this">
 
@@ -281,9 +283,9 @@
 						styleClass="ui-confirmdialog-no" icon="pi pi-times" />
 				</p:confirmDialog>
 				
-				</f:facet>
-			</p:dialog>
-		</h:form>
+			</f:facet>
+	</p:dialog>
+</h:form>
 
 	</main>
 	

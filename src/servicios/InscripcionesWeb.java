@@ -39,6 +39,7 @@ public class InscripcionesWeb implements Serializable {
 	private long idInsc;
 	private Date fechaCte;
 	private Date fechaInsc;
+	private Date maxDate;
 	private BigDecimal nroCte;
 	private String observInscrip;
 	private String otros;
@@ -47,12 +48,60 @@ public class InscripcionesWeb implements Serializable {
 	private Camara camara;
 	private Participante participante;
 	private Queso queso;
+	private List<String> quesos = new ArrayList<String>();
+	private List<String> participantes;
+	private List<String> camaras;
+	private Gson gson = new Gson();
 
 
 	// Funciones GET
+	
+	
+	
 
 	public String getRest() {
 		return rest;
+	}
+	
+	
+	
+	public Date getMaxDate() {
+		//long oneDay = 24 * 60 * 60 * 1000;
+		Date fecha = new Date();
+		maxDate = new Date(fecha.getTime());
+		return maxDate;
+	}
+
+	public void setMaxDate(Date maxDate) {
+		this.maxDate = maxDate;
+	}
+
+
+	public List<String> getQuesos() {
+		quesos = new ArrayList<String>();
+		Queso[] list = gson.fromJson(ReadJson.readJsonFromUrl(ConectABM.urlServer() + "quesos/todos"), Queso[].class);
+		for (Queso s : list) {
+			quesos.add(s.getCodigoAuto());
+		}
+		return quesos;
+	}
+	
+	public List<String> getParticipantes() {
+		participantes = new ArrayList<String>();
+		Participante[] list = gson.fromJson(ReadJson.readJsonFromUrl(ConectABM.urlServer() + "participante/todos"), Participante[].class);
+		for (Participante s : list) {
+			participantes.add(s.getNombrePart());
+		}
+		return participantes;
+	}
+
+	public List<String> getCamaras() {
+		camaras = new ArrayList<String>();
+		Camara[] list = gson.fromJson(ReadJson.readJsonFromUrl(ConectABM.urlServer() + "camara/todas"), Camara[].class);
+		for (Camara s : list) {
+			camaras.add(s.getLugarCam());
+		}
+		return camaras;
 	}
 
 	public void setRest(String rest) {
@@ -167,6 +216,8 @@ public class InscripcionesWeb implements Serializable {
 		}
 		return lista;
 	}
+
+	
 	
 	//Funciones POST
 	

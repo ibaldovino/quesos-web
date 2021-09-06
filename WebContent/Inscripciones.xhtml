@@ -5,15 +5,14 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
+
 <h:head>
+
+	<f:event  listener="#{ControlLogin.verificarSession}" type="preRenderComponent" />
 	<meta charset="utf-8"></meta>
-	<meta http-equiv="x-ua-compatible" content="ie=edge"></meta>
+	
 	<title>Cheese - Inscripciones</title>
-	<meta name="description" content=""></meta>
-	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-	<link rel="manifest" href="site.webmanifest"></link>
-	<link rel="shortcut icon" type="image/x-icon"
-		href="assets/img/favicon.ico"></link>
+	
 
 	<!-- CSS here -->
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css"></link>
@@ -27,12 +26,14 @@
 	<link rel="stylesheet" href="assets/css/slick.css"></link>
 	<link rel="stylesheet" href="assets/css/nice-select.css"></link>
 	<link rel="stylesheet" type="text/css" href="CSS/modal.css"></link>
+	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico"></link>
 
 	<link rel="stylesheet" href="assets/css/style.css"></link>
 
 	<script src="../js/jquery-3.6.0.min.js" type="text/javascript"></script>
 	<script src="../js/menu.js"></script>
 	<script src="../js/pie.js"></script>
+	<script src="../js/lenguaje_calendar.js" type="text/javascript"></script>
 </h:head>
 <body>
 
@@ -252,13 +253,30 @@
 			<p:panelGrid columns="2" layout="grid" styleClass="customPanelGrid"
 				contentStyleClass="ui-fluid">
 
-				<p:outputLabel value="Referencia" />
-				<p:selectOneMenu id="scref">
+				<p:outputLabel value="Quesos"/>
+				<p:selectOneMenu id="qs" value="#{inscripcione.queso}" style="width:150px"
+						filter="true" filterMatchMode="startsWith">
 					<f:selectItem itemLabel="Select..." noSelectionOption="true" />
-					<f:selectItem itemLabel="Referencia1" itemValue="Referencia1" />
-					<f:selectItem itemLabel="Referencia2" itemValue="Referencia2" />
+					<f:selectItems value="#{inscripcione.quesos}"/>
 				</p:selectOneMenu>
-
+				
+				<p:outputLabel value="Participante"/>
+				<p:selectOneMenu id="inscrip" value="#{inscripcione.participante}" style="width:150px"
+						filter="true" filterMatchMode="startsWith">
+					<f:selectItem itemLabel="Select..." noSelectionOption="true" />
+					<f:selectItems value="#{inscripcione.participantes}"/>
+				</p:selectOneMenu>
+				
+				<p:outputLabel value="Lugar en Camara"/>
+				<p:selectOneMenu id="cam" value="#{inscripcione.camara}" style="width:150px"
+						filter="true" filterMatchMode="startsWith">
+					<f:selectItem itemLabel="Select..." noSelectionOption="true" />
+					<f:selectItems value="#{inscripcione.camaras}"/>
+				</p:selectOneMenu>
+				
+				<p:outputLabel value="Fecha de Insc."/>
+				<p:datePicker value="#{inscripcione.fechaInsc}" locale="es" required="true" maxdate="#{inscripcione.maxDate}" requiredMessage="Se debe ingresar Fecha de Inscirpción"/>	
+				
 				<p:outputLabel value="Descripción: " />
 				<p:inputTextarea />
 
